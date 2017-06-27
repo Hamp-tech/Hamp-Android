@@ -1,7 +1,8 @@
-package com.galodb.hamp
+package com.galodb.hamp.mvp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.galodb.hamp.R
 
 class MainActivity : AppCompatActivity() {
 
