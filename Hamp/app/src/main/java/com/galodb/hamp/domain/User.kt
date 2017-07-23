@@ -15,6 +15,6 @@ class User(
         val os: String,
         val signupDate: String,
         val lastActivityDate: String,
-        val unsubscribed: String,
-        val firebaseID: String
+        val unsubscribed: Boolean,
+        val firebaseID: String = ""
 )
