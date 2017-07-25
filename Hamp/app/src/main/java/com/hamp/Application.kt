@@ -2,6 +2,7 @@ package com.hamp
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 class HampApplication : Application() {
 
@@ -10,9 +11,9 @@ class HampApplication : Application() {
 
         Stetho.initializeWithDefaults(this)
 
-//        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-//                .setDefaultFontPath("fonts/FuturaStd-Medium.ttf")
-//                .setFontAttrId(R.attr.fontPath)
-//                .build())
+        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/HelveticaNeue-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build())
     }
 }

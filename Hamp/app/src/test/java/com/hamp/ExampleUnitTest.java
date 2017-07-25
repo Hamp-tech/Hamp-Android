@@ -1,4 +1,4 @@
-package com.hamp.hamp;
+package com.hamp;
 
 import org.junit.Test;
 

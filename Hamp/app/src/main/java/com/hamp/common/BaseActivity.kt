@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -21,7 +19,8 @@ abstract class BaseActivity : AppCompatActivity() {
         const val POPUP = 3
 
         @IntDef(PUSH.toLong(), FADE.toLong(), MODAL.toLong(), POPUP.toLong(), NONE.toLong())
-        @Retention(RetentionPolicy.SOURCE)
+
+        @Retention(AnnotationRetention.SOURCE)
         annotation class AnimationType
 
         init {
@@ -31,12 +30,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     var isRunning: Boolean = false
         private set
-    private val snackBarActive = false
 
     @AnimationType
     private var animationType = NONE
 
-    @Retention(RetentionPolicy.RUNTIME)
+    @Retention(AnnotationRetention.RUNTIME)
     annotation class Animation(@AnimationType
                                val value: Int)
 

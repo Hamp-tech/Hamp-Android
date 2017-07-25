@@ -1,4 +1,4 @@
-package com.hamp.hamp;
+package com.hamp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.galodb.hamp", appContext.getPackageName());
+        assertEquals("com.hamp", appContext.getPackageName());
     }
 }

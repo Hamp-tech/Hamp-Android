@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- FredokaOneRegular font -->
+    <style name="Fredoka">
+        <item name="fontPath">fonts/FredokaOne-Regular.ttf</item>
+    </style>
+
+    <!-- FredokaOneRegular sizes -->
+    <style name="Fredoka30" parent="Fredoka">
+        <item name="android:textSize">@dimen/text_size_30</item>
+    </style>
+
+    <!-- FredokaOneRegular colors-->
+    <style name="Fredoka30.Razzmatazz" parent="Fredoka30">
+        <item name="android:textColor">@color/razzmatazz</item>
+    </style>
+
+</resources>

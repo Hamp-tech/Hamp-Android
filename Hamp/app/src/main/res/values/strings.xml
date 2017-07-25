@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Hamp</string>
+
+    <!--START ACTIVTY-->
+    <string name="main_start_text">Haz la colada más\nfácil que nunca.</string>
+    <string name="start">Empieza</string>
+    <string name="already_have_account">¿Ya tienes cuenta?</string>
+    <string name="login">Iniciar sesión</string>
+
+
 </resources>

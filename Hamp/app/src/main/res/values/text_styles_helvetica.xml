@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- HelveticaNeue fonts -->
+    <style name="HelveticaNeueRegular">
+        <item name="fontPath">fonts/HelveticaNeue-Regular.ttf</item>
+    </style>
+
+    <style name="HelveticaNeueBold">
+        <item name="fontPath">fonts/HelveticaNeue-Bold.ttf</item>
+    </style>
+
+    <style name="HelveticaNeueLight">
+        <item name="fontPath">fonts/HelveticaNeue-Light.ttf</item>
+    </style>
+
+    <style name="HelveticaNeueMedium">
+        <item name="fontPath">fonts/HelveticaNeue-Medium.ttf</item>
+    </style>
+
+    <style name="HelveticaNeueThin">
+        <item name="fontPath">fonts/HelveticaNeue-Thin.ttf</item>
+    </style>
+
+    <!-- HelveticaNeue sizes -->
+    <style name="HelveticaNeueRegular13" parent="HelveticaNeueRegular">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+
+    <style name="HelveticaNeueBold16" parent="HelveticaNeueBold">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="HelveticaNeueMedium13" parent="HelveticaNeueMedium">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+
+    <!-- HelveticaNeue colors-->
+    <style name="HelveticaNeueRegular13.Black" parent="HelveticaNeueRegular13">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="HelveticaNeueBold16.White" parent="HelveticaNeueBold16">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="HelveticaNeueMedium13.Razzmatazz" parent="HelveticaNeueMedium13">
+        <item name="android:textColor">@color/razzmatazz</item>
+    </style>
+
+</resources>
