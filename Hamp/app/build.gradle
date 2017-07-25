@@ -6,7 +6,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "com.galodb.hamp"
+        applicationId "com.hamp"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -74,9 +74,14 @@ dependencies {
     // Picasso
     compile "com.squareup.picasso:picasso:2.5.2"
 
+    // Firebase
+    compile 'com.google.firebase:firebase-auth:10.0.1'
+
     // Stetho
     debugCompile "com.facebook.stetho:stetho-okhttp3:1.5.0"
 }
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'com.google.gms.google-services'

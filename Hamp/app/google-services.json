@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "874157671570",
+    "firebase_url": "https://hamp-57b75.firebaseio.com",
+    "project_id": "hamp-57b75",
+    "storage_bucket": "hamp-57b75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874157671570:android:baf10ef19207d7b5",
+        "android_client_info": {
+          "package_name": "com.hamp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874157671570-pi7tp35rftdhbtii0jtl9t3598shcrqf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hamp",
+            "certificate_hash": "44abbd1eace808cd66974b003e4e97f458baa817"
+          }
+        },
+        {
+          "client_id": "874157671570-iiog2rp6uje01tjluet7a1u6iu9k0dl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYDWXW-pqbSX6fcLVFrvJTrsYrA8Xn8uQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874157671570-9jubnepj39vbjoqdb551lo2mftcujn93.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hamp",
+                "app_store_id": "123456789"
+              }
+            },
+            {
+              "client_id": "874157671570-iiog2rp6uje01tjluet7a1u6iu9k0dl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
