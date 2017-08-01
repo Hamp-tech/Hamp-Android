@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- TEXT SIZES -->
-    <dimen name="text_size_13">13sp</dimen>
-    <dimen name="text_size_16">16sp</dimen>
-    <dimen name="text_size_30">30sp</dimen>
-
     <!--START DIMENS-->
-    <dimen name="start_bag_icon_left_margin">51dp</dimen>
-    <dimen name="start_bag_icon_top_margin">36dp</dimen>
+    <dimen name="start_bag_icon_top_margin">60dp</dimen>
+    <dimen name="start_button_top_margin">21dp</dimen>
+    <dimen name="start_already_account_bottom_margin">24dp</dimen>
+    <dimen name="start_login_left_margin">5dp</dimen>
 
 </resources>

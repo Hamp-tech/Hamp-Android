@@ -1,11 +1,12 @@
 package com.hamp.api
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.hamp.BuildConfig
 import com.hamp.domain.response.BookingResponse
 import com.hamp.domain.response.GenericResponse
 import com.hamp.domain.response.LockerResponse
 import com.hamp.domain.response.UserResponse
-import com.hamp.hamp.domain.response.*
+import com.hamp.hamp.domain.response.BookingRequest
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -40,8 +41,7 @@ class RestApi {
 
 
         retrofitHamp = Retrofit.Builder()
-                .baseUrl("http://localhost:4567/api/v1/")
-//                .baseUrl(BuildConfig.BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .client(httpClient.build())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

@@ -23,15 +23,15 @@
 
     <!-- HelveticaNeue sizes -->
     <style name="HelveticaNeueRegular13" parent="HelveticaNeueRegular">
-        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="HelveticaNeueBold16" parent="HelveticaNeueBold">
-        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="HelveticaNeueMedium13" parent="HelveticaNeueMedium">
-        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <!-- HelveticaNeue colors-->

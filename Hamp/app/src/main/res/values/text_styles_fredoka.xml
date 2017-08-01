@@ -7,7 +7,7 @@
 
     <!-- FredokaOneRegular sizes -->
     <style name="Fredoka30" parent="Fredoka">
-        <item name="android:textSize">@dimen/text_size_30</item>
+        <item name="android:textSize">30sp</item>
     </style>
 
     <!-- FredokaOneRegular colors-->

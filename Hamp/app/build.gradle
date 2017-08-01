@@ -17,11 +17,10 @@ android {
     }
     buildTypes {
         debug {
-//            http://localhost:4567/api/v1/
-//            buildConfigField("String", "BASE_URL", "HAMP")
+            buildConfigField("String", "BASE_URL", "\"http://localhost:4567/api/v1/\"")
         }
         release {
-//            buildConfigField("String", "BASE_URL", "HAMP")
+            buildConfigField("String", "BASE_URL", "\"http://localhost:4567/api/v1/\"")
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
