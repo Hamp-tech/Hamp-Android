@@ -8,6 +8,7 @@
     <color name="black">#000</color>
     <color name="razzmatazz">#e72f72</color>
     <color name="lightcoral">#f08086</color>
+    <color name="cerise_pink">#e73573</color>
 
     <!--Hex transparency in colors-->
     <!--100% — FF-->

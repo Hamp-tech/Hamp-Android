@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.mvp.login.LoginActivity
+import com.hamp.mvp.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_start.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.startActivity
@@ -24,6 +25,6 @@ class StartActivity : BaseActivity() {
     }
 
     private fun goSignUp() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity<SignUpActivity>()
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+
+        <ImageView
+            android:layout_width="@dimen/signup_login_five_bag_size"
+            android:layout_height="@dimen/signup_login_five_bag_size"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/five_bag_icon" />
+
+        <TextView
+            android:id="@+id/cancel"
+            style="@style/HelveticaNeueRegular13.Razzmatazz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/cancel_top_bottom_padding"
+            android:paddingEnd="@dimen/cancel_top_bottom_padding"
+            android:paddingLeft="@dimen/signup_login_cancel_padding_left"
+            android:paddingRight="@dimen/cancel_top_bottom_padding"
+            android:paddingStart="@dimen/signup_login_cancel_padding_left"
+            android:paddingTop="@dimen/cancel_top_bottom_padding"
+            android:text="@string/cancel" />
+
+        <TextView
+            android:id="@+id/enter"
+            style="@style/HelveticaNeueRegular13.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/enter_margin_right"
+            android:layout_marginRight="@dimen/enter_margin_right"
+            android:background="@drawable/hamp_default_button"
+            android:paddingBottom="@dimen/enter_padding_top_bottom"
+            android:paddingLeft="@dimen/enter_lateral_padding"
+            android:paddingRight="@dimen/enter_lateral_padding"
+            android:paddingTop="@dimen/enter_padding_top_bottom"
+            android:text="@string/enter"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/signup_login_line_height"
+        android:background="@color/razzmatazz" />
+
+</LinearLayout>

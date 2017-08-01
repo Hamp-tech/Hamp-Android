@@ -4,4 +4,8 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="WhiteTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+
 </resources>
