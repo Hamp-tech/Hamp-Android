@@ -32,7 +32,8 @@
             android:name=".mvp.signup.SignUpActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".mvp.login.LoginActivity"
             android:launchMode="singleTop"

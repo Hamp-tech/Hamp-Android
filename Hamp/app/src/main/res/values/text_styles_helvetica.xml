@@ -78,7 +78,11 @@
         <item name="android:textColor">@color/razzmatazz</item>
     </style>
 
-    <style name="HelveticaNeueMedium13.CerisePink" parent="HelveticaNeueMedium20">
+    <style name="HelveticaNeueMedium20.Black" parent="HelveticaNeueMedium20">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="HelveticaNeueMedium20.CerisePink" parent="HelveticaNeueMedium20">
         <item name="android:textColor">@color/cerise_pink</item>
         <item name="android:textColorHint">@color/black</item>
     </style>

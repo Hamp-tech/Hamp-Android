@@ -15,6 +15,8 @@ class StartActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
+//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
         startButton.onClick { goSignUp() }
         alreadyHaveAccount.onClick { goLogin() }
         login.onClick { goLogin() }

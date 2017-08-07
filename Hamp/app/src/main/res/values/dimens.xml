@@ -2,18 +2,17 @@
 <resources>
 
     <!--START DIMENS-->
-    <dimen name="start_bag_icon_top_margin">60dp</dimen>
+    <dimen name="start_bag_icon_top_margin">50dp</dimen>
     <dimen name="start_button_top_margin">21dp</dimen>
-    <dimen name="start_button_padding_top_bottom">5dp</dimen>
+    <dimen name="start_button_padding_top_bottom">8dp</dimen>
     <dimen name="start_already_account_bottom_margin">24dp</dimen>
     <dimen name="start_login_left_margin">5dp</dimen>
     <dimen name="start_login_top_bottom_padding">10dp</dimen>
 
     <!--SIGNUP/LOGIN DIMENS-->
     <dimen name="signup_login_five_bag_size">34dp</dimen>
-    <dimen name="signup_login_cancel_padding_left">17dp</dimen>
+    <dimen name="signup_login_cancel_padding_right">10dp</dimen>
     <dimen name="cancel_top_bottom_padding">10dp</dimen>
-    <dimen name="enter_margin_right">13dp</dimen>
     <dimen name="enter_padding_top_bottom">5dp</dimen>
     <dimen name="enter_lateral_padding">12dp</dimen>
     <dimen name="signup_login_line_height">1dp</dimen>
