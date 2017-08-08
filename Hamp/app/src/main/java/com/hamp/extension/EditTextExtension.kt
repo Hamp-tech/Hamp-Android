@@ -11,13 +11,11 @@ fun EditText.changeBackgroundTextWatcher() {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (s.isNullOrBlank()) {
-                this@changeBackgroundTextWatcher.background.mutate()
-                        .setColorFilter(ContextCompat.getColor(context, R.color.black),
-                                PorterDuff.Mode.SRC_ATOP)
+                this@changeBackgroundTextWatcher.setColorFilter(ContextCompat.
+                        getColor(context, R.color.black))
             } else {
-                this@changeBackgroundTextWatcher.background.mutate()
-                        .setColorFilter(ContextCompat.getColor(context, R.color.razzmatazz),
-                                PorterDuff.Mode.SRC_ATOP)
+                this@changeBackgroundTextWatcher.setColorFilter(ContextCompat.
+                        getColor(context, R.color.cerise_pink))
             }
         }
 
@@ -25,4 +23,8 @@ fun EditText.changeBackgroundTextWatcher() {
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     })
+}
+
+fun EditText.setColorFilter(color: Int) {
+    background.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
 }

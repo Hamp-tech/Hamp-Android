@@ -3,6 +3,7 @@ package com.hamp.mvp.signup
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.util.Patterns
 import android.view.View
 import android.widget.DatePicker
@@ -10,28 +11,36 @@ import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.changeBackgroundTextWatcher
+import com.hamp.extension.setColorFilter
 import com.hamp.extension.showErrorSnackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
 
-class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener {
 
-    lateinit var datePicker: DatePickerDialog
+@BaseActivity.Animation(BaseActivity.PUSH)
+class SignUpActivity : BaseActivity(), SignUpContract.View,
+        View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener {
+
+    lateinit var presenter: SignUpPresenter
+    lateinit private var datePicker: DatePickerDialog
 
     var errors = arrayListOf<String>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        presenter = SignUpPresenter()
+        presenter.setView(this)
 
         initializeEditText()
         initializeDatePicker()
 
         signUpBday.onClick { openDatePicker() }
         enter.onClick { validateForm() }
+        cancel.onClick { onBackPressed() }
     }
 
     private fun initializeDatePicker() {
@@ -53,8 +62,15 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, DatePickerDia
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        val finalMonth = month + 1
-        signUpBday.setText("$dayOfMonth-$finalMonth-$year")
+
+        var monthString = (month + 1).toString()
+        if (monthString.length == 1) monthString = "0" + monthString
+
+        var dayString = dayOfMonth.toString()
+        if (dayString.length == 1) dayString = "0" + dayString
+
+        signUpBday.setText("$dayString/$monthString/$year")
+        signUpBday.setColorFilter(ContextCompat.getColor(this, R.color.cerise_pink))
     }
 
     private fun openDatePicker() = datePicker.show()
@@ -62,10 +78,17 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, DatePickerDia
     private fun validateForm() {
         if (checkName() && checkEmail() && checkPhone() && checkBDay()
                 && checkPassword()) {
-
+            doSignUp()
         } else {
             showErrors()
         }
+    }
+
+    private fun doSignUp() {
+        val email = signUpEmail.text.toString().trim()
+        val password = signUpPassword.text.toString().trim()
+
+        presenter.signUp(email, password)
     }
 
     private fun checkName(): Boolean {
@@ -79,21 +102,23 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, DatePickerDia
         }
     }
 
-    private fun checkPhone(): Boolean {
-        return if (signUpPhone.text.matches(Regex("^[6-9][0-9]{8}$"))) {
-            true
-        } else {
-            errors.add("Telefono invalido")
-            false
-        }
-    }
-
     private fun checkEmail(): Boolean {
         val email = signUpEmail.text.toString().trim()
 
         return if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) true
         else {
             errors.add("Email invalido")
+            false
+        }
+    }
+
+    private fun checkPhone(): Boolean {
+        val phone = signUpPhone.text.toString().trim()
+
+        return if (Patterns.PHONE.matcher(phone).matches() && phone.length >= 9) {
+            true
+        } else {
+            errors.add("Telefono invalido")
             false
         }
     }
@@ -121,7 +146,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, DatePickerDia
                 false
             }
         } else {
-            errors.add("Contraseña invalida")
+            errors.add("La contraseña debe tener al menos 8 caracteres")
             false
         }
     }
@@ -142,6 +167,28 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, DatePickerDia
         signUpPhone.changeBackgroundTextWatcher()
         signUpPassword.changeBackgroundTextWatcher()
         signUpConfirmPassword.changeBackgroundTextWatcher()
+    }
+
+    override fun showInternetNotAvailable() {
+        showErrorSnackbar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
+    }
+
+    override fun isActive() = isRunning
+
+    override fun showProgress(show: Boolean) {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun signUpSucceed() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showSignUpError(message: String) {
+        showErrorSnackbar(message, Snackbar.LENGTH_LONG)
+    }
+
+    override fun showError(message: Int) {
+        showErrorSnackbar(getString(message), Snackbar.LENGTH_LONG)
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {

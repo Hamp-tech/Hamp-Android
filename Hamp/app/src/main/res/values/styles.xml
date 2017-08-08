@@ -12,12 +12,6 @@
 
     <style name="WhiteTheme" parent="AppTheme" />
 
-    <style name="HampEditText">
-        <item name="colorControlNormal">@color/black</item>
-        <item name="colorControlActivated">@color/cerise_pink</item>
-        <item name="colorControlHighlight">@color/cerise_pink</item>
-    </style>
-
     <style name="HampScrollView" />
 
 </resources>
