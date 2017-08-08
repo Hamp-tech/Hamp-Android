@@ -11,6 +11,8 @@
     <color name="cerise_pink">#e73573</color>
     <color name="rb_pink">#E97B82</color>
 
+    <color name="red_error">#F44336</color>
+
     <!--Hex transparency in colors-->
     <!--100% — FF-->
     <!--95% — F2-->
