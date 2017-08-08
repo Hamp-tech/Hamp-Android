@@ -1,5 +1,20 @@
 package com.hamp.extension
 
+import android.app.Activity
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
+import com.hamp.R
+import org.jetbrains.anko.contentView
+
+fun Activity.showErrorSnackbar(message: String, duration: Int) {
+    val snack = Snackbar.make(contentView!!, message, duration)
+    snack.setActionTextColor(R.color.white)
+
+    val view = snack.view
+    view.setBackgroundColor(ContextCompat.getColor(this, R.color.red_error))
+    snack.show()
+}
+
 //fun Activity.showErrorSnackbar(message: String, duration: Int) {
 //    var snack = Snackbar.make(contentView!!, message, duration)
 //    var view = snack.view
