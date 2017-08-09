@@ -11,6 +11,7 @@ import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.changeBackgroundTextWatcher
+import com.hamp.extension.hideKeyboard
 import com.hamp.extension.setColorFilter
 import com.hamp.extension.showErrorSnackbar
 import com.hamp.mvp.home.HomeActivity
@@ -171,6 +172,7 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
     }
 
     override fun showInternetNotAvailable() {
+        hideKeyboard()
         showErrorSnackbar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
     }
 

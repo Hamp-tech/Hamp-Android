@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,18 +18,16 @@
         android:layout_height="?android:attr/actionBarSize"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:theme="@style/HampScrollView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpToolbar"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/signUpToolbar">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,14 +38,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.06" />
+                app:layout_constraintGuide_percent="0.06"/>
 
             <android.support.constraint.Guideline
                 android:id="@+id/guidelineVertical94"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.94" />
+                app:layout_constraintGuide_percent="0.94"/>
 
             <TextView
                 android:id="@+id/signUpText"
@@ -56,7 +55,7 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/sign_up"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <EditText
                 android:id="@+id/signUpName"
@@ -73,7 +72,7 @@
                 app:backgroundTint="@color/black"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
-                app:layout_constraintTop_toBottomOf="@+id/signUpText" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpText"/>
 
             <EditText
                 android:id="@+id/signUpEmail"
@@ -90,7 +89,7 @@
                 app:backgroundTint="@color/black"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
-                app:layout_constraintTop_toBottomOf="@+id/signUpName" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpName"/>
 
             <EditText
                 android:id="@+id/signUpPhone"
@@ -108,7 +107,7 @@
                 app:backgroundTint="@color/black"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
-                app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpEmail"/>
 
             <EditText
                 android:id="@+id/signUpBday"
@@ -129,7 +128,7 @@
                 app:backgroundTint="@color/black"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
-                app:layout_constraintTop_toBottomOf="@+id/signUpPhone" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpPhone"/>
 
             <EditText
                 android:id="@+id/signUpPassword"
@@ -146,7 +145,7 @@
                 app:backgroundTint="@color/black"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
-                app:layout_constraintTop_toBottomOf="@+id/signUpBday" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpBday"/>
 
             <EditText
                 android:id="@+id/signUpConfirmPassword"
@@ -163,7 +162,7 @@
                 app:backgroundTint="@color/black"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
-                app:layout_constraintTop_toBottomOf="@+id/signUpPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpPassword"/>
 
             <RadioGroup
                 android:layout_width="0dp"
@@ -184,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layoutDirection="rtl"
-                    android:text="@string/man" />
+                    android:text="@string/man"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/femaleRadioButton"
@@ -193,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layoutDirection="rtl"
-                    android:text="@string/woman" />
+                    android:text="@string/woman"/>
 
             </RadioGroup>
 

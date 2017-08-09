@@ -1,8 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hamp.mvp.login.LoginActivity">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.hamp.mvp.login.LoginActivity"
+    tools:ignore="MissingPrefix">
+    <!--android:background="@drawable/start_bg"-->
+
+    <include
+        android:id="@+id/loginToolbar"
+        layout="@layout/signup_login_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:theme="@style/HampScrollView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginToolbar">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineVertical06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.06"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineVertical94"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.94"/>
+
+            <TextView
+                android:id="@+id/loginText"
+                style="@style/HelveticaNeueBold28.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/login"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/loginEmail"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="15dp"
+                android:tag="@string/email"
+                android:textAlignment="center"
+                app:backgroundTint="@color/black"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
+                app:layout_constraintTop_toBottomOf="@+id/loginText"/>
+
+            <EditText
+                android:id="@+id/loginPassword"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingBottom="15dp"
+                android:tag="@string/password"
+                android:textAlignment="center"
+                app:backgroundTint="@color/black"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
+                app:layout_constraintTop_toBottomOf="@+id/loginEmail"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/loginFooter"
+        layout="@layout/login_footer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
