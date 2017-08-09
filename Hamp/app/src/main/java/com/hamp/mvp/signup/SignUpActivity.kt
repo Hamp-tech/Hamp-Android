@@ -13,11 +13,12 @@ import com.hamp.common.BaseActivity
 import com.hamp.extension.changeBackgroundTextWatcher
 import com.hamp.extension.setColorFilter
 import com.hamp.extension.showErrorSnackbar
+import com.hamp.mvp.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
 import java.util.*
-
 
 @BaseActivity.Animation(BaseActivity.PUSH)
 class SignUpActivity : BaseActivity(), SignUpContract.View,
@@ -180,7 +181,8 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
     }
 
     override fun signUpSucceed() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity<HomeActivity>()
+        finish()
     }
 
     override fun showSignUpError(message: String) {
