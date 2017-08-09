@@ -1,13 +1,19 @@
 <resources>
 
     <!--<style name="TranslucentStatusTheme" parent="AppTheme">-->
-        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
-        <!--<item name="android:windowLightStatusBar">true</item>-->
+    <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    <!--<item name="android:windowLightStatusBar">true</item>-->
     <!--</style>-->
 
     <style name="WhiteTheme" parent="AppTheme">
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="LoadingDialogStyle" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowAnimationStyle">@style/DialogFadeAnimation</item>
     </style>
 
 </resources>

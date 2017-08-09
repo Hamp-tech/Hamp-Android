@@ -1,5 +1,6 @@
 package com.hamp.mvp.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Patterns
@@ -10,13 +11,18 @@ import com.hamp.common.BaseActivity
 import com.hamp.extension.changeBackgroundTextWatcher
 import com.hamp.extension.hideKeyboard
 import com.hamp.extension.showErrorSnackbar
+import com.hamp.mvp.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.login_footer.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 @BaseActivity.Animation(BaseActivity.PUSH)
-class LoginActivity : BaseActivity(), View.OnFocusChangeListener {
+class LoginActivity : BaseActivity(), LoginContract.View, View.OnFocusChangeListener {
+
+    lateinit private var presenter: LoginPresenter
+//    lateinit private var loadingView: HampLoadingView
 
     var errors = arrayListOf<String>()
 
@@ -25,6 +31,11 @@ class LoginActivity : BaseActivity(), View.OnFocusChangeListener {
         setContentView(R.layout.activity_login)
 
         window.setBackgroundDrawableResource(R.drawable.start_bg_white)
+
+//        loadingView = HampLoadingView(this)
+
+        presenter = LoginPresenter()
+        presenter.setView(this)
 
         enter.visibility = View.GONE
 
@@ -39,7 +50,6 @@ class LoginActivity : BaseActivity(), View.OnFocusChangeListener {
         if (checkEmail() && checkPassword()) {
             doLogin()
         } else {
-            hideKeyboard()
             showErrors()
         }
     }
@@ -65,7 +75,12 @@ class LoginActivity : BaseActivity(), View.OnFocusChangeListener {
     }
 
     private fun doLogin() {
-        showErrorSnackbar("LOGIN", Snackbar.LENGTH_LONG)
+        hideKeyboard()
+
+        val email = loginEmail.text.toString().trim()
+        val password = loginPassword.text.toString().trim()
+
+        presenter.login(email, password)
     }
 
     private fun showErrors() = showErrorSnackbar(errors.last(), Snackbar.LENGTH_LONG)
@@ -76,6 +91,35 @@ class LoginActivity : BaseActivity(), View.OnFocusChangeListener {
 
         loginEmail.changeBackgroundTextWatcher()
         loginPassword.changeBackgroundTextWatcher()
+    }
+
+    override fun isActive() = isRunning
+
+    override fun showProgress(show: Boolean) {
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
+//        if (show) loadingView.show()
+//        else loadingView.dialog.dismiss()
+    }
+
+    override fun showInternetNotAvailable() {
+        showErrorSnackbar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
+    }
+
+    override fun loginSucceed() {
+        startActivity(intentFor<HomeActivity>()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+
+        finish()
+    }
+
+    override fun showLoginError(message: String) {
+        showErrorSnackbar(message, Snackbar.LENGTH_LONG)
+    }
+
+    override fun showError(message: Int) {
+        showErrorSnackbar(getString(message), Snackbar.LENGTH_LONG)
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {

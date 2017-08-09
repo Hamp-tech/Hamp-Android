@@ -9,6 +9,8 @@ import com.hamp.R
 import org.jetbrains.anko.contentView
 
 fun Activity.showErrorSnackbar(message: String, duration: Int) {
+    hideKeyboard()
+
     val snack = Snackbar.make(contentView!!, message, duration)
     snack.setActionTextColor(R.color.white)
 

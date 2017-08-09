@@ -22,14 +22,13 @@ class SignUpPresenter : SignUpContract.Presenter {
 
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
+                    if (mView.isActive()) mView.showProgress(false)
                     if (task.isSuccessful) {
-                        if (mView.isActive()) mView.showProgress(false)
                         val firebaseUser = task.result.user
                         prefs.userId = firebaseUser.uid
                         firebaseUser.email?.let { prefs.email = it }
                         mView.signUpSucceed()
                     } else {
-                        if (mView.isActive()) mView.showProgress(false)
                         when (task.exception) {
                             is FirebaseNetworkException -> mView.showError(R.string.internet_connection_error)
                             is FirebaseAuthUserCollisionException -> mView.showError(R.string.email_already_exist)

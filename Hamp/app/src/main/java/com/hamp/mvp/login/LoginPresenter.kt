@@ -1,6 +1,10 @@
 package com.hamp.mvp.login
 
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.hamp.R
+import com.hamp.prefs
 
 class LoginPresenter : LoginContract.Presenter {
 
@@ -15,6 +19,22 @@ class LoginPresenter : LoginContract.Presenter {
     }
 
     override fun login(email: String, password: String) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (mView.isActive()) mView.showProgress(true)
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (mView.isActive()) mView.showProgress(false)
+                    if (task.isSuccessful) {
+                        val firebaseUser = task.result.user
+                        prefs.userId = firebaseUser.uid
+                        firebaseUser.email?.let { prefs.email = it }
+                        mView.loginSucceed()
+                    } else {
+                        when (task.exception) {
+                            is FirebaseNetworkException -> mView.showError(R.string.internet_connection_error)
+                            is FirebaseAuthInvalidCredentialsException -> mView.showLoginError(task.exception?.message!!)
+                            else -> mView.showError()
+                        }
+                    }
+                }
     }
 }

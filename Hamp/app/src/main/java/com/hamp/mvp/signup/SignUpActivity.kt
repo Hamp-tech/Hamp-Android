@@ -1,6 +1,7 @@
 package com.hamp.mvp.signup
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
@@ -15,24 +16,28 @@ import com.hamp.extension.hideKeyboard
 import com.hamp.extension.setColorFilter
 import com.hamp.extension.showErrorSnackbar
 import com.hamp.mvp.home.HomeActivity
+import com.hamp.mvp.view.HampLoadingView
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.startActivity
 import java.util.*
 
 @BaseActivity.Animation(BaseActivity.PUSH)
 class SignUpActivity : BaseActivity(), SignUpContract.View,
         View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener {
 
-    lateinit var presenter: SignUpPresenter
+    lateinit private var presenter: SignUpPresenter
     lateinit private var datePicker: DatePickerDialog
+//    lateinit private var loadingView: HampLoadingView
 
     var errors = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+//        loadingView = HampLoadingView(this)
 
         presenter = SignUpPresenter()
         presenter.setView(this)
@@ -87,6 +92,8 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
     }
 
     private fun doSignUp() {
+        hideKeyboard()
+
         val email = signUpEmail.text.toString().trim()
         val password = signUpPassword.text.toString().trim()
 
@@ -172,18 +179,23 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
     }
 
     override fun showInternetNotAvailable() {
-        hideKeyboard()
         showErrorSnackbar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
     }
 
     override fun isActive() = isRunning
 
     override fun showProgress(show: Boolean) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
+//        if (show) loadingView.show()
+//        else loadingView.dialog.dismiss()
     }
 
     override fun signUpSucceed() {
-        startActivity<HomeActivity>()
+        startActivity(intentFor<HomeActivity>()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+
         finish()
     }
 
