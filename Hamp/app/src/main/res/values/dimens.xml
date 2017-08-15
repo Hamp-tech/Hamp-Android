@@ -25,4 +25,7 @@
     <dimen name="signup_radio_group_margin_bottom">20dp</dimen>
     <dimen name="signup_radio_button_margin_lateral">10dp</dimen>
 
+    <!--PAYMENT INFO DIMENS-->
+    <dimen name="skip_continue_padding_top_bottom">8dp</dimen>
+
 </resources>

@@ -22,11 +22,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".mvp.signup.SignUpActivity"
@@ -40,12 +40,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-
         <activity
             android:name=".mvp.home.HomeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme" />
-    </application>
 
+        <activity
+            android:name=".mvp.paymentInfo.PaymentInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
 </manifest>

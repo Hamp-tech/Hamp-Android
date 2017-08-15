@@ -27,11 +27,11 @@ class HampEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            setTextAppearance(R.style.HelveticaNeueMedium20_Razzmatazz)
-        } else {
-            setTextAppearance(context, R.style.HelveticaNeueMedium20_Razzmatazz)
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            setTextAppearance(R.style.HelveticaNeueMedium20_Razzmatazz)
+//        } else {
+//            setTextAppearance(context, R.style.HelveticaNeueMedium20_Razzmatazz)
+//        }
 
         setEms(10)
         setPadding(0, 4.px, 0, 15.px)

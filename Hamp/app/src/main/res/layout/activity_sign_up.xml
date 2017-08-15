@@ -58,6 +58,7 @@
 
             <com.hamp.mvp.view.HampEditText
                 android:id="@+id/signUpName"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_name_margin_top"
@@ -70,6 +71,7 @@
 
             <com.hamp.mvp.view.HampEditText
                 android:id="@+id/signUpEmail"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_edittext_margin_top"
@@ -82,12 +84,13 @@
 
             <com.hamp.mvp.view.HampEditText
                 android:id="@+id/signUpPhone"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_edittext_margin_top"
                 android:hint="@string/phone"
-                android:inputType="phone"
-                android:maxLength="12"
+                android:inputType="number"
+                android:maxLength="9"
                 android:tag="@string/phone"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
@@ -95,6 +98,7 @@
 
             <com.hamp.mvp.view.HampEditText
                 android:id="@+id/signUpBday"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_edittext_margin_top"
@@ -105,12 +109,14 @@
                 android:inputType="none"
                 android:longClickable="false"
                 android:tag="@string/bday"
+                android:textAppearance="@style/HelveticaNeueMedium20.Razzmatazz"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/signUpPhone" />
 
             <com.hamp.mvp.view.HampEditText
                 android:id="@+id/signUpPassword"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_edittext_margin_top"
@@ -123,6 +129,7 @@
 
             <com.hamp.mvp.view.HampEditText
                 android:id="@+id/signUpConfirmPassword"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_edittext_margin_top"

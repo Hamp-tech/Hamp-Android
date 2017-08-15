@@ -84,6 +84,9 @@ dependencies {
     // Android Saripaar (Form Validator)
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
 
+    // MaskedEditText
+    compile 'com.vicmikhailau:MaskedEditText:2.0.3'
+
     // Stetho
     debugCompile "com.facebook.stetho:stetho-okhttp3:1.5.0"
 }

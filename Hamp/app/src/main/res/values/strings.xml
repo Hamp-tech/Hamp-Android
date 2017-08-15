@@ -40,5 +40,13 @@
     <string name="login">Inicia sesión</string>
     <string name="remember_password">Recuerda la contraseña</string>
 
+    <!-- PAYMENT INFO ACTIVITY-->
+    <string name="add_card">Añadir tarjeta</string>
+    <string name="card_xxx">xxxx xxxx xxxx xxxx</string>
+    <string name="card_mm_aa">MM/AA</string>
+    <string name="card_cvv">CVV</string>
+    <string name="card_cardholder">Nombre del titular</string>
+    <string name="card_skip">Más tarde</string>
+    <string name="card_continue">Continuar</string>
 
 </resources>

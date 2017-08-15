@@ -38,6 +38,10 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="HelveticaNeueBold36" parent="HelveticaNeueBold">
+        <item name="android:textSize">36sp</item>
+    </style>
+
     <style name="HelveticaNeueMedium13" parent="HelveticaNeueMedium">
         <item name="android:textSize">13sp</item>
     </style>
@@ -46,6 +50,9 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="HelveticaNeueLight14" parent="HelveticaNeueLight">
+        <item name="android:textSize">14sp</item>
+    </style>
 
     <!-- HelveticaNeue colors-->
     <style name="HelveticaNeueRegular13.Black" parent="HelveticaNeueRegular13">
@@ -74,6 +81,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="HelveticaNeueBold36.Black" parent="HelveticaNeueBold36">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="HelveticaNeueMedium13.Razzmatazz" parent="HelveticaNeueMedium13">
         <item name="android:textColor">@color/razzmatazz</item>
     </style>
@@ -85,6 +96,11 @@
     <style name="HelveticaNeueMedium20.Razzmatazz" parent="HelveticaNeueMedium20">
         <item name="android:textColor">@color/razzmatazz</item>
         <item name="android:textColorHint">@color/black</item>
+    </style>
+
+    <style name="HelveticaNeueLight14.Manatee" parent="HelveticaNeueLight14">
+        <item name="android:textColor">@color/manatee</item>
+        <item name="android:textColorHint">@color/manatee</item>
     </style>
 
 </resources>
