@@ -17,4 +17,12 @@
     <dimen name="enter_lateral_padding">12dp</dimen>
     <dimen name="signup_login_line_height">1dp</dimen>
 
+    <!--SIGNUP DIMENS-->
+    <dimen name="signup_text_margin_top">25dp</dimen>
+    <dimen name="signup_name_margin_top">24dp</dimen>
+    <dimen name="signup_edittext_margin_top">18dp</dimen>
+    <dimen name="signup_radio_group_margin_top">26dp</dimen>
+    <dimen name="signup_radio_group_margin_bottom">20dp</dimen>
+    <dimen name="signup_radio_button_margin_lateral">10dp</dimen>
+
 </resources>

@@ -27,3 +27,7 @@
 #Firebase
 -keepattributes Signature
 -keepattributes *Annotation*
+
+#Android Saripaar (Form Validator)
+-keep class com.mobsandgeeks.saripaar.** {*;}
+-keep @com.mobsandgeeks.saripaar.annotation.ValidateUsing class * {*;}

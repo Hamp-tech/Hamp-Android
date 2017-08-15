@@ -1,14 +1,12 @@
 package com.hamp.mvp.signup
 
-import com.hamp.R
 import com.hamp.common.BasePresenter
 import com.hamp.common.BaseView
 
 interface SignUpContract {
     interface View : BaseView {
         fun signUpSucceed()
-        fun showSignUpError(message: String)
-        fun showError(message: Int = R.string.generic_error)
+        fun signUpError(message: String)
     }
 
     interface Presenter : BasePresenter<View> {

@@ -16,7 +16,14 @@
     <!-- ERRORS -->
     <string name="generic_error">Se ha producido un error inesperado. Por favor, vuelve a intentarlo mas tarde.</string>
     <string name="internet_connection_error">No hay conexión a internet</string>
-    <string name="email_already_exist">El email introducido ya se esta utilizando</string>
+
+    <!-- FORM ERRORS -->
+    <string name="error_password_length">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_confirm_password">Las contraseñas no coinciden</string>
+    <string name="error_birthday_empty">Fecha de nacimiento invalida</string>
+    <string name="error_phone_empty">Número de teléfono no válido</string>
+    <string name="error_email_empty">Email no válido</string>
+    <string name="error_name_empty">Por favor introduce tu nombre</string>
 
     <!--START ACTIVTY-->
     <string name="main_start_text">Haz la colada más\nfácil que nunca.</string>
@@ -27,6 +34,7 @@
     <!-- SIGN UP ACTIVITY-->
     <string name="sign_up">Registrate</string>
     <string name="confirm_password">Confirmar contraseña</string>
+    <string name="email_already_exist">El email introducido ya se esta utilizando</string>
 
     <!-- LOGIN ACTIVITY-->
     <string name="login">Inicia sesión</string>

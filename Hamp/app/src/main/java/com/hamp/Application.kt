@@ -3,6 +3,7 @@ package com.hamp
 import android.app.Application
 import com.facebook.stetho.Stetho
 import com.hamp.api.RestApi
+import com.hamp.firebase.FirebaseAuthManager
 import com.hamp.utils.PreferencesUtils
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
@@ -14,11 +15,16 @@ val prefs: PreferencesUtils by lazy {
     HampApplication.preferences!!
 }
 
+val auth: FirebaseAuthManager by lazy {
+    HampApplication.firebaseAuth!!
+}
+
 class HampApplication : Application() {
 
     companion object {
         var hampApi: RestApi? = null
         var preferences: PreferencesUtils? = null
+        var firebaseAuth: FirebaseAuthManager? = null
     }
 
     override fun onCreate() {
@@ -26,6 +32,7 @@ class HampApplication : Application() {
 
         hampApi = RestApi()
         preferences = PreferencesUtils(this)
+        firebaseAuth = FirebaseAuthManager()
 
         Stetho.initializeWithDefaults(this)
 

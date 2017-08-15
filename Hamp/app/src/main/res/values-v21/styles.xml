@@ -13,9 +13,4 @@
         <item name="android:colorEdgeEffect">@color/razzmatazz</item>
     </style>
 
-    <style name="LoadingDialogStyle" parent="android:Theme.Translucent.NoTitleBar">
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowAnimationStyle">@style/DialogFadeAnimation</item>
-    </style>
-
 </resources>

@@ -81,6 +81,9 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
 
+    // Android Saripaar (Form Validator)
+    compile 'com.mobsandgeeks:android-saripaar:2.0.3'
+
     // Stetho
     debugCompile "com.facebook.stetho:stetho-okhttp3:1.5.0"
 }
