@@ -49,4 +49,10 @@
     <string name="card_skip">Más tarde</string>
     <string name="card_continue">Continuar</string>
 
+    <!--SERVICE FRAGMENT-->
+    <string name="services">Servicios</string>
+    <string name="little_bag">Bolsa pequeña</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+
 </resources>

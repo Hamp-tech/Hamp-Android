@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="assetNames">
+    <option name="mapping">
+      <map>
+        <entry key="page_1" value="profile_off" />
+        <entry key="page_11" value="history_off" />
+        <entry key="page_1_copy" value="history_on" />
+      </map>
+    </option>
+  </component>
+</project>

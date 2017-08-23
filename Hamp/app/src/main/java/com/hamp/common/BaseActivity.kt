@@ -63,11 +63,11 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         animationEnter()
         super.onCreate(savedInstanceState)
+        isRunning = true
     }
 
     public override fun onStart() {
         super.onStart()
-        isRunning = true
     }
 
     public override fun onStop() {

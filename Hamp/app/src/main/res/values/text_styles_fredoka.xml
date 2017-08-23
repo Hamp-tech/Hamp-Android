@@ -6,11 +6,19 @@
     </style>
 
     <!-- FredokaOneRegular sizes -->
+    <style name="Fredoka26" parent="Fredoka">
+        <item name="android:textSize">26sp</item>
+    </style>
+
     <style name="Fredoka30" parent="Fredoka">
         <item name="android:textSize">30sp</item>
     </style>
 
     <!-- FredokaOneRegular colors-->
+    <style name="Fredoka26.Wenge" parent="Fredoka26">
+        <item name="android:textColor">@color/wenge</item>
+    </style>
+
     <style name="Fredoka30.Razzmatazz" parent="Fredoka30">
         <item name="android:textColor">@color/razzmatazz</item>
     </style>

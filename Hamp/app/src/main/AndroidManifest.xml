@@ -14,10 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".mvp.MainActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.start.StartActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -44,12 +40,6 @@
             android:name=".mvp.home.HomeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
-
-        <activity
-            android:name=".mvp.paymentInfo.PaymentInfoActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,6 +47,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".mvp.paymentInfo.PaymentInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme" />
 
     </application>
 </manifest>

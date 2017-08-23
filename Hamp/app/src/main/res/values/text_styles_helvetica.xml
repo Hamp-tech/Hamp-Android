@@ -42,8 +42,16 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="HelveticaNeueBold40" parent="HelveticaNeueBold">
+        <item name="android:textSize">40sp</item>
+    </style>
+
     <style name="HelveticaNeueMedium13" parent="HelveticaNeueMedium">
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="HelveticaNeueMedium14" parent="HelveticaNeueMedium">
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="HelveticaNeueMedium20" parent="HelveticaNeueMedium">
@@ -85,8 +93,16 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="HelveticaNeueBold40.CandyPink" parent="HelveticaNeueBold40">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
     <style name="HelveticaNeueMedium13.Razzmatazz" parent="HelveticaNeueMedium13">
         <item name="android:textColor">@color/razzmatazz</item>
+    </style>
+
+    <style name="HelveticaNeueMedium14.Wenge" parent="HelveticaNeueMedium14">
+        <item name="android:textColor">@color/wenge</item>
     </style>
 
     <style name="HelveticaNeueMedium20.Black" parent="HelveticaNeueMedium20">
