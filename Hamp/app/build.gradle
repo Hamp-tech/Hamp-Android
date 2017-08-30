@@ -87,6 +87,11 @@ dependencies {
     // MaskedEditText
     compile 'com.vicmikhailau:MaskedEditText:2.0.3'
 
+    // Lifecycles / LiveData / ViewModel
+    compile "android.arch.lifecycle:runtime:1.0.0-alpha9"
+    compile "android.arch.lifecycle:extensions:1.0.0-alpha9"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha9"
+
     // Stetho
     debugCompile "com.facebook.stetho:stetho-okhttp3:1.5.0"
 }
