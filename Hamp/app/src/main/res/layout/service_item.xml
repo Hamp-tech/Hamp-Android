@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -14,10 +20,11 @@
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/five_bag_icon" />
+                android:scaleType="center"
+                tools:src="@drawable/five_bag"/>
 
             <TextView
                 android:id="@+id/name"
@@ -25,44 +32,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="9dp"
-                android:text="@string/little_bag" />
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/little_bag"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:id="@+id/minus"
-                    style="@style/HelveticaNeueBold40.CandyPink"
+                    style="@style/HelveticaNeueBold36.CandyPink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minus" />
+                    android:layout_toLeftOf="@+id/quantity"
+                    android:layout_toStartOf="@+id/quantity"
+                    android:text="@string/minus"/>
 
                 <TextView
                     android:id="@+id/quantity"
                     style="@style/Fredoka26.Wenge"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/plus"
+                    android:layout_alignTop="@+id/plus"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="0" />
+                    android:minWidth="35dp"
+                    android:paddingTop="8dp"
+                    tools:text="0"/>
 
                 <TextView
                     android:id="@+id/plus"
-                    style="@style/HelveticaNeueBold40.CandyPink"
+                    style="@style/HelveticaNeueBold36.CandyPink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/plus" />
+                    android:layout_toEndOf="@+id/quantity"
+                    android:layout_toRightOf="@+id/quantity"
+                    android:text="@string/plus"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
 
 </LinearLayout>

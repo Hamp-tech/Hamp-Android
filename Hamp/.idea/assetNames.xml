@@ -3,8 +3,17 @@
   <component name="assetNames">
     <option name="mapping">
       <map>
+        <entry key="group_23" value="video" />
         <entry key="page_1" value="profile_off" />
         <entry key="page_11" value="history_off" />
+        <entry key="page_12" value="five_bag" />
+        <entry key="page_13" value="quilt" />
+        <entry key="page_14" value="ten_bag" />
+        <entry key="page_15" value="sofa_cover" />
+        <entry key="page_16" value="blankets" />
+        <entry key="page_17" value="cushions" />
+        <entry key="page_18" value="duvet" />
+        <entry key="page_19" value="curtains" />
         <entry key="page_1_copy" value="history_on" />
       </map>
     </option>

@@ -1,28 +1,47 @@
 package com.hamp.extension
 
 import com.hamp.R
-import com.hamp.mvp.home.HomeActivity
-import com.hamp.mvp.home.fragments.HistoryFragment
-import com.hamp.mvp.home.fragments.ProfileFragment
-import com.hamp.mvp.home.fragments.ServiceFragment
+import com.hamp.domain.Service
+import com.hamp.ui.home.HomeActivity
+import com.hamp.ui.home.history.HistoryFragment
+import com.hamp.ui.home.profile.ProfileFragment
+import com.hamp.ui.home.service.ServiceFragment
+import com.hamp.ui.home.service.detail.ServiceDetailFragment
+
+val serviceFragment = ServiceFragment.create()
+val historyFragment = HistoryFragment.create()
+val profileFragment = ProfileFragment.create()
+
+fun HomeActivity.initFragments() {
+    supportFragmentManager.beginTransaction().apply {
+        add(R.id.fragmentContainer, serviceFragment)
+        add(R.id.fragmentContainer, historyFragment)
+        add(R.id.fragmentContainer, profileFragment)
+    }.commit()
+}
 
 fun HomeActivity.loadServiceFragment() {
-    supportFragmentManager.beginTransaction().apply {
-        replace(R.id.fragmentContainer, ServiceFragment.create())
-//        addToBackStack(ServiceFragment::class.java.simpleName)
-    }.commit()
+    supportFragmentManager.beginTransaction().show(serviceFragment).commit()
+    supportFragmentManager.beginTransaction().hide(historyFragment).commit()
+    supportFragmentManager.beginTransaction().hide(profileFragment).commit()
 }
 
 fun HomeActivity.loadHistoryFragment() {
-    supportFragmentManager.beginTransaction().apply {
-        replace(R.id.fragmentContainer, HistoryFragment.create())
-//        addToBackStack(HistoryFragment::class.java.simpleName)
-    }.commit()
+    supportFragmentManager.beginTransaction().hide(serviceFragment).commit()
+    supportFragmentManager.beginTransaction().show(historyFragment).commit()
+    supportFragmentManager.beginTransaction().hide(profileFragment).commit()
 }
 
 fun HomeActivity.loadProfileFragment() {
+    supportFragmentManager.beginTransaction().hide(serviceFragment).commit()
+    supportFragmentManager.beginTransaction().hide(historyFragment).commit()
+    supportFragmentManager.beginTransaction().show(profileFragment).commit()
+}
+
+fun HomeActivity.loadServiceDetailFragment(service: Service) {
     supportFragmentManager.beginTransaction().apply {
-        replace(R.id.fragmentContainer, ProfileFragment.create())
-//        addToBackStack(ProfileFragment::class.java.simpleName)
-    }.commit()
+        setCustomAnimations(R.anim.slide_right_to_left, android.R.anim.slide_out_right)
+        replace(R.id.fragmentContainer, ServiceDetailFragment.create(service))
+        addToBackStack(ServiceDetailFragment::class.java.simpleName)
+    }.setCustomAnimations(R.anim.slide_right_to_left, android.R.anim.slide_out_right).commit()
 }

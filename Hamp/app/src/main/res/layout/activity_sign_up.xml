@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.hamp.mvp.signup.SignUpActivity"
+    tools:context="com.hamp.ui.signup.SignUpActivity"
     tools:ignore="MissingPrefix">
     <!--android:background="@drawable/start_bg"-->
 
@@ -56,7 +56,7 @@
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVertical06"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpName"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -69,7 +69,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/signUpText" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpEmail"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -82,7 +82,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/signUpName" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpPhone"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -96,7 +96,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpBday"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -114,7 +114,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/signUpPhone" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpPassword"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -127,7 +127,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/signUpBday" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpConfirmPassword"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -176,7 +176,7 @@
 
     </ScrollView>
 
-    <com.hamp.mvp.view.HampLoadingView
+    <com.hamp.ui.views.HampLoadingView
         android:id="@+id/loadingView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -186,6 +186,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </com.hamp.mvp.view.HampLoadingView>
+    </com.hamp.ui.views.HampLoadingView>
 
 </android.support.constraint.ConstraintLayout>

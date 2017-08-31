@@ -55,4 +55,14 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
 
+    <!--SERVICE DETAIL FRAGMENT-->
+    <string name="description">Descripción</string>
+    <string name="price">€</string>
+
+    <!--HISTORY FRAGMENT-->
+    <string name="history">Historial</string>
+
+    <!--SERVICE FRAGMENT-->
+    <string name="profile">Perfil</string>
+
 </resources>

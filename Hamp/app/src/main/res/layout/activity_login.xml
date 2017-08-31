@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.hamp.mvp.login.LoginActivity"
+    tools:context="com.hamp.ui.login.LoginActivity"
     tools:ignore="MissingPrefix">
     <!--android:background="@drawable/start_bg"-->
 
@@ -61,7 +61,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical06"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/loginEmail"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -75,7 +75,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
                 app:layout_constraintTop_toBottomOf="@+id/loginText" />
 
-            <com.hamp.mvp.view.HampEditText
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/loginPassword"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -101,7 +101,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <com.hamp.mvp.view.HampLoadingView
+    <com.hamp.ui.views.HampLoadingView
         android:id="@+id/loadingView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -111,7 +111,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </com.hamp.mvp.view.HampLoadingView>
+    </com.hamp.ui.views.HampLoadingView>
 
 
 </android.support.constraint.ConstraintLayout>
