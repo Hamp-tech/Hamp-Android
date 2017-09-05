@@ -16,14 +16,15 @@ class ServiceView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     lateinit private var service: Service
+    var quantity = 0
 
     init {
         LayoutInflater.from(context).inflate(R.layout.service_item, this, true)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        plus.onClick { modifyQuantity { service.quantity++ } }
-        minus.onClick { modifyQuantity { service.quantity-- } }
+        plus.onClick { modifyQuantity { quantity++ } }
+        minus.onClick { modifyQuantity { quantity-- } }
     }
 
     fun bind(service: Service) {
@@ -31,12 +32,12 @@ class ServiceView @JvmOverloads constructor(
 
         name.text = service.name
         image.loadImg(service.image)
-        quantity.text = service.quantity.toString()
+        quantityValue.text = quantity.toString()
     }
 
     private fun modifyQuantity(action: () -> Int) {
         action()
-        if (service.quantity < 0) service.quantity = 0
-        quantity.text = service.quantity.toString()
+        if (quantity < 0) quantity = 0
+        quantityValue.text = quantity.toString()
     }
 }

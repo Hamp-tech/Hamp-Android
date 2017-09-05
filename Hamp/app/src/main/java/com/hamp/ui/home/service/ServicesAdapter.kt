@@ -12,13 +12,13 @@ class ServicesAdapter(val context: Context, override var items: List<Service>,
     : RecyclerViewAdapterBase<Service, ServiceView>(items) {
 
     interface ClickServiceListener {
-        fun onServiceClick(service: Service)
+        fun onServiceClick(service: Service, quantity: Int)
     }
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int) = ServiceView(context)
 
     override fun onBindViewHolder(holder: ViewWrapper<ServiceView>?, position: Int) {
         holder?.view?.bind(items[position])
-        holder?.view?.onClick { clickServiceListener.onServiceClick(items[position]) }
+        holder?.view?.onClick { clickServiceListener.onServiceClick(items[position], holder.view.quantity) }
     }
 }

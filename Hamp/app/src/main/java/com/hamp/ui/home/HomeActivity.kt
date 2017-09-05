@@ -1,16 +1,18 @@
 package com.hamp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.domain.Service
-import com.hamp.extension.*
+import com.hamp.extension.initFragments
+import com.hamp.extension.loadHistoryFragment
+import com.hamp.extension.loadProfileFragment
+import com.hamp.extension.loadServiceFragment
 import com.hamp.ui.home.history.HistoryFragment
 import com.hamp.ui.home.profile.ProfileFragment
 import com.hamp.ui.home.service.ServiceFragment
-import com.hamp.ui.home.service.detail.ServiceDetailFragment
 import com.hamp.ui.views.HampNavigationBar
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -28,7 +30,7 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
 
         hampNavigationBar.listener = this
 
-        loadServiceFragment()
+        loadService()
 
         back.onClick { supportFragmentManager.popBackStackImmediate() }
     }
@@ -68,20 +70,7 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
         loadProfileFragment()
     }
 
-    fun loadServiceDetail(service: Service) {
-        sectionTitle.text = service.name
-        video.visibility = View.GONE
-        basket.visibility = View.GONE
-        back.visibility = View.VISIBLE
-
-        loadServiceDetailFragment(service)
-    }
-
-    override fun onBackPressed() {
-        when (currentFragment) {
-            is ServiceDetailFragment -> {
-                supportFragmentManager.popBackStackImmediate()
-            }
-        }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
