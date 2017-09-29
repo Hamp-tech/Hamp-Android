@@ -1,8 +1,8 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -13,5 +13,14 @@
     <style name="WhiteTheme" parent="AppTheme" />
 
     <style name="HampScrollView" />
+
+    <style name="HampSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/lightcoral</item>
+    </style>
+
+    <style name="HampRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="colorAccent">@color/lightcoral</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
 
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +23,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:scaleType="center"
-                tools:src="@drawable/five_bag"/>
+                tools:src="@drawable/five_bag" />
 
             <TextView
                 android:id="@+id/name"
@@ -34,7 +33,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/little_bag"/>
+                android:text="@string/little_bag" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -48,7 +47,9 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/quantityValue"
                     android:layout_toStartOf="@+id/quantityValue"
-                    android:text="@string/minus"/>
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/minus" />
 
                 <TextView
                     android:id="@+id/quantityValue"
@@ -58,12 +59,10 @@
                     android:layout_alignBottom="@+id/plus"
                     android:layout_alignTop="@+id/plus"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:gravity="center"
                     android:minWidth="35dp"
                     android:paddingTop="8dp"
-                    tools:text="0"/>
+                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/plus"
@@ -72,7 +71,9 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/quantityValue"
                     android:layout_toRightOf="@+id/quantityValue"
-                    android:text="@string/plus"/>
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/plus" />
 
             </RelativeLayout>
 

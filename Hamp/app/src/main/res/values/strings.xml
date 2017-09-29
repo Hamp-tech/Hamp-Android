@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">Hamp</string>
-
     <!--COMMON-->
+    <string name="start">Empieza</string>
     <string name="cancel">Cancela</string>
     <string name="enter">Entra</string>
     <string name="email">E-mail</string>
@@ -12,11 +13,9 @@
     <string name="woman">Mujer</string>
     <string name="phone">Teléfono</string>
     <string name="bday">Fecha de nacimiento</string>
-
     <!-- ERRORS -->
     <string name="generic_error">Se ha producido un error inesperado. Por favor, vuelve a intentarlo mas tarde.</string>
     <string name="internet_connection_error">No hay conexión a internet</string>
-
     <!-- FORM ERRORS -->
     <string name="error_password_length">La contraseña debe tener al menos 6 caracteres</string>
     <string name="error_confirm_password">Las contraseñas no coinciden</string>
@@ -24,22 +23,17 @@
     <string name="error_phone_empty">Número de teléfono no válido</string>
     <string name="error_email_empty">Email no válido</string>
     <string name="error_name_empty">Por favor introduce tu nombre</string>
-
     <!--START ACTIVTY-->
     <string name="main_start_text">Haz la colada más\nfácil que nunca.</string>
-    <string name="start">Empieza</string>
     <string name="already_have_account">¿Ya tienes cuenta?</string>
     <string name="start_login">Iniciar sesión</string>
-
     <!-- SIGN UP ACTIVITY-->
     <string name="sign_up">Registrate</string>
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="email_already_exist">El email introducido ya se esta utilizando</string>
-
     <!-- LOGIN ACTIVITY-->
     <string name="login">Inicia sesión</string>
     <string name="remember_password">Recuerda la contraseña</string>
-
     <!-- PAYMENT INFO ACTIVITY-->
     <string name="add_card">Añadir tarjeta</string>
     <string name="card_xxx">xxxx xxxx xxxx xxxx</string>
@@ -48,21 +42,23 @@
     <string name="card_cardholder">Nombre del titular</string>
     <string name="card_skip">Más tarde</string>
     <string name="card_continue">Continuar</string>
-
     <!--SERVICE FRAGMENT-->
     <string name="services">Servicios</string>
     <string name="little_bag">Bolsa pequeña</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-
-    <!--SERVICE DETAIL FRAGMENT-->
+    <!--SERVICE DETAIL ACTIVITY-->
     <string name="description">Descripción</string>
     <string name="price">€</string>
-
     <!--HISTORY FRAGMENT-->
     <string name="history">Historial</string>
-
     <!--SERVICE FRAGMENT-->
+    <string name="profile_edit">Edita</string>
+    <string name="profile_save">Guarda</string>
     <string name="profile">Perfil</string>
-
+    <string name="rate_hamp">Valorar Hamp</string>
+    <string name="notifications_enabled">Notificaciones activadas</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="terms_of_use">Ver condiciones de uso</string>
 </resources>
+

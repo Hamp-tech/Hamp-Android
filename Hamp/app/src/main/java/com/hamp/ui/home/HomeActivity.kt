@@ -1,15 +1,11 @@
 package com.hamp.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.extension.initFragments
-import com.hamp.extension.loadHistoryFragment
-import com.hamp.extension.loadProfileFragment
-import com.hamp.extension.loadServiceFragment
+import com.hamp.extension.*
 import com.hamp.ui.home.history.HistoryFragment
 import com.hamp.ui.home.profile.ProfileFragment
 import com.hamp.ui.home.service.ServiceFragment
@@ -20,7 +16,13 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 //@BaseActivity.Animation(BaseActivity.FADE)
 class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener {
 
+    lateinit var serviceFragment: ServiceFragment
+    lateinit var historyFragment: HistoryFragment
+    lateinit var profileFragment: ProfileFragment
+
     lateinit var currentFragment: Fragment
+
+    var isBasketEmpty = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
 
         loadService()
 
-        back.onClick { supportFragmentManager.popBackStackImmediate() }
+        profileEditSave.onClick { profileEditMode() }
     }
 
     override fun loadFragment(fragmentName: String) {
@@ -45,9 +47,18 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
 
     private fun loadService() {
         sectionTitle.text = getString(R.string.services)
-        video.visibility = View.VISIBLE
+
+        profileEditSave.visibility = View.GONE
+        if (isBasketEmpty) {
+            basketCounterContainer.visibility = View.GONE
+            basketCounter.visibility = View.GONE
+        } else {
+            basketCounterContainer.visibility = View.VISIBLE
+            basketCounter.visibility = View.VISIBLE
+        }
+
         basket.visibility = View.VISIBLE
-        back.visibility = View.GONE
+        video.visibility = View.VISIBLE
 
         loadServiceFragment()
     }
@@ -56,7 +67,10 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
         sectionTitle.text = getString(R.string.history)
         video.visibility = View.GONE
         basket.visibility = View.GONE
-        back.visibility = View.GONE
+        profileEditSave.visibility = View.GONE
+
+        basketCounterContainer.visibility = View.GONE
+        basketCounter.visibility = View.GONE
 
         loadHistoryFragment()
     }
@@ -65,12 +79,37 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
         sectionTitle.text = getString(R.string.profile)
         video.visibility = View.GONE
         basket.visibility = View.GONE
-        back.visibility = View.GONE
+
+        basketCounterContainer.visibility = View.GONE
+        basketCounter.visibility = View.GONE
+
+        profileEditSave.visibility = View.VISIBLE
 
         loadProfileFragment()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    fun modifyBasketCounter(basketItems: Int) {
+        if (basketItems == 0) {
+            isBasketEmpty = true
+            basket.setImageResource(R.drawable.empty_basket)
+            basketCounterContainer.visibility = View.GONE
+            basketCounter.visibility = View.GONE
+        } else {
+            isBasketEmpty = false
+            basket.setImageResource(R.drawable.basket)
+            basketCounterContainer.visibility = View.VISIBLE
+            basketCounter.visibility = View.VISIBLE
+            basketCounter.text = basketItems.toString()
+        }
+    }
+
+    private fun profileEditMode() = (currentFragment as? ProfileFragment)?.editionMode()
+
+    fun editModeSwitch(editMode: Boolean) {
+        if (editMode) profileEditSave.text = getString(R.string.profile_save)
+        else {
+            profileEditSave.text = getString(R.string.profile_edit)
+            hideKeyboard()
+        }
     }
 }

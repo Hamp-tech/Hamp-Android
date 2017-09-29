@@ -10,7 +10,7 @@ import android.widget.DatePicker
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.hideKeyboard
-import com.hamp.extension.showErrorSnackbar
+import com.hamp.extension.showErrorSnackBar
 import com.hamp.ui.home.HomeActivity
 import com.hamp.ui.views.HampEditText
 import com.mobsandgeeks.saripaar.ValidationError
@@ -60,7 +60,7 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
         initializeValidatorAndInputs()
         initializeDatePicker()
 
-        signUpBday.onClick { openDatePicker() }
+        signUpBday.onClick { datePicker.show() }
         enter.onClick { validator.validate() }
         cancel.onClick { onBackPressed() }
     }
@@ -107,8 +107,6 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
         signUpBday.setColorFilter(ContextCompat.getColor(this, R.color.cerise_pink))
     }
 
-    private fun openDatePicker() = datePicker.show()
-
     override fun onValidationSucceeded() = doSignUp()
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {
@@ -140,5 +138,5 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
         finish()
     }
 
-    override fun signUpError(message: String) = showErrorSnackbar(message, Snackbar.LENGTH_LONG)
+    override fun signUpError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
 }

@@ -6,6 +6,14 @@
     </style>
 
     <!-- FredokaOneRegular sizes -->
+    <style name="Fredoka10" parent="Fredoka">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Fredoka20" parent="Fredoka">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Fredoka24" parent="Fredoka">
         <item name="android:textSize">24sp</item>
     </style>
@@ -19,6 +27,14 @@
     </style>
 
     <!-- FredokaOneRegular colors-->
+    <style name="Fredoka10.White" parent="Fredoka10">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Fredoka20.LightCoral" parent="Fredoka20">
+        <item name="android:textColor">@color/lightcoral</item>
+    </style>
+
     <style name="Fredoka24.Wenge" parent="Fredoka24">
         <item name="android:textColor">@color/wenge</item>
     </style>

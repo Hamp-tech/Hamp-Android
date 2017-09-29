@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="title_instructions">
+        <item>Escoge el servicio</item>
+        <item>Recibe el código y taquilla</item>
+        <item>Recoge tu ropa</item>
+        <item>¡No pierdas detalle!</item>
+    </string-array>
+
+    <string-array name="instructions">
+        <item>Para disfrutar de las ventajas de Hamp empieza por registrarte en la app.De lo demás, nos encargamos nosotros!</item>
+        <item>Disfruta de una gran variedad de serviocios, que podrás adaptarlos a tus necesidades y obtendras un resultado inmejorable</item>
+        <item>Una vez finalizado el pedido, es tan sencillo como recibir en tu movil un código y una taquilla, en la que dejarás la ropa, y podrás recogerla en 24h </item>
+        <item>Comprueba y revisa todos los movimientos que has hecho con el historial de Hamp</item>
+    </string-array>
+
+    <string-array name="images_instructions">
+        <item>@drawable/tutorial_1</item>
+        <item>@drawable/tutorial_2</item>
+        <item>@drawable/tutorial_3</item>
+        <item>@drawable/tutorial_4</item>
+    </string-array>
+</resources>

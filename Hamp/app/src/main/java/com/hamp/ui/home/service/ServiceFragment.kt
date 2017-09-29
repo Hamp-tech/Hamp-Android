@@ -12,15 +12,18 @@ import com.hamp.R
 import com.hamp.common.BaseFragment
 import com.hamp.domain.Service
 import com.hamp.ui.home.HomeActivity
+import com.hamp.ui.home.service.ServiceViewQuantityListener.Operation
 import com.hamp.ui.home.service.detail.ServiceDetailActivity
 import kotlinx.android.synthetic.main.fragment_service.*
 
-
-class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener {
-
-    private val SERVICE_DETAIL_REQUEST = 1
+class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener, ServiceViewQuantityListener {
+    private val serviceDetailRequest = 1
 
     lateinit private var viewModel: ServiceViewModel
+
+    private var currentItemClickPosition = 0
+
+    private var basketCounter = 0
 
     companion object {
         fun create() = ServiceFragment().apply { }
@@ -29,8 +32,9 @@ class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener {
     private val homeActivity: HomeActivity
         get() = activity as HomeActivity
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            inflater.inflate(R.layout.fragment_service, container, false)
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater?.inflate(R.layout.fragment_service, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,20 +45,40 @@ class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener {
         rvServices.layoutManager = GridLayoutManager(context, 2)
 //        rvServices.addItemDecoration(SpaceItemDecoration(4.px))
 
-        rvServices.adapter = ServicesAdapter(context, viewModel.servicesList, this)
+        rvServices.adapter = ServicesAdapter(context, viewModel.servicesList, this, this)
     }
 
-    override fun onServiceClick(service: Service, quantity: Int) {
+    override fun onServiceClick(service: Service, quantity: Int, position: Int) {
+        currentItemClickPosition = position
         val intent = Intent(context, ServiceDetailActivity::class.java)
         intent.putExtra("service", service)
         intent.putExtra("quantity", quantity)
-        startActivityForResult(intent, SERVICE_DETAIL_REQUEST)
+        startActivityForResult(intent, serviceDetailRequest)
+    }
+
+    override fun onQuantityChange(operation: Operation) {
+        when (operation) {
+            Operation.ADD -> modifyBasketCounter { basketCounter++ }
+            Operation.SUBTRACT -> modifyBasketCounter { basketCounter-- }
+        }
+    }
+
+    private fun modifyBasketCounter(action: () -> Unit) {
+        action()
+        if (basketCounter < 0) basketCounter = 0
+        homeActivity.modifyBasketCounter(basketCounter)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SERVICE_DETAIL_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                
+        if (requestCode == serviceDetailRequest) {
+            if (resultCode == RESULT_OK && data is Intent) {
+                val resultQuantity = data.getIntExtra("quantity", 0)
+                val itemView = rvServices.findViewHolderForAdapterPosition(currentItemClickPosition).itemView as ServiceView
+
+                val diffQuantity = resultQuantity - itemView.quantity
+                modifyBasketCounter { basketCounter += diffQuantity }
+
+                itemView.modifyQuantity(resultQuantity)
             }
         }
     }

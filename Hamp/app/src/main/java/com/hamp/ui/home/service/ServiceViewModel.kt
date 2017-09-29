@@ -12,5 +12,4 @@ class ServiceViewModel : ViewModel() {
     fun init() {
         servicesList = serviceRepository.loadServices()
     }
-
 }

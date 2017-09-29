@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.12"/>
+        app:layout_constraintGuide_percent="0.12" />
 
     <ImageView
         android:id="@+id/back"
@@ -23,7 +22,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/serviceTitle"
         app:layout_constraintTop_toTopOf="@+id/serviceTitle"
-        app:srcCompat="@drawable/back_arrow"/>
+        app:srcCompat="@drawable/back_arrow" />
 
     <TextView
         android:id="@+id/serviceTitle"
@@ -36,7 +35,7 @@
         app:layout_constraintLeft_toLeftOf="@id/guidelineTopLeft"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/services"/>
+        tools:text="@string/services" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -61,7 +60,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.2"
                 tools:layout_editor_absoluteX="64dp"
-                tools:layout_editor_absoluteY="61dp"/>
+                tools:layout_editor_absoluteY="61dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guidelineRight"
@@ -70,7 +69,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.8"
                 tools:layout_editor_absoluteX="256dp"
-                tools:layout_editor_absoluteY="61dp"/>
+                tools:layout_editor_absoluteY="61dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guidelineBottomLeft"
@@ -79,7 +78,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.18"
                 tools:layout_editor_absoluteX="57dp"
-                tools:layout_editor_absoluteY="61dp"/>
+                tools:layout_editor_absoluteY="61dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guidelineBottomRight"
@@ -88,7 +87,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.82"
                 tools:layout_editor_absoluteX="263dp"
-                tools:layout_editor_absoluteY="61dp"/>
+                tools:layout_editor_absoluteY="61dp" />
 
             <ImageView
                 android:id="@+id/image"
@@ -98,7 +97,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/sofa_cover"/>
+                app:srcCompat="@drawable/sofa_cover" />
 
             <TextView
                 android:id="@+id/descriptionTitle"
@@ -109,7 +108,7 @@
                 android:text="@string/description"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
-                app:layout_constraintTop_toBottomOf="@+id/image"/>
+                app:layout_constraintTop_toBottomOf="@+id/image" />
 
             <View
                 android:id="@+id/view"
@@ -119,7 +118,7 @@
                 android:background="@color/manatee_2"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTitle"/>
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
             <TextView
                 android:id="@+id/description"
@@ -130,7 +129,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
                 app:layout_constraintTop_toBottomOf="@+id/view"
-                tools:text="The quick brown fox jumpsover the lazy dog. LoremIpsum, The quick brown fox jumps over the lazy dog.Lorem Ipsum."/>
+                tools:text="The quick brown fox jumpsover the lazy dog. LoremIpsum, The quick brown fox jumps over the lazy dog.Lorem Ipsum." />
 
             <LinearLayout
                 android:id="@+id/quantityLayout"
@@ -145,26 +144,28 @@
                     style="@style/HelveticaNeueBold36.CandyPink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/minus"/>
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:text="@string/minus" />
 
                 <TextView
                     android:id="@+id/quantityValue"
                     style="@style/Fredoka24.Wenge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="18dp"
                     android:gravity="center"
                     android:minWidth="35dp"
                     android:paddingTop="6dp"
-                    tools:text="0"/>
+                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/plus"
                     style="@style/HelveticaNeueBold36.CandyPink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/plus"/>
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:text="@string/plus" />
 
             </LinearLayout>
 
@@ -180,7 +181,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/quantityLayout"
                 app:layout_constraintLeft_toRightOf="@+id/quantityLayout"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineBottomRight"
-                app:layout_constraintTop_toTopOf="@+id/quantityLayout"/>
+                app:layout_constraintTop_toTopOf="@+id/quantityLayout" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

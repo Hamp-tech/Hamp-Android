@@ -7,7 +7,7 @@ import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.hideKeyboard
-import com.hamp.extension.showErrorSnackbar
+import com.hamp.extension.showErrorSnackBar
 import com.hamp.ui.home.HomeActivity
 import com.hamp.ui.views.HampEditText
 import com.mobsandgeeks.saripaar.ValidationError
@@ -93,5 +93,5 @@ class LoginActivity : BaseActivity(), LoginContract.View, Validator.ValidationLi
         finish()
     }
 
-    override fun loginError(message: String) = showErrorSnackbar(message, Snackbar.LENGTH_LONG)
+    override fun loginError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
 }

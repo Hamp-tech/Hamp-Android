@@ -7,7 +7,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
-import com.hamp.extension.showErrorSnackbar
+import com.hamp.extension.showErrorSnackBar
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -105,8 +105,8 @@ abstract class BaseActivity : AppCompatActivity() {
     fun isActive() = isRunning
 
     fun showInternetNotAvailable() =
-            showErrorSnackbar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
+            showErrorSnackBar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
 
-    open fun showError(message: Int) = showErrorSnackbar(getString(message), Snackbar.LENGTH_LONG)
+    open fun showError(message: Int) = showErrorSnackBar(getString(message), Snackbar.LENGTH_LONG)
 }
 

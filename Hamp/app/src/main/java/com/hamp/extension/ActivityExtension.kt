@@ -4,11 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.hamp.R
 import org.jetbrains.anko.contentView
 
-fun Activity.showErrorSnackbar(message: String, duration: Int) {
+fun Activity.showErrorSnackBar(message: String, duration: Int) {
     hideKeyboard()
 
     val snack = Snackbar.make(contentView!!, message, duration)
@@ -21,5 +22,5 @@ fun Activity.showErrorSnackbar(message: String, duration: Int) {
 
 fun Activity.hideKeyboard() {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(findViewById(android.R.id.content).windowToken, 0)
+    imm.hideSoftInputFromWindow(findViewById<View>(android.R.id.content).windowToken, 0)
 }

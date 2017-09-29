@@ -1,7 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/white">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTopLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.06" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTopRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.92" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineTopLeft"
+            app:layout_constraintRight_toLeftOf="@+id/guidelineTopRight"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/HelveticaNeueMedium20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name" />
+
+            <EditText
+                android:id="@+id/profileName"
+                style="@style/HelveticaNeueThin16.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:text="Judith" />
+
+            <TextView
+                style="@style/HelveticaNeueMedium20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/surname" />
+
+            <EditText
+                android:id="@+id/profileSurname"
+                style="@style/HelveticaNeueThin16.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:text="Moreno Navarro" />
+
+            <TextView
+                style="@style/HelveticaNeueMedium20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/profileEmail"
+                style="@style/HelveticaNeueThin16.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:text="judithmoreno83@gmail.com" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/HelveticaNeueMedium20.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/phone" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/phoneSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/HampSwitch" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/profilePhone"
+                style="@style/HelveticaNeueThin16.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
+                android:text="666666666" />
+
+            <TextView
+                style="@style/HelveticaNeueMedium20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/bday" />
+
+            <TextView
+                android:id="@+id/profileBirth"
+                style="@style/HelveticaNeueRegular20.Manatee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/birth_rectangle"
+                android:gravity="center"
+                android:text="22/33/4444" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/maleRadioButton"
+                    style="@style/HelveticaNeueMedium20.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/signup_radio_button_margin_lateral"
+                    android:layoutDirection="rtl"
+                    android:text="@string/man"
+                    android:theme="@style/HampRadioButton" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/femaleRadioButton"
+                    style="@style/HelveticaNeueMedium20.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/signup_radio_button_margin_lateral"
+                    android:layoutDirection="rtl"
+                    android:text="@string/woman"
+                    android:theme="@style/HampRadioButton" />
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/HelveticaNeueMedium20.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/rate_hamp" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/rateHampSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/HampSwitch" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/HelveticaNeueMedium20.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/notifications_enabled" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/notificationsSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:theme="@style/HampSwitch" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/HelveticaNeueMedium20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:text="@string/logout" />
+
+            <TextView
+                android:id="@+id/terms"
+                style="@style/HelveticaNeueLight14.Manatee"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="25dp"
+                android:drawableLeft="@drawable/conditions"
+                android:drawablePadding="8dp"
+                tools:text="@string/terms_of_use" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

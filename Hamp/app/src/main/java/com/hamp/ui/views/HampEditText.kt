@@ -9,11 +9,9 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.CycleInterpolator
-import android.view.animation.TranslateAnimation
 import com.hamp.R
 import com.hamp.extension.px
+import com.hamp.extension.shake
 
 
 class HampEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher {
@@ -66,13 +64,6 @@ class HampEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher 
 
     override fun setError(error: CharSequence?) {
         super.setError(error)
-        if (error != null) startAnimation(shakeAnimation())
-    }
-
-    private fun shakeAnimation(): Animation {
-        return TranslateAnimation(0f, 10f, 0f, 0f).apply {
-            duration = 500
-            interpolator = CycleInterpolator(7f)
-        }
+        if (error != null) shake()
     }
 }
