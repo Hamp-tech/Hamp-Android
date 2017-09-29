@@ -17,8 +17,10 @@ class FirebaseAuthManager {
     }
 
     fun loginWithEmailAndPassword(email: String, password: String,
-                                   onCompleteListener: OnCompleteListener<AuthResult>) {
+                                  onCompleteListener: OnCompleteListener<AuthResult>) {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(onCompleteListener)
     }
+
+    fun logout() = auth.signOut()
 }

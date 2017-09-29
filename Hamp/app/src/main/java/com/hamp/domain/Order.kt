@@ -1,8 +1,5 @@
 package com.hamp.domain
 
-/**
- * Created by galo1100 on 29/6/17.
- */
 data class Order(
         val smallBag: Int = 0,
         val bigBag: Int = 0,

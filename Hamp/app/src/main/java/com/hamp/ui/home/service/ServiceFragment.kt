@@ -32,7 +32,6 @@ class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener, Se
     private val homeActivity: HomeActivity
         get() = activity as HomeActivity
 
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_service, container, false)
 
@@ -42,6 +41,7 @@ class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener, Se
         viewModel = ViewModelProviders.of(this).get(ServiceViewModel::class.java)
         viewModel.init()
 
+        rvServices.setHasFixedSize(true)
         rvServices.layoutManager = GridLayoutManager(context, 2)
 //        rvServices.addItemDecoration(SpaceItemDecoration(4.px))
 

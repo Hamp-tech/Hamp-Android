@@ -1,10 +1,14 @@
 package com.hamp.ui.tutorial
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import com.hamp.R
 import com.hamp.common.BaseActivity
+import com.hamp.prefs
+import com.hamp.ui.start.StartActivity
 import kotlinx.android.synthetic.main.activity_tutorial.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
@@ -21,6 +25,14 @@ class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
         tutorialPager.adapter = tutorialAdapter
         tutorialPager.addOnPageChangeListener(this)
         indicator.setViewPager(tutorialPager)
+
+        startButton.onClick { goToStartActivity() }
+    }
+
+    private fun goToStartActivity() {
+        prefs.isFirstTime = false
+        startActivity(Intent(this, StartActivity::class.java))
+        finish()
     }
 
     override fun onPageScrollStateChanged(state: Int) {}

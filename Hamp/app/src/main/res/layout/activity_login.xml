@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:theme="@style/HampScrollView"
@@ -34,22 +33,18 @@
             android:layout_height="wrap_content">
 
             <android.support.constraint.Guideline
-                android:id="@+id/guidelineVertical06"
+                android:id="@+id/guidelineVerticalLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.06"
-                tools:layout_editor_absoluteX="19dp"
-                tools:layout_editor_absoluteY="81dp" />
+                app:layout_constraintGuide_percent="0.04" />
 
             <android.support.constraint.Guideline
-                android:id="@+id/guidelineVertical94"
+                android:id="@+id/guidelineVerticalRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.94"
-                tools:layout_editor_absoluteX="301dp"
-                tools:layout_editor_absoluteY="81dp" />
+                app:layout_constraintGuide_percent="0.96" />
 
             <TextView
                 android:id="@+id/loginText"
@@ -58,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:text="@string/login"
-                app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical06"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineVerticalLeft"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.hamp.ui.views.HampEditText
@@ -71,8 +66,8 @@
                 android:inputType="textEmailAddress"
                 android:tag="@string/email"
                 android:textAlignment="center"
-                app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical06"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineVerticalLeft"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
                 app:layout_constraintTop_toBottomOf="@+id/loginText" />
 
             <com.hamp.ui.views.HampEditText
@@ -84,8 +79,8 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:tag="@string/password"
-                app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical06"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVertical94"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineVerticalLeft"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
                 app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
         </android.support.constraint.ConstraintLayout>

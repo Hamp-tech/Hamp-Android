@@ -54,6 +54,8 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
 
         window.setBackgroundDrawableResource(R.drawable.start_bg_white)
 
+        restorePassword.visibility = View.GONE
+
         presenter = SignUpPresenter()
         presenter.setView(this)
 

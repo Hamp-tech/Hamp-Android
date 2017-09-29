@@ -9,6 +9,7 @@ import com.hamp.common.BaseActivity
 import com.hamp.extension.hideKeyboard
 import com.hamp.extension.showErrorSnackBar
 import com.hamp.ui.home.HomeActivity
+import com.hamp.ui.restore.RestoreActivity
 import com.hamp.ui.views.HampEditText
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.login_footer.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
 
 @BaseActivity.Animation(BaseActivity.PUSH)
 class LoginActivity : BaseActivity(), LoginContract.View, Validator.ValidationListener {
@@ -44,9 +46,10 @@ class LoginActivity : BaseActivity(), LoginContract.View, Validator.ValidationLi
         initializeValidatorAndInputs()
 
         enter.visibility = View.GONE
+        restorePassword.visibility = View.GONE
 
         cancel.onClick { onBackPressed() }
-        loginRememberPassword.onClick { }
+        loginRememberPassword.onClick { goToRememberPassword() }
         loginEnter.onClick { validator.validate() }
     }
 
@@ -94,4 +97,6 @@ class LoginActivity : BaseActivity(), LoginContract.View, Validator.ValidationLi
     }
 
     override fun loginError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
+
+    private fun goToRememberPassword() = startActivity<RestoreActivity>()
 }

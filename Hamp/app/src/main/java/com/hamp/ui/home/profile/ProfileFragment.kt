@@ -1,6 +1,7 @@
 package com.hamp.ui.home.profile
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
@@ -10,11 +11,14 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.EditText
 import com.hamp.R
+import com.hamp.auth
 import com.hamp.common.BaseFragment
 import com.hamp.extension.hideKeyboard
 import com.hamp.extension.setEditMode
 import com.hamp.extension.shake
+import com.hamp.prefs
 import com.hamp.ui.home.HomeActivity
+import com.hamp.ui.start.StartActivity
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.Email
@@ -70,6 +74,8 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
         editModeSwitch()
 
         profileBirth.onClick { datePicker.show() }
+
+        logout.onClick { doLogout() }
     }
 
     private fun initializeValidatorAndInputs() {
@@ -148,6 +154,14 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
         notificationsSwitch.isClickable = editMode
 
         homeActivity.editModeSwitch(editMode)
+    }
+
+    private fun doLogout() {
+        auth.logout()
+        prefs.userId = ""
+        prefs.email = ""
+        startActivity(Intent(context, StartActivity::class.java))
+        homeActivity.finish()
     }
 
     override fun onValidationSucceeded() {

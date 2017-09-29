@@ -18,8 +18,13 @@
         <item name="colorControlActivated">@color/lightcoral</item>
     </style>
 
-    <style name="HampRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+    <style name="HampRadioButton.LightCoral" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="colorAccent">@color/lightcoral</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+    <style name="HampRadioButton.LightCoral2" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="colorAccent">@color/lightcoral_2</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
     </style>
 

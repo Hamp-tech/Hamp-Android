@@ -7,20 +7,21 @@
     android:orientation="vertical">
 
     <android.support.constraint.Guideline
-        android:id="@+id/guidelineVertical06"
+        android:id="@+id/guidelineVerticalLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.06" />
+        app:layout_constraintGuide_percent="0.04" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guidelineVertical94"
+        android:id="@+id/guidelineVerticalRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.94" />
+        app:layout_constraintGuide_percent="0.96" />
 
     <ImageView
+        android:id="@+id/toolbarImage"
         android:layout_width="@dimen/signup_login_five_bag_size"
         android:layout_height="@dimen/signup_login_five_bag_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +29,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/five_bag_icon" />
+
+    <TextView
+        android:id="@+id/restorePassword"
+        style="@style/HelveticaNeueBold16.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restore_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/cancel"
@@ -40,7 +52,7 @@
         android:paddingTop="@dimen/cancel_top_bottom_padding"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical06"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelineVerticalLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -56,7 +68,7 @@
         android:text="@string/enter"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="@+id/guidelineVertical94"
+        app:layout_constraintRight_toRightOf="@+id/guidelineVerticalRight"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View

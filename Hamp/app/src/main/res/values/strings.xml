@@ -34,6 +34,11 @@
     <!-- LOGIN ACTIVITY-->
     <string name="login">Inicia sesión</string>
     <string name="remember_password">Recuerda la contraseña</string>
+    <!-- RESTORE ACTIVITY-->
+    <string name="restore_password">Restablece contraseña</string>
+    <string name="recover_hamp_password">Recupera tu contraseña de Hamp</string>
+    <string name="recover_main">Ingresa tu correo electrónico y recibirás una contraseña provisional por e-mail, que podrás cambiar.</string>
+    <string name="send">Envía</string>
     <!-- PAYMENT INFO ACTIVITY-->
     <string name="add_card">Añadir tarjeta</string>
     <string name="card_xxx">xxxx xxxx xxxx xxxx</string>
@@ -52,7 +57,7 @@
     <string name="price">€</string>
     <!--HISTORY FRAGMENT-->
     <string name="history">Historial</string>
-    <!--SERVICE FRAGMENT-->
+    <!--PROFILE FRAGMENT-->
     <string name="profile_edit">Edita</string>
     <string name="profile_save">Guarda</string>
     <string name="profile">Perfil</string>
@@ -60,5 +65,7 @@
     <string name="notifications_enabled">Notificaciones activadas</string>
     <string name="logout">Cerrar sesión</string>
     <string name="terms_of_use">Ver condiciones de uso</string>
+    <!--BASKET ACTIVITY-->
+    <string name="basket">Cesta</string>
 </resources>
 

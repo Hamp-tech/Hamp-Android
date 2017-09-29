@@ -18,25 +18,17 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusTheme">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.tutorial.TutorialActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+            android:theme="@style/WhiteTheme" />
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:launchMode="singleTop"
@@ -50,6 +42,11 @@
             android:theme="@style/WhiteTheme"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
+            android:name=".ui.restore.RestoreActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme" />
+        <activity
             android:name=".ui.paymentInfo.PaymentInfoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -59,15 +56,14 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.home.service.detail.ServiceDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme" />
+        <activity
+            android:name=".ui.basket.BasketActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme" />

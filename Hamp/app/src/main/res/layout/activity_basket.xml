@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.hamp.ui.basket.BasketActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTopLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="@+id/basketTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/basketTitle"
+        app:layout_constraintTop_toTopOf="@+id/basketTitle"
+        app:srcCompat="@drawable/back_arrow" />
+
+    <TextView
+        android:id="@+id/basketTitle"
+        style="@style/HelveticaNeueBold36.Black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineTopLeft"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/basket" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/basketTitle"
+        app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+        app:layout_constraintTop_toTopOf="@+id/basketTitle">
+
+        <TextView
+            android:id="@+id/price"
+            style="@style/Fredoka24.CandyPink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X'X" />
+
+        <TextView
+            style="@style/Fredoka14.CandyPink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="€" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/basketServices"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingTop="10dp"
+        android:theme="@style/HampScrollView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
+        app:layout_constraintTop_toBottomOf="@+id/basketTitle" />
+
+    <ImageView
+        android:id="@+id/floatingVisa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/floating_button"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineRight" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintLeft_toLeftOf="@+id/floatingVisa"
+        app:layout_constraintRight_toRightOf="@+id/floatingVisa"
+        app:layout_constraintTop_toTopOf="@+id/floatingVisa"
+        app:srcCompat="@drawable/visa_white" />
+
+</android.support.constraint.ConstraintLayout>

@@ -158,7 +158,7 @@
                     android:layout_marginRight="@dimen/signup_radio_button_margin_lateral"
                     android:layoutDirection="rtl"
                     android:text="@string/man"
-                    android:theme="@style/HampRadioButton" />
+                    android:theme="@style/HampRadioButton.LightCoral" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/femaleRadioButton"
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="@dimen/signup_radio_button_margin_lateral"
                     android:layoutDirection="rtl"
                     android:text="@string/woman"
-                    android:theme="@style/HampRadioButton" />
+                    android:theme="@style/HampRadioButton.LightCoral" />
 
             </RadioGroup>
 
@@ -214,6 +214,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/logout"
                 style="@style/HelveticaNeueMedium20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

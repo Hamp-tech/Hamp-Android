@@ -103,12 +103,20 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="HelveticaNeueRegular20.Black" parent="HelveticaNeueRegular20">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="HelveticaNeueRegular20.Manatee" parent="HelveticaNeueRegular20">
         <item name="android:textColor">@color/manatee</item>
     </style>
 
     <style name="HelveticaNeueBold16.White" parent="HelveticaNeueBold16">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="HelveticaNeueBold16.Black" parent="HelveticaNeueBold16">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="HelveticaNeueBold20.Black" parent="HelveticaNeueBold20">
@@ -155,6 +163,10 @@
     <style name="HelveticaNeueLight14.Manatee" parent="HelveticaNeueLight14">
         <item name="android:textColor">@color/manatee</item>
         <item name="android:textColorHint">@color/manatee</item>
+    </style>
+
+    <style name="HelveticaNeueLight14.Black" parent="HelveticaNeueLight14">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="HelveticaNeueLight16.LightCoral" parent="HelveticaNeueLight16">

@@ -10,6 +10,18 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="Fredoka12" parent="Fredoka">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Fredoka14" parent="Fredoka">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Fredoka18" parent="Fredoka">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Fredoka20" parent="Fredoka">
         <item name="android:textSize">20sp</item>
     </style>
@@ -31,12 +43,36 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Fredoka12.CandyPink" parent="Fredoka12">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
+    <style name="Fredoka14.CandyPink" parent="Fredoka14">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
+    <style name="Fredoka18.CandyPink" parent="Fredoka18">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
     <style name="Fredoka20.LightCoral" parent="Fredoka20">
         <item name="android:textColor">@color/lightcoral</item>
     </style>
 
+    <style name="Fredoka20.CandyPink" parent="Fredoka20">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
     <style name="Fredoka24.Wenge" parent="Fredoka24">
         <item name="android:textColor">@color/wenge</item>
+    </style>
+
+    <style name="Fredoka24.CandyPink" parent="Fredoka24">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
+    <style name="Fredoka24.Black" parent="Fredoka24">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Fredoka26.Wenge" parent="Fredoka26">
