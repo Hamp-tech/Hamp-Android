@@ -1,8 +1,5 @@
 package com.hamp.domain
 
-/**
- * Created by galo1100 on 29/6/17.
- */
 class User(
         val name: String,
         val surname: String,

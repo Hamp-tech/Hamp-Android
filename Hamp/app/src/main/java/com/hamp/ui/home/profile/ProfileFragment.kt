@@ -1,10 +1,13 @@
 package com.hamp.ui.home.profile
 
 import android.app.DatePickerDialog
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,7 @@ import android.widget.EditText
 import com.hamp.R
 import com.hamp.auth
 import com.hamp.common.BaseFragment
+import com.hamp.domain.User
 import com.hamp.extension.hideKeyboard
 import com.hamp.extension.setEditMode
 import com.hamp.extension.shake
@@ -63,6 +67,15 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_profile, container, false)
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        profileViewModel.getUser().observe(this, Observer<User> {
+            Log.d("HOLAAAAAAA", it?.toString())
+        })
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
