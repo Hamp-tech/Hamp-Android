@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    buildToolsVersion '26.0.1'
     defaultConfig {
         applicationId "com.hamp"
         minSdkVersion 15
@@ -38,9 +38,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //Appcompat
-    compile "com.android.support:appcompat-v7:26.0.0"
-    compile "com.android.support:design:26.0.0"
-    compile "com.android.support:cardview-v7:26.0.0"
+    compile "com.android.support:appcompat-v7:26.0.1"
+    compile "com.android.support:design:26.0.1"
+    compile "com.android.support:cardview-v7:26.0.1"
 
     //Constraint Layout
     compile "com.android.support.constraint:constraint-layout:1.0.2"
@@ -94,6 +94,9 @@ dependencies {
 
     // CircleIndicator
     compile 'me.relex:circleindicator:1.2.2@aar'
+
+    //Stripe
+    compile 'com.stripe:stripe-android:5.1.0'
 
     // Stetho
     debugCompile "com.facebook.stetho:stetho-okhttp3:1.5.0"
