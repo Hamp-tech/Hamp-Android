@@ -1,30 +1,27 @@
 package com.hamp.ui.signup
 
 import android.app.DatePickerDialog
-import android.content.Intent
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.DatePicker
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.hideKeyboard
-import com.hamp.extension.showErrorSnackBar
-import com.hamp.ui.home.HomeActivity
+import com.hamp.ui.home.profile.ProfileViewModel
 import com.hamp.ui.views.HampEditText
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
-import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
 
 @BaseActivity.Animation(BaseActivity.PUSH)
-class SignUpActivity : BaseActivity(), SignUpContract.View,
-        DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
+class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener,
+        Validator.ValidationListener {
 
     lateinit private var presenter: SignUpPresenter
     lateinit private var datePicker: DatePickerDialog
@@ -56,8 +53,8 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
 
         restorePassword.visibility = View.GONE
 
-        presenter = SignUpPresenter()
-        presenter.setView(this)
+//        presenter = SignUpPresenter()
+//        presenter.setView(this)
 
         initializeValidatorAndInputs()
         initializeDatePicker()
@@ -127,18 +124,18 @@ class SignUpActivity : BaseActivity(), SignUpContract.View,
         presenter.signUp(email.text.toString().trim(), password.text.toString().trim())
     }
 
-    override fun showProgress(show: Boolean) {
-        if (show) loadingView.visibility = View.VISIBLE
-        else loadingView.visibility = View.GONE
-    }
-
-    override fun signUpSucceed() {
-        startActivity(intentFor<HomeActivity>()
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-
-        finish()
-    }
-
-    override fun signUpError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
+//    override fun showProgress(show: Boolean) {
+//        if (show) loadingView.visibility = View.VISIBLE
+//        else loadingView.visibility = View.GONE
+//    }
+//
+//    override fun signUpSucceed() {
+//        startActivity(intentFor<HomeActivity>()
+//                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//
+//        finish()
+//    }
+//
+//    override fun signUpError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
 }
