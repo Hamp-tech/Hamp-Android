@@ -12,6 +12,8 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
+    val ROTATION = 120f
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
@@ -39,10 +41,10 @@ class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         when (position) {
-            0 -> circleTutorial.rotation = positionOffset * 60f
-            1 -> circleTutorial.rotation = (position + positionOffset) * 60f
-            2 -> circleTutorial.rotation = (position + positionOffset) * 60f
-            else -> circleTutorial.rotation = (position + positionOffset) * 60f
+            0 -> circleTutorial.rotation = positionOffset * ROTATION
+            1 -> circleTutorial.rotation = (position + positionOffset) * ROTATION
+            2 -> circleTutorial.rotation = (position + positionOffset) * ROTATION
+            else -> circleTutorial.rotation = (position + positionOffset) * ROTATION
         }
     }
 
