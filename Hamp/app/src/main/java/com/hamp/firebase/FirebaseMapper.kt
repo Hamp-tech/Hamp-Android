@@ -3,7 +3,6 @@ package com.hamp.firebase
 import com.google.firebase.database.DataSnapshot
 import java.lang.reflect.ParameterizedType
 
-
 abstract class FirebaseMapper<in Entity, out Model> : IMapper<Entity, Model> {
 
     fun map(dataSnapshot: DataSnapshot): Model {

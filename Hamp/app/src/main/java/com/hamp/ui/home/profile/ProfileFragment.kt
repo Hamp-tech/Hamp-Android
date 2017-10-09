@@ -68,9 +68,8 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_profile, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onResume() {
+        super.onResume()
         val profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         profileViewModel.getUser().observe(this, Observer<User> {
             Log.d("HOLAAAAAAA", it?.toString())
