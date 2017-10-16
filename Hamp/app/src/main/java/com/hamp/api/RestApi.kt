@@ -17,13 +17,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by galo1100 on 29/6/17.
- */
 class RestApi {
 
     private val hampApi: HampApi
-    var retrofitHamp: Retrofit? = null
+    private val retrofitHamp: Retrofit
 
     init {
         val httpClient = OkHttpClient.Builder()
@@ -31,7 +28,10 @@ class RestApi {
         httpClient.connectTimeout(10, TimeUnit.SECONDS)
         httpClient.readTimeout(30, TimeUnit.SECONDS)
         httpClient.addInterceptor { chain ->
-            val original = chain?.request()
+            val original = chain.request()
+
+            original.url().newBuilder().addQueryParameter("gangway", "7B3nPECsrty0vuZi7J74kSMVmHKljxK")
+
             val request = original?.newBuilder()
                     ?.method(original.method(), original.body())
                     ?.build()
@@ -47,13 +47,13 @@ class RestApi {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        hampApi = retrofitHamp!!.create(HampApi::class.java)
+        hampApi = retrofitHamp.create(HampApi::class.java)
     }
 
     ///////////// HAMP ////////////////
 
     fun convertError(responseBody: ResponseBody): GenericResponse {
-        val converter: Converter<ResponseBody, GenericResponse> = retrofitHamp!!.responseBodyConverter(GenericResponse::class.java, arrayOfNulls<Annotation>(0))
+        val converter: Converter<ResponseBody, GenericResponse> = retrofitHamp.responseBodyConverter(GenericResponse::class.java, arrayOfNulls<Annotation>(0))
         return converter.convert(responseBody)
     }
 
@@ -63,13 +63,6 @@ class RestApi {
                          email: String, phone: String, birthday: String, gender: String,
                          tokenFCM: String): Observable<UserResponse> {
         return hampApi.createUserWithID(userID, name, surname, email, phone, birthday, gender,
-                tokenFCM, getLanguageTag(), "Android")
-    }
-
-    fun createUserWithoutID(userID: String, name: String, surname: String,
-                            email: String, phone: String, birthday: String, gender: String,
-                            tokenFCM: String): Observable<UserResponse> {
-        return hampApi.createUserWithoutID(userID, name, surname, email, phone, birthday, gender,
                 tokenFCM, getLanguageTag(), "Android")
     }
 

@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/add_card"
+        android:text="@string/add_card_title"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical08"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -122,7 +122,7 @@
                 android:background="@color/manatee" />
 
             <EditText
-                android:id="@+id/cardholder"
+                android:id="@+id/cardHolder"
                 style="@style/HelveticaNeueLight14.Manatee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

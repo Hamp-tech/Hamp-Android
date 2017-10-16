@@ -9,7 +9,6 @@ class PreferencesUtils(context: Context) {
 
     private val FIRST_TIME = "first_time"
     private val USERID = "userid"
-    private val EMAIL = "email"
 
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
 
@@ -20,8 +19,4 @@ class PreferencesUtils(context: Context) {
     var userId: String
         get() = prefs.getString(USERID, "")
         set(value) = prefs.edit().putString(USERID, value).apply()
-
-    var email: String
-        get() = prefs.getString(EMAIL, "")
-        set(value) = prefs.edit().putString(EMAIL, value).apply()
 }

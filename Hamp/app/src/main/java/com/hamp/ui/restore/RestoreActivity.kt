@@ -3,6 +3,7 @@ package com.hamp.ui.restore
 import android.os.Bundle
 import android.view.View
 import com.hamp.R
+import com.hamp.auth
 import com.hamp.common.BaseActivity
 import com.hamp.extension.hideKeyboard
 import com.hamp.ui.views.HampEditText
@@ -43,7 +44,7 @@ class RestoreActivity : BaseActivity(), Validator.ValidationListener {
     }
 
     override fun onValidationSucceeded() {
-
+        auth.sendPasswordResetEmail(email.text.toString().trim())
     }
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {

@@ -12,6 +12,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 @BaseActivity.Animation(BaseActivity.PUSH)
 class ServiceDetailActivity : BaseActivity() {
+
     private var quantity = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

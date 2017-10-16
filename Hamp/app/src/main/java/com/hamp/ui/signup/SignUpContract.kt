@@ -10,6 +10,7 @@ interface SignUpContract {
     }
 
     interface Presenter : BasePresenter<View> {
-        fun signUp(email: String, password: String)
+        fun signUp(email: String, password: String, name: String, surname: String, phone: String,
+                   birthday: String, gender: String)
     }
 }

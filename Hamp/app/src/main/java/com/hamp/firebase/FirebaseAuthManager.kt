@@ -22,5 +22,7 @@ class FirebaseAuthManager {
                 .addOnCompleteListener(onCompleteListener)
     }
 
+    fun sendPasswordResetEmail(email: String) = auth.sendPasswordResetEmail(email)
+
     fun logout() = auth.signOut()
 }

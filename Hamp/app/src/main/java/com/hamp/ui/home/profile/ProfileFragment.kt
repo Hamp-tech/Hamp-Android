@@ -171,7 +171,6 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
     private fun doLogout() {
         auth.logout()
         prefs.userId = ""
-        prefs.email = ""
         startActivity(Intent(context, StartActivity::class.java))
         homeActivity.finish()
     }

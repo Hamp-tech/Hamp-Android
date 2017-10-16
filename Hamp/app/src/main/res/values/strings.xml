@@ -23,6 +23,7 @@
     <string name="error_phone_empty">Número de teléfono no válido</string>
     <string name="error_email_empty">Email no válido</string>
     <string name="error_name_empty">Por favor introduce tu nombre</string>
+    <string name="error_surname_empty">Por favor introduce tu apellido</string>
     <!--START ACTIVTY-->
     <string name="main_start_text">Haz la colada más\nfácil que nunca.</string>
     <string name="already_have_account">¿Ya tienes cuenta?</string>
@@ -40,13 +41,13 @@
     <string name="recover_main">Ingresa tu correo electrónico y recibirás una contraseña provisional por e-mail, que podrás cambiar.</string>
     <string name="send">Envía</string>
     <!-- PAYMENT INFO ACTIVITY-->
-    <string name="add_card">Añadir tarjeta</string>
+    <string name="add_card_title">Añadir tarjeta</string>
     <string name="card_xxx">xxxx xxxx xxxx xxxx</string>
     <string name="card_mm_aa">MM/AA</string>
     <string name="card_cvv">CVV</string>
     <string name="card_cardholder">Nombre del titular</string>
     <string name="card_skip">Más tarde</string>
-    <string name="card_continue">Continuar</string>
+    <string name="card_continue">Continua</string>
     <!--SERVICE FRAGMENT-->
     <string name="services">Servicios</string>
     <string name="little_bag">Bolsa pequeña</string>

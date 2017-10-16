@@ -70,6 +70,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/signUpText" />
 
             <com.hamp.ui.views.HampEditText
+                android:id="@+id/signUpSurname"
+                style="@style/HelveticaNeueMedium20.Razzmatazz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/signup_name_margin_top"
+                android:hint="@string/surname"
+                android:inputType="textPersonName"
+                android:tag="@string/surname"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintTop_toBottomOf="@+id/signUpName" />
+
+            <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpEmail"
                 style="@style/HelveticaNeueMedium20.Razzmatazz"
                 android:layout_width="0dp"
@@ -80,7 +93,7 @@
                 android:tag="@string/email"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
-                app:layout_constraintTop_toBottomOf="@+id/signUpName" />
+                app:layout_constraintTop_toBottomOf="@+id/signUpSurname" />
 
             <com.hamp.ui.views.HampEditText
                 android:id="@+id/signUpPhone"

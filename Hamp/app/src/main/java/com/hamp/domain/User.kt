@@ -1,6 +1,6 @@
 package com.hamp.domain
 
-class User(
+data class User(
         val name: String = "",
         val surname: String = "",
         val mail: String = "",
@@ -11,7 +11,10 @@ class User(
         val language: String = "",
         val os: String = "",
         val signupDate: String = "",
+        val stripe: StripeUser = StripeUser(),
         val lastActivityDate: String = "",
         val unsubscribed: Boolean = false,
         val firebaseID: String = ""
 )
+
+data class StripeUser(val costumerID: String = "")

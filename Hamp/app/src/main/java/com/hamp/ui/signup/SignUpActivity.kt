@@ -1,26 +1,29 @@
 package com.hamp.ui.signup
 
 import android.app.DatePickerDialog
-import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.DatePicker
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.hideKeyboard
-import com.hamp.ui.home.profile.ProfileViewModel
+import com.hamp.extension.showErrorSnackBar
+import com.hamp.ui.paymentInfo.PaymentInfoActivity
 import com.hamp.ui.views.HampEditText
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
 
 @BaseActivity.Animation(BaseActivity.PUSH)
-class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener,
+class SignUpActivity : BaseActivity(), SignUpContract.View, DatePickerDialog.OnDateSetListener,
         Validator.ValidationListener {
 
     lateinit private var presenter: SignUpPresenter
@@ -28,22 +31,25 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener,
     lateinit private var validator: Validator
 
     @NotEmpty(messageResId = R.string.error_name_empty)
-    lateinit var name: HampEditText
+    private lateinit var name: HampEditText
+
+    @NotEmpty(messageResId = R.string.error_surname_empty)
+    private lateinit var surname: HampEditText
 
     @Email(messageResId = R.string.error_email_empty)
-    lateinit var email: HampEditText
+    private lateinit var email: HampEditText
 
     @Length(min = 9, messageResId = R.string.error_phone_empty)
-    lateinit var phone: HampEditText
+    private lateinit var phone: HampEditText
 
     @NotEmpty(messageResId = R.string.error_birthday_empty)
-    lateinit var birthday: HampEditText
+    private lateinit var birthday: HampEditText
 
     @Password(min = 6, messageResId = R.string.error_password_length)
-    lateinit var password: HampEditText
+    private lateinit var password: HampEditText
 
     @ConfirmPassword(messageResId = R.string.error_confirm_password)
-    lateinit var confirmPassword: HampEditText
+    private lateinit var confirmPassword: HampEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +59,8 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener,
 
         restorePassword.visibility = View.GONE
 
-//        presenter = SignUpPresenter()
-//        presenter.setView(this)
+        presenter = SignUpPresenter()
+        presenter.setView(this)
 
         initializeValidatorAndInputs()
         initializeDatePicker()
@@ -69,6 +75,7 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener,
         validator.setValidationListener(this)
 
         name = signUpName
+        surname = signUpSurname
         email = signUpEmail
         phone = signUpPhone
         birthday = signUpBday
@@ -121,21 +128,30 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener,
 
     private fun doSignUp() {
         hideKeyboard()
-        presenter.signUp(email.text.toString().trim(), password.text.toString().trim())
+
+        val gender = when {
+            maleRadioButton.isChecked -> "M"
+            femaleRadioButton.isChecked -> "F"
+            else -> "U"
+        }
+
+        presenter.signUp(email.text.toString().trim(), password.text.toString().trim(),
+                name.text.toString().trim(), surname.text.toString().trim(),
+                phone.text.toString().trim(), birthday.text.toString(), gender)
     }
 
-//    override fun showProgress(show: Boolean) {
-//        if (show) loadingView.visibility = View.VISIBLE
-//        else loadingView.visibility = View.GONE
-//    }
-//
-//    override fun signUpSucceed() {
-//        startActivity(intentFor<HomeActivity>()
-//                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-//
-//        finish()
-//    }
-//
-//    override fun signUpError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
+    override fun showProgress(show: Boolean) {
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
+    }
+
+    override fun signUpSucceed() {
+        startActivity(intentFor<PaymentInfoActivity>()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+
+        finish()
+    }
+
+    override fun signUpError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
 }
