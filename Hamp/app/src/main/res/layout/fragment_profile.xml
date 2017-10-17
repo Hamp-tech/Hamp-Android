@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,14 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.06" />
+            app:layout_constraintGuide_percent="0.06"/>
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineTopRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.92" />
+            app:layout_constraintGuide_percent="0.92"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -38,7 +38,7 @@
                 style="@style/HelveticaNeueMedium20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name" />
+                android:text="@string/name"/>
 
             <EditText
                 android:id="@+id/profileName"
@@ -51,14 +51,14 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
                 android:paddingStart="15dp"
-                android:text="Judith" />
+                android:text="Judith"/>
 
             <TextView
                 style="@style/HelveticaNeueMedium20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="@string/surname" />
+                android:text="@string/surname"/>
 
             <EditText
                 android:id="@+id/profileSurname"
@@ -71,14 +71,14 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
                 android:paddingStart="15dp"
-                android:text="Moreno Navarro" />
+                android:text="Moreno Navarro"/>
 
             <TextView
                 style="@style/HelveticaNeueMedium20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="@string/email" />
+                android:text="@string/email"/>
 
             <EditText
                 android:id="@+id/profileEmail"
@@ -91,7 +91,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingLeft="15dp"
                 android:paddingStart="15dp"
-                android:text="judithmoreno83@gmail.com" />
+                android:text="judithmoreno83@gmail.com"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,13 +103,13 @@
                     style="@style/HelveticaNeueMedium20.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/phone" />
+                    android:text="@string/phone"/>
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/phoneSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/HampSwitch" />
+                    android:theme="@style/HampSwitch"/>
 
             </LinearLayout>
 
@@ -124,14 +124,14 @@
                 android:inputType="number"
                 android:paddingLeft="15dp"
                 android:paddingStart="15dp"
-                android:text="666666666" />
+                android:text="666666666"/>
 
             <TextView
                 style="@style/HelveticaNeueMedium20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/bday" />
+                android:text="@string/bday"/>
 
             <TextView
                 android:id="@+id/profileBirth"
@@ -141,7 +141,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/birth_rectangle"
                 android:gravity="center"
-                android:text="22/33/4444" />
+                android:text="22/33/4444"/>
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                     android:layout_marginRight="@dimen/signup_radio_button_margin_lateral"
                     android:layoutDirection="rtl"
                     android:text="@string/man"
-                    android:theme="@style/HampRadioButton.LightCoral" />
+                    android:theme="@style/HampRadioButton.LightCoral"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/femaleRadioButton"
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="@dimen/signup_radio_button_margin_lateral"
                     android:layoutDirection="rtl"
                     android:text="@string/woman"
-                    android:theme="@style/HampRadioButton.LightCoral" />
+                    android:theme="@style/HampRadioButton.LightCoral"/>
 
             </RadioGroup>
 
@@ -176,19 +176,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:gravity="center">
+                android:background="@drawable/pickup_bg">
 
-                <TextView
-                    style="@style/HelveticaNeueMedium20.Black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/rate_hamp" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/rateHampSwitch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/HampSwitch" />
 
             </LinearLayout>
 
@@ -202,14 +191,34 @@
                     style="@style/HelveticaNeueMedium20.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/notifications_enabled" />
+                    android:text="@string/rate_hamp"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/rateHampSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/HampSwitch"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/HelveticaNeueMedium20.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/notifications_enabled"/>
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/notificationsSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:theme="@style/HampSwitch" />
+                    android:theme="@style/HampSwitch"/>
 
             </LinearLayout>
 
@@ -219,7 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="25dp"
-                android:text="@string/logout" />
+                android:text="@string/logout"/>
 
             <TextView
                 android:id="@+id/terms"
@@ -231,7 +240,7 @@
                 android:layout_marginTop="25dp"
                 android:drawableLeft="@drawable/conditions"
                 android:drawablePadding="8dp"
-                tools:text="@string/terms_of_use" />
+                tools:text="@string/terms_of_use"/>
 
         </LinearLayout>
 
