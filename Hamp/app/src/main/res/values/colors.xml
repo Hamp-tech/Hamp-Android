@@ -3,6 +3,7 @@
     <color name="colorPrimary">@color/razzmatazz</color>
     <color name="colorPrimaryDark">@color/razzmatazz</color>
     <color name="colorAccent">@color/razzmatazz</color>
+
     <color name="white">#fff</color>
     <color name="black">#000</color>
     <color name="razzmatazz">#e72f72</color>
@@ -10,6 +11,7 @@
     <color name="cerise_pink">#e73573</color>
     <color name="lightcoral_2">#E97B82</color>
     <color name="candy_pink">#EE6981</color>
+    <color name="razzmatazz2">#E14D74</color>
     <color name="manatee">#9B9B9B</color>
     <color name="manatee_2">#979797</color>
     <color name="wenge">#625657</color>

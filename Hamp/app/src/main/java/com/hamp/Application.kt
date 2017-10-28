@@ -1,7 +1,6 @@
 package com.hamp
 
 import android.app.Application
-import com.facebook.stetho.Stetho
 import com.hamp.api.RestApi
 import com.hamp.firebase.FirebaseAuthManager
 import com.hamp.utils.PreferencesUtils
@@ -33,8 +32,6 @@ class HampApplication : Application() {
         hampApi = RestApi()
         preferences = PreferencesUtils(this)
         firebaseAuth = FirebaseAuthManager()
-
-        Stetho.initializeWithDefaults(this)
 
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/HelveticaNeue-Regular.ttf")

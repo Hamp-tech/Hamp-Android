@@ -22,7 +22,7 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
 
     lateinit var currentFragment: Fragment
 
-    var isBasketEmpty = true
+    private var isBasketEmpty = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

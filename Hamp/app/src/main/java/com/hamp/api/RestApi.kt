@@ -1,6 +1,5 @@
 package com.hamp.api
 
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.hamp.BuildConfig
 import com.hamp.domain.response.BookingResponse
 import com.hamp.domain.response.GenericResponse
@@ -10,6 +9,7 @@ import com.hamp.hamp.domain.response.BookingRequest
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -24,7 +24,6 @@ class RestApi {
 
     init {
         val httpClient = OkHttpClient.Builder()
-        httpClient.addNetworkInterceptor(StethoInterceptor())
         httpClient.connectTimeout(10, TimeUnit.SECONDS)
         httpClient.readTimeout(30, TimeUnit.SECONDS)
         httpClient.addInterceptor { chain ->
@@ -39,6 +38,9 @@ class RestApi {
             chain.proceed(request)
         }
 
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        httpClient.addInterceptor(logging)
 
         retrofitHamp = Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)

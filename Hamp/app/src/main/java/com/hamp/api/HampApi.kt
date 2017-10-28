@@ -11,8 +11,9 @@ interface HampApi {
     @GET("users/{id}")
     fun getUser(@Path("id") id: String): Observable<UserResponse>
 
+    //?gangway=7B3nPECsrty0vuZi7J74kSMVmHKljxK
     @FormUrlEncoded
-    @POST("users/{id}?gangway=7B3nPECsrty0vuZi7J74kSMVmHKljxK")
+    @POST("users/{id}")
     fun createUserWithID(@Path("id") id: String,
                          @Field("name") name: String,
                          @Field("surname") surname: String,

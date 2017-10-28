@@ -78,6 +78,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="HelveticaNeueLight18" parent="HelveticaNeueLight">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="HelveticaNeueThin16" parent="HelveticaNeueThin">
         <item name="android:textSize">16sp</item>
     </style>
@@ -171,6 +175,10 @@
 
     <style name="HelveticaNeueLight16.LightCoral" parent="HelveticaNeueLight16">
         <item name="android:textColor">@color/lightcoral</item>
+    </style>
+
+    <style name="HelveticaNeueLight18.Manatee" parent="HelveticaNeueLight18">
+        <item name="android:textColor">@color/manatee</item>
     </style>
 
     <style name="HelveticaNeueThin16.Black" parent="HelveticaNeueThin16">

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/historyMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/historyCardViewFooter"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/historyOval"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/history_oval" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@color/razzmatazz" />
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/historyCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_toEndOf="@+id/historyMark"
+        android:layout_toRightOf="@+id/historyMark"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp"
+        app:cardPreventCornerOverlap="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/historyBorder"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/historyPrice"
+                android:background="@color/razzmatazz2" />
+
+            <TextView
+                android:id="@+id/historyDate"
+                style="@style/HelveticaNeueMedium20.Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/historyBorder"
+                android:layout_toRightOf="@+id/historyBorder"
+                android:text="05/07/2018" />
+
+            <LinearLayout
+                android:id="@+id/historyServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/historyDate"
+                android:layout_alignStart="@+id/historyDate"
+                android:layout_below="@+id/historyDate"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical"
+                android:paddingTop="5dp">
+
+                <TextView
+                    style="@style/HelveticaNeueLight18.Manatee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Bolsa pequeña" />
+
+                <TextView
+                    style="@style/HelveticaNeueLight18.Manatee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Cortinas" />
+
+                <TextView
+                    style="@style/HelveticaNeueLight18.Manatee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fundas de sofá" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/historyPrice"
+                style="@style/Fredoka18.CandyPink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/historyServices"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="end"
+                android:paddingBottom="5dp"
+                android:text="10€" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:id="@+id/historyCardViewFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_alignEnd="@+id/historyCardView"
+        android:layout_alignLeft="@+id/historyCardView"
+        android:layout_alignRight="@+id/historyCardView"
+        android:layout_alignStart="@+id/historyCardView"
+        android:layout_below="@+id/historyCardView" />
+
+</RelativeLayout>
