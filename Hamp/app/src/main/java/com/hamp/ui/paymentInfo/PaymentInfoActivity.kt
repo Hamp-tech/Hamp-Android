@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseActivity
@@ -48,7 +47,6 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
         setContentView(R.layout.activity_payment_info)
 
         intent.extras?.let { isFromBasket = it.getBoolean("isFromBasket", false) }
-        if (isFromBasket) skipContinueButton.visibility = View.GONE
 
         initializeValidatorAndInputs()
 
@@ -73,11 +71,15 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
     private fun skipContinue() {
         if (isReadyToValidate) validator.validate()
         else {
-            startActivity(intentFor<HomeActivity>()
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            if (isFromBasket) {
+                onBackPressed()
+            } else {
+                startActivity(intentFor<HomeActivity>()
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
 
-            finish()
+                finish()
+            }
         }
     }
 
@@ -98,11 +100,9 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
                 cardCvv.text.isNotBlank() && cardHolder.text.isNotBlank()) {
             isReadyToValidate = true
             skipContinueButton.text = getString(R.string.card_continue)
-            skipContinueButton.visibility = View.VISIBLE
         } else {
             isReadyToValidate = false
-            if (isFromBasket) skipContinueButton.visibility = View.GONE
-            else skipContinueButton.text = getString(R.string.card_skip)
+            skipContinueButton.text = getString(R.string.card_skip)
         }
     }
 

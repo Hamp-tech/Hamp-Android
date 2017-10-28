@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hamp">
+          package="com.hamp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".HampApplication"
@@ -18,55 +18,56 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.tutorial.TutorialActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <activity
             android:name=".ui.login.LoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <activity
             android:name=".ui.restore.RestoreActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".ui.paymentInfo.PaymentInfoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.home.HomeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.home.service.detail.ServiceDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".ui.basket.BasketActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
     </application>
 
 </manifest>
