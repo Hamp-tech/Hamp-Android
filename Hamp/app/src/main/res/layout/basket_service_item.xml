@@ -1,107 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="74dp"
         android:layout_margin="5dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="3dp"
         app:cardPreventCornerOverlap="true">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp">
+            android:layout_height="match_parent">
 
-            <View
-                android:id="@+id/stateServiceView"
-                android:layout_width="10dp"
+
+            <ImageView
+                android:id="@+id/basketItemImage"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black" />
+                android:layout_weight="7"
+                android:padding="10dp"
+                android:src="@drawable/sofa_cover" />
 
-            <TextView
-                android:id="@+id/quantityValue"
-                style="@style/Fredoka24.Black"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/stateServiceView"
-                android:layout_toRightOf="@+id/stateServiceView"
-                android:padding="15dp"
-                tools:text="2" />
+                android:layout_weight="3">
 
-            <TextView
-                android:id="@+id/name"
-                style="@style/HelveticaNeueMedium20.Black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/quantityValue"
-                android:layout_toLeftOf="@+id/priceContainer"
-                android:layout_toRightOf="@+id/quantityValue"
-                android:layout_toStartOf="@+id/priceContainer"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:paddingRight="5dp"
-                tools:text="Bolsa pequeña" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/basketMinus"
+                    android:layout_toStartOf="@+id/basketMinus"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/priceContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/plusMinusContainer"
-                android:layout_toStartOf="@+id/plusMinusContainer">
+                    <TextView
+                        android:id="@+id/basketItemName"
+                        style="@style/HelveticaNeueMedium15.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Bolsa pequeña" />
 
-                <TextView
-                    android:id="@+id/price"
-                    style="@style/Fredoka18.CandyPink"
+                    <TextView
+                        android:id="@+id/basketItemPrice"
+                        style="@style/Fredoka14.CandyPink"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10€" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/basketMinus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="X" />
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/basketItemQuantity"
+                    android:layout_toStartOf="@+id/basketItemQuantity"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/basket_minus" />
 
                 <TextView
-                    style="@style/Fredoka12.CandyPink"
+                    android:id="@+id/basketItemQuantity"
+                    style="@style/Fredoka13.TrolleyGrey"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="€" />
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/basketPlus"
+                    android:layout_toStartOf="@+id/basketPlus"
+                    android:padding="2dp"
+                    android:text="2" />
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/plusMinusContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                <ImageView
+                    android:id="@+id/basketPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/basket_plus" />
 
-                <TextView
-                    android:id="@+id/plus"
-                    style="@style/Fredoka20.CandyPink"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:text="+" />
 
-                <TextView
-                    android:id="@+id/minus"
-                    style="@style/Fredoka20.CandyPink"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    tools:text="-" />
+            </RelativeLayout>
 
-            </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
+
     </android.support.v7.widget.CardView>
 
 </LinearLayout>

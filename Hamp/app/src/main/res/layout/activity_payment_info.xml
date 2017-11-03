@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:background="@color/white"
-                                             tools:context="com.hamp.ui.paymentInfo.PaymentInfoActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.hamp.ui.paymentInfo.PaymentInfoActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineVertical08"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08"/>
+        app:layout_constraintGuide_percent="0.08" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineVertical92"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.92"/>
+        app:layout_constraintGuide_percent="0.92" />
 
     <TextView
         android:id="@+id/addCardText"
@@ -27,9 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/add_card_title"
+        android:text="@string/add_card"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical08"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
@@ -56,22 +56,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:drawableLeft="@drawable/card"
+                android:drawableLeft="@drawable/visa"
                 android:drawablePadding="24dp"
-                android:drawableStart="@drawable/card"
+                android:drawableStart="@drawable/visa"
                 android:ems="10"
                 android:hint="@string/card_xxx"
                 android:inputType="number"
                 android:maxLength="19"
                 android:nextFocusDown="@+id/cardExpiryDate"
-                app:mask="#### #### #### ####"/>
+                app:mask="#### #### #### ####" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="12dp"
-                android:background="@color/manatee"/>
+                android:background="@color/manatee" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,12 +91,12 @@
                     android:inputType="number"
                     android:maxLength="5"
                     android:nextFocusDown="@+id/cardCvv"
-                    app:mask="##/##"/>
+                    app:mask="##/##" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="43dp"
-                    android:background="@color/manatee"/>
+                    android:background="@color/manatee" />
 
                 <EditText
                     android:id="@+id/cardCvv"
@@ -110,7 +110,7 @@
                     android:hint="@string/card_cvv"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:nextFocusDown="@+id/cardholder"/>
+                    android:nextFocusDown="@+id/cardholder" />
 
             </LinearLayout>
 
@@ -119,7 +119,7 @@
                 android:layout_height="0.75dp"
                 android:layout_marginBottom="18dp"
                 android:layout_marginTop="3dp"
-                android:background="@color/manatee"/>
+                android:background="@color/manatee" />
 
             <EditText
                 android:id="@+id/cardHolder"
@@ -130,7 +130,7 @@
                 android:background="@null"
                 android:ems="10"
                 android:hint="@string/card_cardholder"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
 
         </LinearLayout>
 
@@ -151,6 +151,6 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical08"
-        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical92"/>
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical92" />
 
 </android.support.constraint.ConstraintLayout>

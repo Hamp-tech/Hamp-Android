@@ -66,6 +66,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="HelveticaNeueMedium15" parent="HelveticaNeueMedium">
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="HelveticaNeueMedium20" parent="HelveticaNeueMedium">
         <item name="android:textSize">20sp</item>
     </style>
@@ -153,6 +157,10 @@
 
     <style name="HelveticaNeueMedium14.White" parent="HelveticaNeueMedium14">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="HelveticaNeueMedium15.Black" parent="HelveticaNeueMedium15">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="HelveticaNeueMedium20.Black" parent="HelveticaNeueMedium20">

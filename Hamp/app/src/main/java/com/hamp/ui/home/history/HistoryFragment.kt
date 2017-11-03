@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import com.hamp.R
 import com.hamp.common.BaseFragment
 import com.hamp.ui.home.HomeActivity
+import com.hamp.ui.home.history.detail.HistoryDetailActivity
 import kotlinx.android.synthetic.main.fragment_history.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class HistoryFragment : BaseFragment(), HistoryAdapter.HistoryListener {
     companion object {
@@ -29,6 +31,5 @@ class HistoryFragment : BaseFragment(), HistoryAdapter.HistoryListener {
         historyRecyclerView.adapter = HistoryAdapter(context, listOf(1, 2, 3, 4, 5, 6, 7, 8), this)
     }
 
-    override fun onHistoryClick() {
-    }
+    override fun onHistoryClick() = startActivity<HistoryDetailActivity>()
 }

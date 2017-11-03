@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.hamp.ui.basket.BasketActivity">
+    tools:context="com.hamp.ui.basket.paymentMethod.PaymentMethodActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineTopLeft"
@@ -28,31 +28,32 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.06" />
 
-
     <ImageView
         android:id="@+id/back"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="@+id/basketTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentMethodTitle"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/basketTitle"
-        app:layout_constraintTop_toTopOf="@+id/basketTitle"
+        app:layout_constraintRight_toLeftOf="@+id/paymentMethodTitle"
+        app:layout_constraintTop_toTopOf="@+id/paymentMethodTitle"
         app:srcCompat="@drawable/back_arrow" />
 
     <TextView
-        android:id="@+id/basketTitle"
+        android:id="@+id/paymentMethodTitle"
         style="@style/HelveticaNeueBold36.Black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/basket"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/payment_method"
         app:layout_constraintLeft_toLeftOf="@id/guidelineTopLeft"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/basketServices"
+        android:id="@+id/paymentMethodList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -61,55 +62,29 @@
         android:paddingBottom="75dp"
         android:paddingTop="10dp"
         android:theme="@style/HampScrollView"
-        app:layout_constraintBottom_toTopOf="@+id/basketVisaButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
         app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@+id/basketTitle" />
-
-    <View
-        android:id="@+id/basketPriceView"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:alpha="0.97"
-        android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/basketVisaButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/paymentMethodTitle" />
 
     <TextView
-        style="@style/Fredoka18.Razzmatazz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/total"
-        app:layout_constraintBottom_toBottomOf="@+id/basketPriceView"
-        app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="@+id/basketPriceView" />
-
-    <TextView
-        style="@style/Fredoka25.Razzmatazz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="€ 60"
-        app:layout_constraintBottom_toBottomOf="@+id/basketPriceView"
-        app:layout_constraintRight_toRightOf="@id/guidelineRight"
-        app:layout_constraintTop_toTopOf="@+id/basketPriceView" />
-
-    <View
-        android:id="@+id/basketVisaButton"
+        android:id="@+id/finalizePurchaseButton"
+        style="@style/HelveticaNeueBold16.White"
         android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:background="@drawable/basket_visa_button"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/hamp_default_button"
+        android:paddingBottom="@dimen/skip_continue_padding_top_bottom"
+        android:paddingTop="@dimen/skip_continue_padding_top_bottom"
+        android:text="@string/finalize_purchase"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/basketVisaButton"
-        app:layout_constraintLeft_toLeftOf="@+id/basketVisaButton"
-        app:layout_constraintRight_toRightOf="@+id/basketVisaButton"
-        app:layout_constraintTop_toTopOf="@+id/basketVisaButton"
-        app:srcCompat="@drawable/visa_white" />
 
 </android.support.constraint.ConstraintLayout>

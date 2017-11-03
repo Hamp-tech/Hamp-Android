@@ -27,13 +27,13 @@ class BasketServiceView @JvmOverloads constructor(
 //        minus.onClick { decrementQuantity() }
     }
 
-    fun bind(service: Service, quantity: Int) {
-        this.service = service
-        this.quantity = quantity
+    fun bind() {
+//        this.service = service
+//        this.quantity = quantity
 //        this.serviceViewQuantityListener = quantityListener
 
-        quantityValue.text = quantity.toString()
-        name.text = service.name
+//        quantityValue.text = quantity.toString()
+//        name.text = service.name
     }
 
 //    private fun incrementQuantity() {

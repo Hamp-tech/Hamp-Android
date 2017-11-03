@@ -16,8 +16,10 @@ class BasketActivity : BaseActivity() {
 
         basketServices.setHasFixedSize(true)
         basketServices.layoutManager = LinearLayoutManager(this)
-//        basketServices.adapter = BasketServiceView()
+        basketServices.adapter = BasketAdapter(this, listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
+                listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))
 
+//        basketVisaButton.onClick { }
         back.onClick { onBackPressed() }
     }
 }

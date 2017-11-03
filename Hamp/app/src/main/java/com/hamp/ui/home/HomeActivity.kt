@@ -6,12 +6,14 @@ import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extension.*
+import com.hamp.ui.basket.BasketActivity
 import com.hamp.ui.home.history.HistoryFragment
 import com.hamp.ui.home.profile.ProfileFragment
 import com.hamp.ui.home.service.ServiceFragment
 import com.hamp.ui.views.HampNavigationBar
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
 
 //@BaseActivity.Animation(BaseActivity.FADE)
 class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener {
@@ -34,6 +36,7 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
 
         loadService()
 
+        basket.onClick { goToBasket() }
         profileEditSave.onClick { profileEditMode() }
     }
 
@@ -111,5 +114,9 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
             profileEditSave.text = getString(R.string.profile_edit)
             hideKeyboard()
         }
+    }
+
+    private fun goToBasket() {
+        if(!isBasketEmpty) startActivity<BasketActivity>()
     }
 }
