@@ -28,10 +28,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/app_debug.kotlin_module'
+    }
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-maps:11.4.2'
     compile fileTree(dir: "libs", include: ["*.jar"])
     androidTestCompile("com.android.support.test.espresso:espresso-core:2.2.2", {
         exclude group: "com.android.support", module: "support-annotations"
@@ -97,6 +100,9 @@ dependencies {
 
     //Stripe
     compile 'com.stripe:stripe-android:5.1.0'
+
+    // Maps
+    implementation 'com.google.android.gms:play-services-maps:11.4.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

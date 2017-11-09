@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.5"/>
 
     <fragment
         android:id="@+id/historyMap"
@@ -21,16 +22,312 @@
         app:layout_constraintBottom_toTopOf="@+id/mapGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/back"
         android:layout_width="wrap_content"
-        android:layout_marginTop="26dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_arrow" />
+        app:srcCompat="@drawable/back_arrow"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historyMap">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.10"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85"/>
+
+            <TextView
+                android:id="@+id/historyDetailDate"
+                style="@style/HelveticaNeueBold33.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="05/06/2018"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/historyDetailPrice"
+                style="@style/Fredoka24.CandyPink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10€"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailDate"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineRight"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailDate"/>
+
+            <TextView
+                android:id="@+id/historyDetailPaymentMethod"
+                style="@style/HelveticaNeueBold20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Método de pago"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailDate"/>
+
+            <View
+                android:id="@+id/historyDetailFirstLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/manatee_2"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailPaymentMethod"/>
+
+
+            <ImageView
+                android:id="@+id/historyDetailCardImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailFirstLine"
+                app:srcCompat="@drawable/visa_grey"/>
+
+            <TextView
+                android:id="@+id/historyDetailCard"
+                style="@style/HelveticaNeueLight18.Manatee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xxxx xxxx xxxx 1234"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailCardImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailCardImage"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailCardImage"/>
+
+            <TextView
+                android:id="@+id/historyDetailDescription"
+                style="@style/HelveticaNeueBold20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Descripción"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailCardImage"/>
+
+            <View
+                android:id="@+id/historyDetailSecondLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/manatee_2"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailDescription"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/historyDetailServices"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailSecondLine"/>
+
+            <TextView
+                android:id="@+id/historyDetailDelivery"
+                style="@style/HelveticaNeueBold20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Entrega"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailServices"/>
+
+            <View
+                android:id="@+id/historyDetailThirdLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/manatee_2"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailDelivery"/>
+
+            <ImageView
+                android:id="@+id/historyDetailDeliveryLocker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailThirdLine"
+                app:srcCompat="@drawable/locker"/>
+
+            <TextView
+                android:id="@+id/historyDetailDeliveryLockerNumber"
+                style="@style/HelveticaNeueLight18.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="13"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailDeliveryLocker"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailDeliveryLocker"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailDeliveryLocker"/>
+
+            <ImageView
+                android:id="@+id/historyDetailDeliveryPadlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/historyDetailDeliveryLocker"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailDeliveryLocker"
+                app:srcCompat="@drawable/padlock"/>
+
+            <TextView
+                android:id="@+id/historyDetailDeliveryPadlockNumber"
+                style="@style/HelveticaNeueLight18.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="1234"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailDeliveryPadlock"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailDeliveryPadlock"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailDeliveryPadlock"/>
+
+            <ImageView
+                android:id="@+id/historyDetailDeliveryClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/historyDetailDeliveryLocker"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailDeliveryPadlock"
+                app:srcCompat="@drawable/clock"/>
+
+            <TextView
+                android:id="@+id/historyDetailDeliveryClockNumber"
+                style="@style/HelveticaNeueLight18.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="Tarde"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailDeliveryClock"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailDeliveryClock"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailDeliveryClock"/>
+
+            <TextView
+                android:id="@+id/historyDetailPickUp"
+                style="@style/HelveticaNeueBold20.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Recogida"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailDeliveryClock"/>
+
+            <View
+                android:id="@+id/historyDetailFourthLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/manatee_2"
+                app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+                app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailPickUp"/>
+
+            <ImageView
+                android:id="@+id/historyDetailPickUpLocker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailFourthLine"
+                app:srcCompat="@drawable/locker"/>
+
+            <TextView
+                android:id="@+id/historyDetailPickUpLockerNumber"
+                style="@style/HelveticaNeueLight18.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="?"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailPickUpLocker"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailPickUpLocker"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailPickUpLocker"/>
+
+            <ImageView
+                android:id="@+id/historyDetailPickUpPadlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@+id/historyDetailPickUpLocker"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailPickUpLocker"
+                app:srcCompat="@drawable/padlock"/>
+
+            <TextView
+                android:id="@+id/historyDetailPickUpPadlockNumber"
+                style="@style/HelveticaNeueLight18.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="?"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailPickUpPadlock"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailPickUpPadlock"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailPickUpPadlock"/>
+
+            <ImageView
+                android:id="@+id/historyDetailPickUpClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/historyDetailPickUpLocker"
+                app:layout_constraintTop_toBottomOf="@+id/historyDetailPickUpPadlock"
+                app:srcCompat="@drawable/clock"/>
+
+            <TextView
+                android:id="@+id/historyDetailPickUpClockNumber"
+                style="@style/HelveticaNeueLight18.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="?"
+                app:layout_constraintBottom_toBottomOf="@+id/historyDetailPickUpClock"
+                app:layout_constraintStart_toEndOf="@+id/historyDetailPickUpClock"
+                app:layout_constraintTop_toTopOf="@+id/historyDetailPickUpClock"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
