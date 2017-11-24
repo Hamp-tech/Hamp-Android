@@ -162,6 +162,8 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
         profileBirth.isEnabled = editMode
         maleRadioButton.isClickable = editMode
         femaleRadioButton.isClickable = editMode
+        segmentedButtonMorning.isEnabled = editMode
+        segmentedButtonAfternoon.isEnabled = editMode
         rateHampSwitch.isClickable = editMode
         notificationsSwitch.isClickable = editMode
 

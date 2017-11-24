@@ -65,7 +65,7 @@
                 style="@style/HelveticaNeueBold33.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:text="05/06/2018"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -86,7 +86,7 @@
                 style="@style/HelveticaNeueBold20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:text="Método de pago"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailDate"/>
@@ -130,7 +130,7 @@
                 style="@style/HelveticaNeueBold20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:text="Descripción"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailCardImage"/>
@@ -159,7 +159,7 @@
                 style="@style/HelveticaNeueBold20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:text="Entrega"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailServices"/>
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailThirdLine"
                 app:srcCompat="@drawable/locker"/>
@@ -201,7 +201,7 @@
                 android:id="@+id/historyDetailDeliveryPadlock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="@+id/historyDetailDeliveryLocker"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailDeliveryLocker"
                 app:srcCompat="@drawable/padlock"/>
@@ -222,7 +222,7 @@
                 android:id="@+id/historyDetailDeliveryClock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="@+id/historyDetailDeliveryLocker"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailDeliveryPadlock"
                 app:srcCompat="@drawable/clock"/>
@@ -244,7 +244,7 @@
                 style="@style/HelveticaNeueBold20.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:text="Recogida"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailDeliveryClock"/>
@@ -265,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailFourthLine"
                 app:srcCompat="@drawable/locker"/>
@@ -286,7 +286,7 @@
                 android:id="@+id/historyDetailPickUpPadlock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="@+id/historyDetailPickUpLocker"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailPickUpLocker"
                 app:srcCompat="@drawable/padlock"/>
@@ -308,7 +308,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/historyDetailPickUpLocker"
                 app:layout_constraintTop_toBottomOf="@+id/historyDetailPickUpPadlock"
