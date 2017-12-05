@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/start_bg"
-    tools:context="com.hamp.ui.start.StartActivity">
+    tools:context="com.hamp.mvvm.start.StartActivity">
 
     <!--<ImageView-->
     <!--android:layout_width="0dp"-->

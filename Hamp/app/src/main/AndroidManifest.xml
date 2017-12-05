@@ -4,12 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
@@ -21,44 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.start.StartActivity"
+            android:name=".mvvm.start.StartActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusTheme">
-        </activity>
-        <activity
-            android:name=".ui.tutorial.TutorialActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme"/>
-        <activity
-            android:name=".ui.signup.SignUpActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
-        <activity
-            android:name=".ui.restore.RestoreActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme"/>
-        <activity
-            android:name=".ui.paymentInfo.PaymentInfoActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme"/>
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -66,22 +26,56 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.service.detail.ServiceDetailActivity"
+            android:name=".mvvm.tutorial.TutorialActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"/>
         <activity
-            android:name=".ui.basket.BasketActivity"
+            android:name=".mvvm.signup.SignUpActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <activity
+            android:name=".mvvm.login.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <activity
+            android:name=".mvvm.restore.RestoreActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"/>
         <activity
-            android:name=".ui.basket.paymentMethod.PaymentMethodActivity"
+            android:name=".mvvm.paymentInfo.PaymentInfoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"/>
         <activity
-            android:name=".ui.home.history.detail.HistoryDetailActivity"
+            android:name=".mvvm.home.HomeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".mvvm.home.service.detail.ServiceDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme"/>
+        <activity
+            android:name=".mvvm.basket.BasketActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme"/>
+        <activity
+            android:name=".mvvm.basket.paymentMethod.PaymentMethodActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WhiteTheme"/>
+        <activity
+            android:name=".mvvm.home.history.detail.HistoryDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusTheme"/>

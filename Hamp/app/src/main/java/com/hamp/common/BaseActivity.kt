@@ -1,5 +1,7 @@
 package com.hamp.common
 
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.LifecycleRegistry
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IntDef
@@ -7,10 +9,12 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
-import com.hamp.extension.showErrorSnackBar
+import com.hamp.mvvm.extensions.showErrorSnackBar
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
+
+    private val lifecycleRegistry by lazy { LifecycleRegistry(this) }
 
     companion object {
         val EXTRA_ANIMATION_TYPE = "EXTRA_ANIMATION_TYPE"
@@ -65,6 +69,8 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         isRunning = true
     }
+
+    override fun getLifecycle() = lifecycleRegistry
 
     public override fun onStart() {
         super.onStart()

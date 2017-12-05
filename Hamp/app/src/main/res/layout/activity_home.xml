@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.hamp.ui.home.HomeActivity">
+    tools:context="com.hamp.mvvm.home.HomeActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineLeft"
@@ -107,7 +107,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sectionTitle" />
 
-    <com.hamp.ui.views.HampNavigationBar
+    <com.hamp.mvvm.views.HampNavigationBar
         android:id="@+id/hampNavigationBar"
         android:layout_width="0dp"
         android:layout_height="56dp"

@@ -1,8 +1,7 @@
 package com.hamp.common
 
 import android.arch.lifecycle.LifecycleFragment
-import android.support.v4.app.Fragment
-import com.hamp.ui.home.HomeActivity
+import com.hamp.mvvm.home.HomeActivity
 
 open class BaseFragment : LifecycleFragment() {
 

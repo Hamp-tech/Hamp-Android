@@ -3,7 +3,7 @@ package com.hamp
 import android.app.Application
 import com.hamp.api.RestApi
 import com.hamp.firebase.FirebaseAuthManager
-import com.hamp.utils.PreferencesUtils
+import com.hamp.mvvm.utils.PreferencesUtils
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 val api: RestApi by lazy {

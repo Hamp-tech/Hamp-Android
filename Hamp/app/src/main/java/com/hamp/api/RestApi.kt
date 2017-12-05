@@ -1,11 +1,13 @@
 package com.hamp.api
 
 import com.hamp.BuildConfig
+import com.hamp.domain.User
 import com.hamp.domain.response.BookingResponse
 import com.hamp.domain.response.GenericResponse
 import com.hamp.domain.response.LockerResponse
 import com.hamp.domain.response.UserResponse
 import com.hamp.hamp.domain.response.BookingRequest
+import io.reactivex.Completable
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -21,35 +23,49 @@ class RestApi {
 
     private val hampApi: HampApi
     private val retrofitHamp: Retrofit
+    private val gangway = "gangway"
 
     init {
-        val httpClient = OkHttpClient.Builder()
-        httpClient.connectTimeout(10, TimeUnit.SECONDS)
-        httpClient.readTimeout(30, TimeUnit.SECONDS)
-        httpClient.addInterceptor { chain ->
-            val original = chain.request()
+        val httpClient = createHttpClient()
+        val logging = createLoggingInterceptor()
 
-            original.url().newBuilder().addQueryParameter("gangway", "7B3nPECsrty0vuZi7J74kSMVmHKljxK")
-
-            val request = original?.newBuilder()
-                    ?.method(original.method(), original.body())
-                    ?.build()
-
-            chain.proceed(request)
-        }
-
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
         httpClient.addInterceptor(logging)
 
-        retrofitHamp = Retrofit.Builder()
+        retrofitHamp = createRetrofit(httpClient)
+
+        hampApi = retrofitHamp.create(HampApi::class.java)
+    }
+
+    private fun createHttpClient(): OkHttpClient.Builder {
+        return OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor { chain ->
+                    val original = chain.request()
+                    val originalHttpUrl = original.url()
+
+                    val url = originalHttpUrl.newBuilder()
+                            .addQueryParameter(gangway, BuildConfig.GANGWAY)
+                            .build()
+
+                    val requestBuilder = original.newBuilder().url(url)
+                    val request = requestBuilder.build()
+                    chain.proceed(request)
+                }
+    }
+
+    private fun createLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
+
+    private fun createRetrofit(httpClient: OkHttpClient.Builder): Retrofit {
+        return Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(httpClient.build())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        hampApi = retrofitHamp.create(HampApi::class.java)
     }
 
     ///////////// HAMP ////////////////
@@ -62,15 +78,16 @@ class RestApi {
     fun getUser(userID: String) = hampApi.getUser(userID)
 
     fun createUserWithID(userID: String, name: String, surname: String,
-                         email: String, phone: String, birthday: String, gender: String,
-                         tokenFCM: String): Observable<UserResponse> {
-        return hampApi.createUserWithID(userID, name, surname, email, phone, birthday, gender,
-                tokenFCM, getLanguageTag(), "Android")
+                         mail: String, phone: String, birthday: String, gender: String,
+                         tokenFCM: String):Completable {
+        return hampApi.createUserWithID(userID, User(name = name, surname = surname, mail = mail,
+                phone = phone, birthday = birthday, gender = gender,
+                tokenFCM = tokenFCM, language = getLanguageTag(), os = "Android"))
     }
 
     fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)
 
-    fun unsubscribe(userID: String) = hampApi.unsubscribe(userID)
+    fun unSubscribe(userID: String) = hampApi.unSubscribe(userID)
 
     fun subscribe(userID: String) = hampApi.subscribe(userID)
 
