@@ -1,5 +1,6 @@
 package com.hamp.api
 
+import com.hamp.domain.User
 import com.hamp.domain.response.*
 import com.hamp.hamp.domain.response.BookingRequest
 import io.reactivex.Observable
@@ -11,26 +12,15 @@ interface HampApi {
     @GET("users/{id}")
     fun getUser(@Path("id") id: String): Observable<UserResponse>
 
-    //?gangway=7B3nPECsrty0vuZi7J74kSMVmHKljxK
-    @FormUrlEncoded
     @POST("users/{id}")
-    fun createUserWithID(@Path("id") id: String,
-                         @Field("name") name: String,
-                         @Field("surname") surname: String,
-                         @Field("email") email: String,
-                         @Field("phone") phone: String,
-                         @Field("birthday") birthday: String,
-                         @Field("gender") gender: String,
-                         @Field("tokenFCM") tokenFCM: String,
-                         @Field("language") language: String,
-                         @Field("os") os: String): Observable<UserResponse>
+    fun createUserWithID(@Path("id") id: String, @Body user: User): Observable<UserResponse>
 
     @PUT("users/{id}")
     fun updateUser(@Path("id") id: String,
                    @FieldMap fields: Map<String, String>): Observable<GenericResponse>
 
     @DELETE("users/{id}")
-    fun unsubscribe(@Path("id") id: String): Observable<GenericResponse>
+    fun unSubscribe(@Path("id") id: String): Observable<GenericResponse>
 
     @DELETE("users/{id}/subscribe")
     fun subscribe(@Path("id") id: String): Observable<GenericResponse>

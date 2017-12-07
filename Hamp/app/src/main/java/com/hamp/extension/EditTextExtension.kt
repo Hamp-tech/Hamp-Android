@@ -17,3 +17,5 @@ fun EditText.setEditMode(editMode: Boolean) {
     isFocusable = editMode
     isFocusableInTouchMode = editMode
 }
+
+fun EditText.trim() = this.text.toString().trim()

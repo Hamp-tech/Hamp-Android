@@ -13,7 +13,7 @@
     <string name="woman">Mujer</string>
     <string name="phone">Teléfono</string>
     <string name="bday">Fecha de nacimiento</string>
-    <string name="add_card">Añadir tarjeta</string>
+    <string name="add_card_title">Añadir tarjeta</string>
     <!-- ERRORS -->
     <string name="generic_error">Se ha producido un error inesperado. Por favor, vuelve a intentarlo mas tarde.</string>
     <string name="internet_connection_error">No hay conexión a internet</string>

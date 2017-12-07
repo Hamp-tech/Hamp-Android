@@ -12,12 +12,12 @@ import org.jetbrains.anko.contentView
 fun Activity.showErrorSnackBar(message: String, duration: Int) {
     hideKeyboard()
 
-    val snack = Snackbar.make(contentView!!, message, duration)
-    snack.setActionTextColor(R.color.white)
+    val snack = contentView?.let { Snackbar.make(it, message, duration) }
+    snack?.setActionTextColor(ContextCompat.getColor(this, R.color.white))
 
-    val view = snack.view
-    view.setBackgroundColor(ContextCompat.getColor(this, R.color.red_error))
-    snack.show()
+    val view = snack?.view
+    view?.setBackgroundColor(ContextCompat.getColor(this, R.color.red_error))
+    snack?.show()
 }
 
 fun Activity.hideKeyboard() {

@@ -19,10 +19,12 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"http://usehamp.io/api/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"http://www.usehamp.io/api/v1/\"")
+            buildConfigField("String", "GANGWAY", "\"7B3nPECsrty0vuZi7J74kSMVmHKljxK\"")
         }
         release {
-            buildConfigField("String", "BASE_URL", "\"http://usehamp.io/api/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"http://www.usehamp.io/api/v1/\"")
+            buildConfigField("String", "GANGWAY", "\"7B3nPECsrty0vuZi7J74kSMVmHKljxK\"")
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
