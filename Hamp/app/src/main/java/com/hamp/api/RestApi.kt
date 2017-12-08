@@ -7,8 +7,8 @@ import com.hamp.domain.response.GenericResponse
 import com.hamp.domain.response.LockerResponse
 import com.hamp.domain.response.UserResponse
 import com.hamp.hamp.domain.response.BookingRequest
-import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -77,12 +77,20 @@ class RestApi {
 
     fun getUser(userID: String) = hampApi.getUser(userID)
 
-    fun createUserWithID(userID: String, name: String, surname: String,
-                         mail: String, phone: String, birthday: String, gender: String,
-                         tokenFCM: String):Completable {
-        return hampApi.createUserWithID(userID, User(name = name, surname = surname, mail = mail,
-                phone = phone, birthday = birthday, gender = gender,
-                tokenFCM = tokenFCM, language = getLanguageTag(), os = "Android"))
+    fun createUser(name: String, surname: String, mail: String, password: String, phone: String,
+                   birthday: String, gender: String, tokenFCM: String): Single<UserResponse> {
+        return hampApi.createUser(User().also {
+            it.name = name
+            it.surname = surname
+            it.mail = mail
+            it.password = password
+            it.phone = phone
+            it.birthday = birthday
+            it.gender = gender
+            it.tokenFCM = tokenFCM
+            it.language = getLanguageTag()
+            it.os = "Android"
+        })
     }
 
     fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)

@@ -14,13 +14,11 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.EditText
 import com.hamp.R
-import com.hamp.auth
 import com.hamp.common.BaseFragment
 import com.hamp.domain.User
 import com.hamp.mvvm.extensions.hideKeyboard
 import com.hamp.mvvm.extensions.setEditMode
 import com.hamp.mvvm.extensions.shake
-import com.hamp.prefs
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.start.StartActivity
 import com.mobsandgeeks.saripaar.ValidationError
@@ -70,10 +68,10 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
 
     override fun onResume() {
         super.onResume()
-        val profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-        profileViewModel.getUser().observe(this, Observer<User> {
-            Log.d("HOLAAAAAAA", it?.toString())
-        })
+//        val profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+//        profileViewModel.getUser().observe(this, Observer<User> {
+//            Log.d("HOLAAAAAAA", it?.toString())
+//        })
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -171,10 +169,10 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
     }
 
     private fun doLogout() {
-        auth.logout()
-        prefs.userId = ""
-        startActivity(Intent(context, StartActivity::class.java))
-        homeActivity.finish()
+//        auth.logout()
+//        prefs.userId = ""
+//        startActivity(Intent(context, StartActivity::class.java))
+//        homeActivity.finish()
     }
 
     override fun onValidationSucceeded() {

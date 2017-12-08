@@ -9,10 +9,14 @@ import android.view.inputmethod.InputMethodManager
 import com.hamp.R
 import org.jetbrains.anko.contentView
 
-fun Activity.showErrorSnackBar(message: String, duration: Int) {
+fun Activity.showErrorSnackBar(message: Any, duration: Int) {
     hideKeyboard()
 
-    val snack = contentView?.let { Snackbar.make(it, message, duration) }
+    val messageText = message as? String ?:
+            if (message is Int) getString(message)
+            else getString(R.string.generic_error)
+
+    val snack = contentView?.let { Snackbar.make(it, messageText, duration) }
     snack?.setActionTextColor(ContextCompat.getColor(this, R.color.white))
 
     val view = snack?.view

@@ -1,41 +1,28 @@
 package com.hamp
 
+import android.app.Activity
 import android.app.Application
-import com.hamp.api.RestApi
-import com.hamp.firebase.FirebaseAuthManager
-import com.hamp.mvvm.utils.PreferencesUtils
+import com.hamp.di.AppInjector
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
+import javax.inject.Inject
 
-val api: RestApi by lazy {
-    HampApplication.hampApi!!
-}
+class HampApplication : Application(), HasActivityInjector {
 
-val prefs: PreferencesUtils by lazy {
-    HampApplication.preferences!!
-}
-
-val auth: FirebaseAuthManager by lazy {
-    HampApplication.firebaseAuth!!
-}
-
-class HampApplication : Application() {
-
-    companion object {
-        var hampApi: RestApi? = null
-        var preferences: PreferencesUtils? = null
-        var firebaseAuth: FirebaseAuthManager? = null
-    }
+    @Inject lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
 
-        hampApi = RestApi()
-        preferences = PreferencesUtils(this)
-        firebaseAuth = FirebaseAuthManager()
+        AppInjector.init(this)
 
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/HelveticaNeue-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build())
     }
+
+    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
 }

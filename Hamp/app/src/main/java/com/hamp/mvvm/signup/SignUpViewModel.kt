@@ -2,26 +2,37 @@ package com.hamp.mvvm.signup
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import android.util.Patterns
+import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
 import com.hamp.repository.UserRepository
-import com.mobsandgeeks.saripaar.Validator
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(
         private val repository: UserRepository
 ) : ViewModel() {
 
-    lateinit private var validator: Validator
+    var tag = SignUpViewModel::class.java.simpleName
+
+    private val disposables = CompositeDisposable()
 
     val loading = MutableLiveData<Boolean>()
     val validationErrors = MutableLiveData<List<Int>>()
     val validationSucceeded = MutableLiveData<Boolean>()
 
+    val signUpError = MutableLiveData<Any>()
+    val signUpSucceed = MutableLiveData<Boolean>()
+
     fun validateForm(signUpName: String, signUpSurname: String, signUpEmail: String,
                      signUpPhone: String, signUpBday: String, signUpPassword: String,
                      signUpConfirmPassword: String) {
-
+        tag = "ewsx"
         val errors = arrayListOf<Int>()
 
         if (signUpName.isEmpty()) errors.add(R.string.error_name_empty)
@@ -44,6 +55,36 @@ class SignUpViewModel @Inject constructor(
     fun signUp(email: String, password: String, name: String, surname: String, phone: String,
                birthday: String, gender: String) {
         loading.value = true
-        repository.signUp(email, password, name, surname, phone, birthday, gender)
+
+        val tokenFCM = FirebaseInstanceId.getInstance().token ?: ""
+        disposables.add(repository.signUp(email, password, name, surname, phone, birthday, gender, tokenFCM)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onSuccess = {
+                            Log.d(tag, "[login.onSuccess]")
+                            loading.value = false
+                            repository.saveUser(it.data)
+                            signUpSucceed.value = true
+                        },
+                        onError = { e ->
+                            Log.e(tag, "[login.onError] " + e.printStackTrace())
+                            loading.value = false
+
+                            when (e) {
+                                is retrofit2.HttpException -> {
+                                    e.response().errorBody()?.let {
+                                        signUpError.value = repository.api.convertError(it).message
+                                    }
+                                }
+                                is UnknownHostException -> signUpError.value = R.string.internet_connection_error
+                                else -> signUpError.value = R.string.generic_error
+                            }
+                        }
+                ))
+    }
+
+    override fun onCleared() {
+        disposables.clear()
     }
 }

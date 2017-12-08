@@ -3,23 +3,29 @@ package com.hamp.mvvm.signup
 import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.DatePicker
 import com.hamp.R
 import com.hamp.common.BaseActivity
+import com.hamp.di.Injectable
 import com.hamp.mvvm.extensions.hideKeyboard
 import com.hamp.mvvm.extensions.observe
+import com.hamp.mvvm.extensions.showErrorSnackBar
 import com.hamp.mvvm.extensions.trim
+import com.hamp.mvvm.paymentInfo.PaymentInfoActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
 import javax.inject.Inject
 
 @BaseActivity.Animation(BaseActivity.PUSH)
-class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
+class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetListener {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -38,11 +44,7 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         setUpDatePicker()
 
         signUpBday.onClick { datePicker.show() }
-        enter.onClick {
-            signUpViewModel.validateForm(signUpName.trim(), signUpSurname.trim(),
-                    signUpEmail.trim(), signUpPhone.trim(), signUpBday.trim(),
-                    signUpPassword.trim(), signUpConfirmPassword.trim())
-        }
+        enter.onClick { validateForm() }
         cancel.onClick { onBackPressed() }
     }
 
@@ -50,9 +52,11 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         signUpViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(SignUpViewModel::class.java)
 
-        signUpViewModel.loading.observe(this, { showLoading(it ?: false) })
-        signUpViewModel.validationSucceeded.observe(this, { validationSucceeded(it ?: false) })
-        signUpViewModel.validationErrors.observe(this, { validationFailed(it ?: emptyList()) })
+        signUpViewModel.loading.observe(this, { it?.let { showLoading(it) } })
+        signUpViewModel.validationSucceeded.observe(this, { it?.let { if (it) validationSucceeded() } })
+        signUpViewModel.validationErrors.observe(this, { it?.let { validationFailed(it) } })
+        signUpViewModel.signUpError.observe(this, { it?.let { signUpError(it) } })
+        signUpViewModel.signUpSucceed.observe(this, { it?.let { if (it) signUpSucceed() } })
     }
 
     private fun setUpDatePicker() {
@@ -64,10 +68,10 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
         datePicker = DatePickerDialog(this, this, startYear, startMonth, startDay)
 
-        // Add 1h to day for lollipop
+        c.add(Calendar.YEAR, -15)
         datePicker.datePicker.maxDate = c.timeInMillis + (1000 * 60 * 60 * 1)
 
-        c.add(Calendar.YEAR, -100)
+        c.add(Calendar.YEAR, -80)
         datePicker.datePicker.minDate = c.timeInMillis
 
         datePicker.setTitle(null)
@@ -84,23 +88,25 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         signUpBday.setColorFilter(ContextCompat.getColor(this, R.color.cerise_pink))
     }
 
-    private fun validationSucceeded(succeeded: Boolean) {
-        if (succeeded) doSignUp()
+    private fun validateForm() {
+        signUpViewModel.validateForm(signUpName.trim(), signUpSurname.trim(),
+                signUpEmail.trim(), signUpPhone.trim(), signUpBday.trim(),
+                signUpPassword.trim(), signUpConfirmPassword.trim())
     }
 
+    private fun validationSucceeded() = doSignUp()
+
     private fun validationFailed(errors: List<Int>) {
-        if (errors.isNotEmpty()) {
-            hideKeyboard()
-            errors.forEach {
-                when (it) {
-                    R.string.error_name_empty -> signUpName.error = getString(it)
-                    R.string.error_surname_empty -> signUpSurname.error = getString(it)
-                    R.string.error_email_empty -> signUpEmail.error = getString(it)
-                    R.string.error_phone_empty -> signUpPhone.error = getString(it)
-                    R.string.error_birthday_empty -> signUpBday.error = getString(it)
-                    R.string.error_password_length -> signUpPassword.error = getString(it)
-                    R.string.error_confirm_password -> signUpConfirmPassword.error = getString(it)
-                }
+        if (errors.isNotEmpty()) hideKeyboard()
+        errors.forEach {
+            when (it) {
+                R.string.error_name_empty -> signUpName.error = getString(it)
+                R.string.error_surname_empty -> signUpSurname.error = getString(it)
+                R.string.error_email_empty -> signUpEmail.error = getString(it)
+                R.string.error_phone_empty -> signUpPhone.error = getString(it)
+                R.string.error_birthday_empty -> signUpBday.error = getString(it)
+                R.string.error_password_length -> signUpPassword.error = getString(it)
+                R.string.error_confirm_password -> signUpConfirmPassword.error = getString(it)
             }
         }
     }
@@ -124,14 +130,13 @@ class SignUpActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         else loadingView.visibility = View.GONE
     }
 
-//
-//    override fun signUpSucceed() {
-//        startActivity(intentFor<PaymentInfoActivity>()
-//                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-//
-//        finish()
-//    }
-//
-//    override fun signUpError(message: String) = showErrorSnackBar(message, Snackbar.LENGTH_LONG)
+    private fun signUpError(error: Any) = showErrorSnackBar(error, Snackbar.LENGTH_LONG)
+
+    private fun signUpSucceed() {
+        startActivity(intentFor<PaymentInfoActivity>()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+
+        finish()
+    }
 }

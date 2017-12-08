@@ -1,33 +1,41 @@
 package com.hamp.repository
 
-import com.google.android.gms.tasks.OnCompleteListener
 import com.hamp.api.RestApi
-import com.hamp.firebase.FirebaseAuthManager
-import com.hamp.mvvm.utils.PreferencesUtils
-import io.reactivex.Completable
+import com.hamp.domain.User
+import com.hamp.domain.response.UserResponse
+import com.hamp.preferences.PreferencesManager
+import com.vicpin.krealmextensions.save
+import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UserRepository @Inject constructor(
         val api: RestApi,
-        val auth: FirebaseAuthManager,
-        val prefs: PreferencesUtils
+        private val prefs: PreferencesManager
 ) {
 
-    fun signUp(email: String, password: String, name: String, surname: String, phone: String,
-               birthday: String, gender: String): Completable {
-        var completable: Completable? = null
-        auth.signUpWithEmailAndPassword(email, password, OnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val firebaseUser = task.result.user
-                prefs.userId = firebaseUser.uid
-                return api.createUserWithID(prefs.userId, name, surname, email, phone, birthday, gender, "")
-            } else {
-                return Completable.error(task.exception)
-            }
-        })
+    fun isFirstTime() = prefs.isFirstTime
+
+    fun isUserLogin() = prefs.userId != -1L
+
+    fun signUp(name: String, surname: String, mail: String, password: String, phone: String,
+               birthday: String, gender: String, tokenFCM: String): Single<UserResponse> {
+        return api.createUser(name, surname, mail, password, phone, birthday, gender, tokenFCM)
     }
+
+    fun saveUser(user: User) {
+        user.save()
+        prefs.userId = user.id
+    }
+
+//    if (task.isSuccessful) {
+//        val firebaseUser = task.result.user
+//        prefs.userId = firebaseUser.uid
+//        return api.createUserWithID(prefs.userId, name, surname, email, phone, birthday, gender, "")
+//    } else {
+//        return Completable.error(task.exception)
+//    }
 
 //    private var database = FirebaseDatabase.getInstance().getReference("users")
 //    private var listener: ValueEventListener? = null

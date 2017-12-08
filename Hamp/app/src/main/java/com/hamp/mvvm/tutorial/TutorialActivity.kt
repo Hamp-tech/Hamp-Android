@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.view.ViewPager
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.prefs
 import com.hamp.mvvm.start.StartActivity
 import kotlinx.android.synthetic.main.activity_tutorial.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -32,7 +31,7 @@ class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
     }
 
     private fun goToStartActivity() {
-        prefs.isFirstTime = false
+//        prefs.isFirstTime = false
         startActivity(Intent(this, StartActivity::class.java))
         finish()
     }

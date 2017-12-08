@@ -5,6 +5,7 @@ import com.hamp.domain.response.*
 import com.hamp.hamp.domain.response.BookingRequest
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.*
 
 interface HampApi {
@@ -14,7 +15,7 @@ interface HampApi {
     fun getUser(@Path("id") id: String): Observable<UserResponse>
 
     @POST("users/{id}")
-    fun createUserWithID(@Path("id") id: String, @Body user: User): Completable
+    fun createUser(@Body user: User): Single<UserResponse>
 
     @PUT("users/{id}")
     fun updateUser(@Path("id") id: String,

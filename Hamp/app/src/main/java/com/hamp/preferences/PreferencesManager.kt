@@ -1,9 +1,9 @@
-package com.hamp.mvvm.utils
+package com.hamp.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class PreferencesUtils(context: Context) {
+class PreferencesManager(context: Context) {
 
     private val PREFS_FILENAME = "com.hamp.prefs"
 
@@ -16,7 +16,7 @@ class PreferencesUtils(context: Context) {
         get() = prefs.getBoolean(FIRST_TIME, true)
         set(value) = prefs.edit().putBoolean(FIRST_TIME, value).apply()
 
-    var userId: String
-        get() = prefs.getString(USERID, "")
-        set(value) = prefs.edit().putString(USERID, value).apply()
+    var userId: Long
+        get() = prefs.getLong(USERID, -1L)
+        set(value) = prefs.edit().putLong(USERID, value).apply()
 }

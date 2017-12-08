@@ -1,20 +1,23 @@
 package com.hamp.domain
 
-data class User(
-        val name: String,
-        val surname: String,
-        val mail: String,
-        val phone: String,
-        val birthday: String,
-        val gender: String,
-        val tokenFCM: String,
-        val language: String,
-        val os: String,
-        val signupDate: String = "",
-        val stripe: StripeUser = StripeUser(),
-        val lastActivityDate: String = "",
-        val unsubscribed: Boolean = false,
-        val firebaseID: String = ""
-)
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
-data class StripeUser(val costumerID: String = "")
+open class User : RealmObject() {
+    @PrimaryKey
+    var id: Long = -1
+    var name: String = ""
+    var surname: String = ""
+    var mail: String = ""
+    var password: String = ""
+    var phone: String = ""
+    var birthday: String = ""
+    var gender: String = ""
+    var tokenFCM: String = ""
+    var language: String = ""
+    var os: String = ""
+    var signupDate: String = ""
+    var lastActivity: String = ""
+    var unsubscribed: Boolean = false
+    var stripeID: String = ""
+}
