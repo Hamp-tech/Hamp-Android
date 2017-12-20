@@ -2,10 +2,10 @@ package com.hamp.mvvm.signup
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
+import com.hamp.extensions.logd
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -17,9 +17,6 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
         private val repository: UserRepository
 ) : ViewModel() {
-
-    var tag = SignUpViewModel::class.java.simpleName
-
     private val disposables = CompositeDisposable()
 
     val loading = MutableLiveData<Boolean>()
@@ -32,7 +29,6 @@ class SignUpViewModel @Inject constructor(
     fun validateForm(signUpName: String, signUpSurname: String, signUpEmail: String,
                      signUpPhone: String, signUpBday: String, signUpPassword: String,
                      signUpConfirmPassword: String) {
-        tag = "ewsx"
         val errors = arrayListOf<Int>()
 
         if (signUpName.isEmpty()) errors.add(R.string.error_name_empty)
@@ -53,7 +49,7 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun signUp(email: String, password: String, name: String, surname: String, phone: String,
-               birthday: String, gender: String) {
+               birthday: String, gender: Int) {
         loading.value = true
 
         val tokenFCM = FirebaseInstanceId.getInstance().token ?: ""
@@ -62,13 +58,13 @@ class SignUpViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onSuccess = {
-                            Log.d(tag, "[login.onSuccess]")
+                            logd("[signUp.onSuccess]")
                             loading.value = false
                             repository.saveUser(it.data)
                             signUpSucceed.value = true
                         },
                         onError = { e ->
-                            Log.e(tag, "[login.onError] " + e.printStackTrace())
+                            logd("[signUp.onError]" + e.printStackTrace())
                             loading.value = false
 
                             when (e) {
@@ -84,7 +80,5 @@ class SignUpViewModel @Inject constructor(
                 ))
     }
 
-    override fun onCleared() {
-        disposables.clear()
-    }
+    override fun onCleared() = disposables.clear()
 }

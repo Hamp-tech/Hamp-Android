@@ -1,4 +1,4 @@
-package com.hamp.mvvm.extensions
+package com.hamp.extensions
 
 import android.view.animation.CycleInterpolator
 import android.view.animation.TranslateAnimation
@@ -17,6 +17,5 @@ fun EditText.setEditMode(editMode: Boolean) {
     isFocusable = editMode
     isFocusableInTouchMode = editMode
 }
-
 
 fun EditText.trim() = this.text.toString().trim()

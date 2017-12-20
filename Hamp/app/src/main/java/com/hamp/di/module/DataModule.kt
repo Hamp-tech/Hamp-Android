@@ -1,6 +1,6 @@
 package com.hamp.di.module
 
-import android.app.Application
+import com.hamp.HampApplication
 import com.hamp.api.RestApi
 import com.hamp.preferences.PreferencesManager
 import dagger.Module
@@ -15,5 +15,5 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providePreferences(app: Application): PreferencesManager = PreferencesManager(app)
+    fun providePreferences(app: HampApplication): PreferencesManager = PreferencesManager(app)
 }

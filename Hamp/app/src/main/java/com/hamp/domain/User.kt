@@ -12,7 +12,7 @@ open class User : RealmObject() {
     var password: String = ""
     var phone: String = ""
     var birthday: String = ""
-    var gender: String = ""
+    var gender: Int = -1
     var tokenFCM: String = ""
     var language: String = ""
     var os: String = ""

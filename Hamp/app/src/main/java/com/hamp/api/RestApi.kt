@@ -18,7 +18,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
+@Singleton
 class RestApi {
 
     private val hampApi: HampApi
@@ -78,7 +80,7 @@ class RestApi {
     fun getUser(userID: String) = hampApi.getUser(userID)
 
     fun createUser(name: String, surname: String, mail: String, password: String, phone: String,
-                   birthday: String, gender: String, tokenFCM: String): Single<UserResponse> {
+                   birthday: String, gender: Int, tokenFCM: String): Single<UserResponse> {
         return hampApi.createUser(User().also {
             it.name = name
             it.surname = surname

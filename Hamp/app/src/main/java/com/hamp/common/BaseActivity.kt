@@ -9,7 +9,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
-import com.hamp.mvvm.extensions.showErrorSnackBar
+import com.hamp.extensions.showErrorSnackBar
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {

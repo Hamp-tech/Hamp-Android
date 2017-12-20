@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        android:font="@font/helvetica_neue_regular"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        app:font="@font/helvetica_neue_regular"
+        app:fontStyle="normal"
+        app:fontWeight="400"/>
+
+    <font
+        android:font="@font/helvetica_neue_bold"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        app:font="@font/helvetica_neue_bold"
+        app:fontStyle="normal"
+        app:fontWeight="400"/>
+
+    <font
+        android:font="@font/helvetica_neue_medium"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        app:font="@font/helvetica_neue_medium"
+        app:fontStyle="normal"
+        app:fontWeight="400"/>
+
+    <font
+        android:font="@font/helvetica_neue_light"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        app:font="@font/helvetica_neue_light"
+        app:fontStyle="normal"
+        app:fontWeight="400"/>
+
+    <font
+        android:font="@font/helvetica_neue_thin"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        app:font="@font/helvetica_neue_thin"
+        app:fontStyle="normal"
+        app:fontWeight="400"/>
+
+</font-family>

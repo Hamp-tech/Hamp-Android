@@ -1,13 +1,9 @@
 package com.hamp.mvvm.home.profile
 
 import android.app.DatePickerDialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +11,10 @@ import android.widget.DatePicker
 import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseFragment
-import com.hamp.domain.User
-import com.hamp.mvvm.extensions.hideKeyboard
-import com.hamp.mvvm.extensions.setEditMode
-import com.hamp.mvvm.extensions.shake
+import com.hamp.extensions.hideKeyboard
+import com.hamp.extensions.setEditMode
+import com.hamp.extensions.shake
 import com.hamp.mvvm.home.HomeActivity
-import com.hamp.mvvm.start.StartActivity
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.Email

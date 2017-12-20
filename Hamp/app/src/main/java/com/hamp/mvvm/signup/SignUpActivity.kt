@@ -7,15 +7,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.ViewCompat
 import android.view.View
 import android.widget.DatePicker
+import android.widget.RadioButton
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.di.Injectable
-import com.hamp.mvvm.extensions.hideKeyboard
-import com.hamp.mvvm.extensions.observe
-import com.hamp.mvvm.extensions.showErrorSnackBar
-import com.hamp.mvvm.extensions.trim
+import com.hamp.extensions.hideKeyboard
+import com.hamp.extensions.observe
+import com.hamp.extensions.showErrorSnackBar
+import com.hamp.extensions.trim
 import com.hamp.mvvm.paymentInfo.PaymentInfoActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
@@ -42,6 +44,7 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
 
         setUpViewModel()
         setUpDatePicker()
+        setUpRadioButtons()
 
         signUpBday.onClick { datePicker.show() }
         enter.onClick { validateForm() }
@@ -69,7 +72,7 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
         datePicker = DatePickerDialog(this, this, startYear, startMonth, startDay)
 
         c.add(Calendar.YEAR, -15)
-        datePicker.datePicker.maxDate = c.timeInMillis + (1000 * 60 * 60 * 1)
+        datePicker.datePicker.maxDate = c.timeInMillis + (1000 * 60 * 60 * 1) //Lollipop bug +1h
 
         c.add(Calendar.YEAR, -80)
         datePicker.datePicker.minDate = c.timeInMillis
@@ -86,6 +89,11 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
 
         signUpBday.setText("$dayString/$monthString/$year")
         signUpBday.setColorFilter(ContextCompat.getColor(this, R.color.cerise_pink))
+    }
+
+    private fun setUpRadioButtons() {
+        ViewCompat.setLayoutDirection(maleRadioButton, ViewCompat.LAYOUT_DIRECTION_RTL)
+        ViewCompat.setLayoutDirection(femaleRadioButton, ViewCompat.LAYOUT_DIRECTION_RTL)
     }
 
     private fun validateForm() {
@@ -114,11 +122,9 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
     private fun doSignUp() {
         hideKeyboard()
 
-        val gender = when {
-            maleRadioButton.isChecked -> "M"
-            femaleRadioButton.isChecked -> "F"
-            else -> "U"
-        }
+        val radioButtonId = genderRadioGroup.checkedRadioButtonId
+        val gender = if (radioButtonId == -1) radioButtonId
+        else genderRadioGroup.findViewById<RadioButton>(radioButtonId).tag as Int
 
         signUpViewModel.signUp(signUpEmail.trim(), signUpPassword.text.toString().trim(),
                 signUpName.text.toString().trim(), signUpSurname.text.toString().trim(),

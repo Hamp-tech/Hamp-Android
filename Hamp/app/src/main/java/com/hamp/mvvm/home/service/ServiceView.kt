@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.hamp.R
 import com.hamp.domain.Service
-import com.hamp.mvvm.extensions.loadImg
+import com.hamp.extensions.loadImg
 import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
 import kotlinx.android.synthetic.main.service_item.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick

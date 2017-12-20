@@ -1,4 +1,4 @@
-package com.hamp.mvvm.extensions
+package com.hamp.extensions
 
 import android.widget.ImageView
 import com.squareup.picasso.Picasso

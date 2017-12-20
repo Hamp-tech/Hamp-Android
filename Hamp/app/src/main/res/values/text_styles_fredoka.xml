@@ -1,8 +1,7 @@
 <resources>
-
     <!-- FredokaOneRegular font -->
     <style name="Fredoka">
-        <item name="fontPath">fonts/FredokaOne-Regular.ttf</item>
+        <item name="android:fontFamily">@font/fredoka_one_regular</item>
     </style>
 
     <!-- FredokaOneRegular sizes -->

@@ -1,4 +1,4 @@
-package com.hamp.mvvm.extensions
+package com.hamp.extensions
 
 import com.hamp.R
 import com.hamp.mvvm.home.HomeActivity

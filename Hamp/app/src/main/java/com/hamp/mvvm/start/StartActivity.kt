@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.di.Injectable
-import com.hamp.mvvm.extensions.observe
+import com.hamp.extensions.observe
 import com.hamp.mvvm.login.LoginActivity
 import com.hamp.mvvm.signup.SignUpActivity
 import com.hamp.mvvm.start.StartAppState.FIRST_TIME
@@ -27,6 +27,8 @@ class StartActivity : BaseActivity(), Injectable {
         super.onCreate(savedInstanceState)
 
         setUpViewModel()
+
+        startViewModel.checkAppStatus()
 
         setContentView(R.layout.activity_start)
 

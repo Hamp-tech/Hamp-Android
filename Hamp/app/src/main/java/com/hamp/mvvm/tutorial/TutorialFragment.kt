@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.hamp.R
 import com.hamp.common.BaseFragment
-import com.hamp.mvvm.extensions.loadImg
+import com.hamp.extensions.loadImg
 import kotlinx.android.synthetic.main.fragment_tutorial.*
 
 class TutorialFragment : BaseFragment() {

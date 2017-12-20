@@ -2,7 +2,9 @@ package com.hamp.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Singleton
 
+@Singleton
 class PreferencesManager(context: Context) {
 
     private val PREFS_FILENAME = "com.hamp.prefs"

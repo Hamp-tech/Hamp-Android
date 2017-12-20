@@ -6,7 +6,6 @@ import com.hamp.di.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import javax.inject.Inject
 
 class HampApplication : Application(), HasActivityInjector {
@@ -17,11 +16,6 @@ class HampApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         AppInjector.init(this)
-
-        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/HelveticaNeue-Regular.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build())
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector

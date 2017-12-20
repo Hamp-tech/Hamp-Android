@@ -1,4 +1,4 @@
-package com.hamp.mvvm.extensions
+package com.hamp.extensions
 
 import android.app.Activity
 import android.content.Context

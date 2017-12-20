@@ -1,6 +1,6 @@
 package com.hamp.di.module
 
-import android.app.Application
+import com.hamp.HampApplication
 import dagger.Module
 
 @Module(includes = arrayOf(
@@ -8,4 +8,4 @@ import dagger.Module
         ActivityModule::class,
         ViewModelModule::class
 ))
-class AppModule(private val app: Application)
+class AppModule(private val app: HampApplication)

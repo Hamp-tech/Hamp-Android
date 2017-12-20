@@ -10,8 +10,8 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import com.hamp.R
-import com.hamp.mvvm.extensions.px
-import com.hamp.mvvm.extensions.shake
+import com.hamp.extensions.px
+import com.hamp.extensions.shake
 
 
 class HampEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher {

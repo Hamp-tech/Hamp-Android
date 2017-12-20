@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.mvvm.extensions.*
+import com.hamp.extensions.*
 import com.hamp.mvvm.basket.BasketActivity
 import com.hamp.mvvm.home.history.HistoryFragment
 import com.hamp.mvvm.home.profile.ProfileFragment

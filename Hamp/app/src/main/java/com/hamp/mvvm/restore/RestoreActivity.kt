@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.mvvm.extensions.hideKeyboard
+import com.hamp.extensions.hideKeyboard
 import com.hamp.mvvm.views.HampEditText
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator

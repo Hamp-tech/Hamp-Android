@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 class HampViewModelFactory @Inject
-constructor(private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>)
+constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
     : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")

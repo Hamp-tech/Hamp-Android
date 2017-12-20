@@ -20,7 +20,7 @@ class UserRepository @Inject constructor(
     fun isUserLogin() = prefs.userId != -1L
 
     fun signUp(name: String, surname: String, mail: String, password: String, phone: String,
-               birthday: String, gender: String, tokenFCM: String): Single<UserResponse> {
+               birthday: String, gender: Int, tokenFCM: String): Single<UserResponse> {
         return api.createUser(name, surname, mail, password, phone, birthday, gender, tokenFCM)
     }
 

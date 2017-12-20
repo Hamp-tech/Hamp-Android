@@ -6,8 +6,8 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.mvvm.extensions.hideKeyboard
-import com.hamp.mvvm.extensions.showErrorSnackBar
+import com.hamp.extensions.hideKeyboard
+import com.hamp.extensions.showErrorSnackBar
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.restore.RestoreActivity
 import com.hamp.mvvm.views.HampEditText

@@ -2,23 +2,23 @@
 
     <!-- HelveticaNeue fonts -->
     <style name="HelveticaNeueRegular">
-        <item name="fontPath">fonts/HelveticaNeue-Regular.ttf</item>
+        <item name="android:fontFamily">@font/helvetica_neue_regular</item>
     </style>
 
     <style name="HelveticaNeueBold">
-        <item name="fontPath">fonts/HelveticaNeue-Bold.ttf</item>
-    </style>
-
-    <style name="HelveticaNeueLight">
-        <item name="fontPath">fonts/HelveticaNeue-Light.ttf</item>
+        <item name="android:fontFamily">@font/helvetica_neue_bold</item>
     </style>
 
     <style name="HelveticaNeueMedium">
-        <item name="fontPath">fonts/HelveticaNeue-Medium.ttf</item>
+        <item name="android:fontFamily">@font/helvetica_neue_medium</item>
+    </style>
+
+    <style name="HelveticaNeueLight">
+        <item name="android:fontFamily">@font/helvetica_neue_light</item>
     </style>
 
     <style name="HelveticaNeueThin">
-        <item name="fontPath">fonts/HelveticaNeue-Thin.ttf</item>
+        <item name="android:fontFamily">@font/helvetica_neue_thin</item>
     </style>
 
     <!-- HelveticaNeue sizes -->
