@@ -87,7 +87,7 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
         var dayString = dayOfMonth.toString()
         if (dayString.length == 1) dayString = "0" + dayString
 
-        signUpBday.setText("$dayString/$monthString/$year")
+        signUpBday.setText(String.format(getString(R.string.date_format), dayString, monthString, year))
         signUpBday.setColorFilter(ContextCompat.getColor(this, R.color.cerise_pink))
     }
 

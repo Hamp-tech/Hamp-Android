@@ -24,6 +24,10 @@ class UserRepository @Inject constructor(
         return api.createUser(name, surname, mail, password, phone, birthday, gender, tokenFCM)
     }
 
+//    fun login(password: String): Single<UserResponse> {
+//        return api.createUser(name, surname, mail, password, phone, birthday, gender, tokenFCM)
+//    }
+
     fun saveUser(user: User) {
         user.save()
         prefs.userId = user.id
