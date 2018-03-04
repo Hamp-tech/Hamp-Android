@@ -1,4 +1,4 @@
-package com.hamp.mvvm.tutorial
+package com.hamp.mvvm.tutorial.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.hamp.R
 import com.hamp.common.BaseFragment
 import com.hamp.extensions.loadImg
+import com.hamp.mvvm.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.fragment_tutorial.*
 
 class TutorialFragment : BaseFragment() {

@@ -2,13 +2,8 @@ package com.hamp.api
 
 import com.hamp.BuildConfig
 import com.hamp.domain.User
-import com.hamp.domain.response.BookingResponse
+import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.GenericResponse
-import com.hamp.domain.response.LockerResponse
-import com.hamp.domain.response.UserResponse
-import com.hamp.hamp.domain.response.BookingRequest
-import io.reactivex.Observable
-import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -73,52 +68,40 @@ class RestApi {
     ///////////// HAMP ////////////////
 
     fun convertError(responseBody: ResponseBody): GenericResponse {
-        val converter: Converter<ResponseBody, GenericResponse> = retrofitHamp.responseBodyConverter(GenericResponse::class.java, arrayOfNulls<Annotation>(0))
+        val converter: Converter<ResponseBody, GenericResponse> =
+                retrofitHamp.responseBodyConverter(GenericResponse::class.java,
+                        arrayOfNulls<Annotation>(0))
         return converter.convert(responseBody)
     }
 
-    fun getUser(userID: String) = hampApi.getUser(userID)
+    fun signIn(signInRequest: SignInRequest) = hampApi.signIn(signInRequest)
 
-    fun createUser(name: String, surname: String, mail: String, password: String, phone: String,
-                   birthday: String, gender: Int, tokenFCM: String): Single<UserResponse> {
-        return hampApi.createUser(User().also {
-            it.name = name
-            it.surname = surname
-            it.mail = mail
-            it.password = password
-            it.phone = phone
-            it.birthday = birthday
-            it.gender = gender
-            it.tokenFCM = tokenFCM
-            it.language = getLanguageTag()
-            it.os = "Android"
-        })
-    }
+    fun signUp(user: User) = hampApi.signUp(user.apply { language = getLanguageTag() })
 
-    fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)
-
-    fun unSubscribe(userID: String) = hampApi.unSubscribe(userID)
-
-    fun subscribe(userID: String) = hampApi.subscribe(userID)
-
-    fun getLocker(lockerID: String) = hampApi.getLocker(lockerID)
-
-    fun createLocker(secretKey: String, lockerID: String)
-            : Observable<LockerResponse> = hampApi.createLocker(secretKey, lockerID)
-
-    fun updateLocker(lockerID: String, fields: Map<String, String>)
-            : Observable<GenericResponse> = hampApi.updateLocker(lockerID, fields)
-
-    fun createCreditCard(userID: String, number: Int, month: Int,
-                         year: Int, cvv: Int)
-            : Observable<GenericResponse> = hampApi.createCreditCard(userID, number, month, year, cvv)
-
-    fun deleteCreditCard(userID: String, cardID: String) = hampApi.deleteCreditCard(userID, cardID)
-
-    fun getTransactions(userID: String) = hampApi.getTransactions(userID)
-
-    fun bookingWashService(userID: String, bookingRequest: BookingRequest)
-            : Observable<BookingResponse> = hampApi.bookingWashService(userID, bookingRequest)
+//    fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)
+//
+//    fun unSubscribe(userID: String) = hampApi.unSubscribe(userID)
+//
+//    fun subscribe(userID: String) = hampApi.subscribe(userID)
+//
+//    fun getLocker(lockerID: String) = hampApi.getLocker(lockerID)
+//
+//    fun createLocker(secretKey: String, lockerID: String)
+//            : Observable<LockerResponse> = hampApi.createLocker(secretKey, lockerID)
+//
+//    fun updateLocker(lockerID: String, fields: Map<String, String>)
+//            : Observable<GenericResponse> = hampApi.updateLocker(lockerID, fields)
+//
+//    fun createCreditCard(userID: String, number: Int, month: Int,
+//                         year: Int, cvv: Int)
+//            : Observable<GenericResponse> = hampApi.createCreditCard(userID, number, month, year, cvv)
+//
+//    fun deleteCreditCard(userID: String, cardID: String) = hampApi.deleteCreditCard(userID, cardID)
+//
+//    fun getTransactions(userID: String) = hampApi.getTransactions(userID)
+//
+//    fun bookingWashService(userID: String, bookingRequest: BookingRequest)
+//            : Observable<BookingResponse> = hampApi.bookingWashService(userID, bookingRequest)
 
     private fun getLanguageTag() = Locale.getDefault().language + Locale.getDefault().country
 }

@@ -22,7 +22,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 @BaseActivity.Animation(BaseActivity.NONE)
 class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWatcher {
 
-    lateinit private var validator: Validator
+    private lateinit var validator: Validator
 
     private var isReadyToValidate = false
     private var isFromBasket = false

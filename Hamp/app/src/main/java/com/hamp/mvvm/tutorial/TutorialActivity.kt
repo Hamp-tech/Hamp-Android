@@ -1,21 +1,34 @@
 package com.hamp.mvvm.tutorial
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import com.hamp.R
 import com.hamp.common.BaseActivity
+import com.hamp.di.Injectable
 import com.hamp.mvvm.start.StartActivity
+import com.hamp.mvvm.tutorial.adapter.TutorialAdapter
+import com.hamp.mvvm.tutorial.transformer.FadePageTransformer
 import kotlinx.android.synthetic.main.activity_tutorial.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import javax.inject.Inject
 
-class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
+class TutorialActivity : BaseActivity(), Injectable, ViewPager.OnPageChangeListener {
 
-    val ROTATION = 120f
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var tutorialViewModel: TutorialViewModel
+
+    private val rotation = 120f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
+
+        setUpViewModel()
 
         val titles = resources.getStringArray(R.array.title_instructions)
         val instructions = resources.getStringArray(R.array.instructions)
@@ -30,8 +43,13 @@ class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
         startButton.onClick { goToStartActivity() }
     }
 
+    private fun setUpViewModel() {
+        tutorialViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(TutorialViewModel::class.java)
+    }
+
     private fun goToStartActivity() {
-//        prefs.isFirstTime = false
+        tutorialViewModel.setIsFirstTime(false)
         startActivity(Intent(this, StartActivity::class.java))
         finish()
     }
@@ -40,10 +58,10 @@ class TutorialActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         when (position) {
-            0 -> circleTutorial.rotation = positionOffset * ROTATION
-            1 -> circleTutorial.rotation = (position + positionOffset) * ROTATION
-            2 -> circleTutorial.rotation = (position + positionOffset) * ROTATION
-            else -> circleTutorial.rotation = (position + positionOffset) * ROTATION
+            0 -> circleTutorial.rotation = positionOffset * rotation
+            1 -> circleTutorial.rotation = (position + positionOffset) * rotation
+            2 -> circleTutorial.rotation = (position + positionOffset) * rotation
+            else -> circleTutorial.rotation = (position + positionOffset) * rotation
         }
     }
 

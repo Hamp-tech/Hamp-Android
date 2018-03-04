@@ -4,8 +4,15 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Patterns
 import com.hamp.R
+import com.hamp.domain.request.SignInRequest
+import com.hamp.extensions.logd
+import com.hamp.extensions.loge
 import com.hamp.repository.UserRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -37,7 +44,33 @@ class LoginViewModel @Inject constructor(
     fun login(loginEmail: String, loginPassword: String) {
         loading.value = true
 
-//        repository.
+        val signInRequest = SignInRequest(loginEmail, loginPassword)
+
+        repository.signIn(signInRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onSuccess = {
+                            logd("[signIn.onSuccess]")
+                            loading.value = false
+                            repository.saveUser(it.data)
+                            loginSucceed.value = true
+                        },
+                        onError = { e ->
+                            loge("[signIn.onError]" + e.printStackTrace())
+                            loading.value = false
+
+                            when (e) {
+                                is retrofit2.HttpException -> {
+                                    e.response().errorBody()?.let {
+                                        loginError.value = repository.api.convertError(it).message
+                                    }
+                                }
+                                is UnknownHostException -> loginError.value = R.string.internet_connection_error
+                                else -> loginError.value = R.string.generic_error
+                            }
+                        }
+                )
     }
 
     override fun onCleared() = disposables.clear()

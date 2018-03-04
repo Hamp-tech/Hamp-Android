@@ -1,8 +1,5 @@
 package com.hamp.common
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LifecycleRegistry
-import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IntDef
 import android.support.design.widget.Snackbar
@@ -10,14 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
 import com.hamp.extensions.showErrorSnackBar
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
-abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
-
-    private val lifecycleRegistry by lazy { LifecycleRegistry(this) }
+abstract class BaseActivity : AppCompatActivity() {
 
     companion object {
-        val EXTRA_ANIMATION_TYPE = "EXTRA_ANIMATION_TYPE"
+        const val EXTRA_ANIMATION_TYPE = "EXTRA_ANIMATION_TYPE"
         const val NONE = -1
         const val PUSH = 0
         const val FADE = 1
@@ -34,18 +28,12 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
         }
     }
 
-    var isRunning: Boolean = false
-        private set
-
     @AnimationType
     private var animationType = NONE
 
     @Retention(AnnotationRetention.RUNTIME)
     annotation class Animation(@AnimationType
                                val value: Int)
-
-    override fun attachBaseContext(newBase: Context) =
-            super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (intent != null && intent.extras != null) {
@@ -67,18 +55,6 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
         }
         animationEnter()
         super.onCreate(savedInstanceState)
-        isRunning = true
-    }
-
-    override fun getLifecycle() = lifecycleRegistry
-
-    public override fun onStart() {
-        super.onStart()
-    }
-
-    public override fun onStop() {
-        super.onStop()
-        isRunning = false
     }
 
     override fun finish() {
@@ -107,8 +83,6 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleOwner {
             }
         }
     }
-
-    fun isActive() = isRunning
 
     fun showInternetNotAvailable() =
             showErrorSnackBar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)

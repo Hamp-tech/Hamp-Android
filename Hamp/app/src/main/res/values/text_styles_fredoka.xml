@@ -54,10 +54,6 @@
         <item name="android:textColor">@color/candy_pink</item>
     </style>
 
-    <style name="Fredoka13.TrolleyGrey" parent="Fredoka13">
-        <item name="android:textColor">@color/trolley_grey</item>
-    </style>
-
     <style name="Fredoka14.CandyPink" parent="Fredoka14">
         <item name="android:textColor">@color/candy_pink</item>
     </style>
@@ -66,7 +62,27 @@
         <item name="android:textColor">@color/candy_pink</item>
     </style>
 
+    <style name="Fredoka20.CandyPink" parent="Fredoka20">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
+    <style name="Fredoka24.CandyPink" parent="Fredoka24">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
+    <style name="Fredoka30.CandyPink" parent="Fredoka30">
+        <item name="android:textColor">@color/candy_pink</item>
+    </style>
+
     <style name="Fredoka18.Razzmatazz" parent="Fredoka18">
+        <item name="android:textColor">@color/razzmatazz</item>
+    </style>
+
+    <style name="Fredoka25.Razzmatazz" parent="Fredoka25">
+        <item name="android:textColor">@color/razzmatazz</item>
+    </style>
+
+    <style name="Fredoka30.Razzmatazz" parent="Fredoka30">
         <item name="android:textColor">@color/razzmatazz</item>
     </style>
 
@@ -74,36 +90,20 @@
         <item name="android:textColor">@color/lightcoral</item>
     </style>
 
-    <style name="Fredoka20.CandyPink" parent="Fredoka20">
-        <item name="android:textColor">@color/candy_pink</item>
+    <style name="Fredoka13.TrolleyGrey" parent="Fredoka13">
+        <item name="android:textColor">@color/trolley_grey</item>
     </style>
 
     <style name="Fredoka24.Wenge" parent="Fredoka24">
         <item name="android:textColor">@color/wenge</item>
     </style>
 
-    <style name="Fredoka24.CandyPink" parent="Fredoka24">
-        <item name="android:textColor">@color/candy_pink</item>
-    </style>
-
-    <style name="Fredoka24.Black" parent="Fredoka24">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="Fredoka25.Razzmatazz" parent="Fredoka25">
-        <item name="android:textColor">@color/razzmatazz</item>
-    </style>
-
     <style name="Fredoka26.Wenge" parent="Fredoka26">
         <item name="android:textColor">@color/wenge</item>
     </style>
 
-    <style name="Fredoka30.Razzmatazz" parent="Fredoka30">
-        <item name="android:textColor">@color/razzmatazz</item>
-    </style>
-
-    <style name="Fredoka30.CandyPink" parent="Fredoka30">
-        <item name="android:textColor">@color/candy_pink</item>
+    <style name="Fredoka24.Black" parent="Fredoka24">
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

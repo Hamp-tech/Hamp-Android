@@ -1,9 +1,9 @@
 package com.hamp.common
 
-import android.arch.lifecycle.LifecycleFragment
+import android.support.v4.app.Fragment
 import com.hamp.mvvm.home.HomeActivity
 
-open class BaseFragment : LifecycleFragment() {
+open class BaseFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()

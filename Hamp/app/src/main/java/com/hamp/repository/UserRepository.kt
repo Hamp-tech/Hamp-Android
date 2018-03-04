@@ -2,6 +2,7 @@ package com.hamp.repository
 
 import com.hamp.api.RestApi
 import com.hamp.domain.User
+import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.UserResponse
 import com.hamp.preferences.PreferencesManager
 import com.vicpin.krealmextensions.save
@@ -12,25 +13,20 @@ import javax.inject.Singleton
 @Singleton
 class UserRepository @Inject constructor(
         val api: RestApi,
-        private val prefs: PreferencesManager
+        val prefs: PreferencesManager
 ) {
 
     fun isFirstTime() = prefs.isFirstTime
 
-    fun isUserLogin() = prefs.userId != -1L
+    fun isUserLogin() = prefs.userId.isNotBlank()
 
-    fun signUp(name: String, surname: String, mail: String, password: String, phone: String,
-               birthday: String, gender: Int, tokenFCM: String): Single<UserResponse> {
-        return api.createUser(name, surname, mail, password, phone, birthday, gender, tokenFCM)
-    }
+    fun signUp(user: User) = api.signUp(user)
 
-//    fun login(password: String): Single<UserResponse> {
-//        return api.createUser(name, surname, mail, password, phone, birthday, gender, tokenFCM)
-//    }
+    fun signIn(signInRequest: SignInRequest) = api.signIn(signInRequest)
 
     fun saveUser(user: User) {
         user.save()
-        prefs.userId = user.id
+        prefs.userId = user.identifier
     }
 
 //    if (task.isSuccessful) {

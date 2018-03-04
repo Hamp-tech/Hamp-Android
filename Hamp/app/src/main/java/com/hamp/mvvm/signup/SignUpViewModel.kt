@@ -5,7 +5,9 @@ import android.arch.lifecycle.ViewModel
 import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
+import com.hamp.domain.User
 import com.hamp.extensions.logd
+import com.hamp.extensions.loge
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -37,7 +39,7 @@ class SignUpViewModel @Inject constructor(
         if (signUpPhone.length < 9) errors.add(R.string.error_phone_empty)
         if (signUpBday.isEmpty()) errors.add(R.string.error_birthday_empty)
         if (signUpPassword.length < 6) errors.add(R.string.error_password_length)
-        if (signUpConfirmPassword == signUpPassword) errors.add(R.string.error_confirm_password)
+        if (signUpConfirmPassword != signUpPassword) errors.add(R.string.error_confirm_password)
 
         if (errors.isEmpty()) {
             validationSucceeded.value = true
@@ -49,11 +51,24 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun signUp(email: String, password: String, name: String, surname: String, phone: String,
-               birthday: String, gender: Int) {
+               birthday: String, gender: String) {
         loading.value = true
 
         val tokenFCM = FirebaseInstanceId.getInstance().token ?: ""
-        disposables.add(repository.signUp(email, password, name, surname, phone, birthday, gender, tokenFCM)
+
+        val user = User().apply {
+            this.name = name
+            this.surname = surname
+            this.email = email
+            this.password = password
+            this.phone = phone
+            this.birthday = birthday
+            this.gender = gender
+            this.tokenFCM = tokenFCM
+            this.os = "Android"
+        }
+
+        disposables.add(repository.signUp(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
@@ -64,7 +79,7 @@ class SignUpViewModel @Inject constructor(
                             signUpSucceed.value = true
                         },
                         onError = { e ->
-                            logd("[signUp.onError]" + e.printStackTrace())
+                            loge("[signUp.onError]" + e.printStackTrace())
                             loading.value = false
 
                             when (e) {

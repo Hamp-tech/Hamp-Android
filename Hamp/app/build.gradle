@@ -8,7 +8,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.hamp"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -20,11 +20,11 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"http://www.usehamp.io/api/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"http://52.47.82.232:8181/api/v1/\"")
             buildConfigField("String", "GANGWAY", "\"7B3nPECsrty0vuZi7J74kSMVmHKljxK\"")
         }
         release {
-            buildConfigField("String", "BASE_URL", "\"http://www.usehamp.io/api/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"http://52.47.82.232:8181/api/v1/\"")
             buildConfigField("String", "GANGWAY", "\"7B3nPECsrty0vuZi7J74kSMVmHKljxK\"")
 
             minifyEnabled false
@@ -62,13 +62,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // Anko
-    implementation "org.jetbrains.anko:anko-commons:0.10.1"
-    implementation "org.jetbrains.anko:anko-sdk25:0.10.1"
-    implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.1"
+    implementation "org.jetbrains.anko:anko-commons:0.10.2"
+    implementation "org.jetbrains.anko:anko-sdk25:0.10.2"
+    implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.2"
 
     // Coroutine listeners for Anko Layouts
-    implementation "org.jetbrains.anko:anko-sdk25-coroutines:0.10.1"
-    implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.1"
+    implementation "org.jetbrains.anko:anko-sdk25-coroutines:0.10.2"
+    implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.2"
 
     // RxKotlin / RxAndroid
     implementation "io.reactivex.rxjava2:rxkotlin:2.1.0"
@@ -86,10 +86,6 @@ dependencies {
     // Picasso
     implementation "com.squareup.picasso:picasso:2.5.2"
 
-    // Firebase
-    implementation "com.google.firebase:firebase-auth:11.6.2"
-    implementation "com.google.firebase:firebase-database:11.6.2"
-
     // Android Saripaar (Form Validator)
     implementation "com.mobsandgeeks:android-saripaar:2.0.3"
 
@@ -97,9 +93,9 @@ dependencies {
     implementation "com.vicmikhailau:MaskedEditText:2.0.3"
 
     // Lifecycles / LiveData / ViewModel
-    implementation "android.arch.lifecycle:runtime:1.0.3"
-    implementation "android.arch.lifecycle:extensions:1.0.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    implementation "android.arch.lifecycle:runtime:1.1.0"
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
     // CircleIndicator
     implementation 'me.relex:circleindicator:1.2.2@aar'
@@ -107,8 +103,11 @@ dependencies {
     // Stripe
     implementation 'com.stripe:stripe-android:5.1.0'
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+
     // Maps
-    implementation 'com.google.android.gms:play-services-maps:11.6.2'
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
 
     // Dagger 2
     implementation 'com.google.dagger:dagger:2.11'
@@ -121,7 +120,7 @@ dependencies {
     implementation 'info.hoang8f:android-segmented:1.0.6'
 
     // Realm Extensions
-    compile 'com.github.vicpinm:krealmextensions:1.0.8'
+    implementation 'com.github.vicpinm:krealmextensions:1.0.8'
 }
 
 apply plugin: 'com.google.gms.google-services'

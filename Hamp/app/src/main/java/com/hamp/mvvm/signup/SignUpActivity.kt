@@ -29,10 +29,11 @@ import javax.inject.Inject
 @BaseActivity.Animation(BaseActivity.PUSH)
 class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetListener {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit private var signUpViewModel: SignUpViewModel
-    lateinit private var datePicker: DatePickerDialog
+    private lateinit var signUpViewModel: SignUpViewModel
+    private lateinit var datePicker: DatePickerDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,8 +124,8 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
         hideKeyboard()
 
         val radioButtonId = genderRadioGroup.checkedRadioButtonId
-        val gender = if (radioButtonId == -1) radioButtonId
-        else genderRadioGroup.findViewById<RadioButton>(radioButtonId).tag as Int
+        val gender = if (radioButtonId == -1) "U"
+        else genderRadioGroup.findViewById<RadioButton>(radioButtonId).tag as String
 
         signUpViewModel.signUp(signUpEmail.trim(), signUpPassword.text.toString().trim(),
                 signUpName.text.toString().trim(), signUpSurname.text.toString().trim(),

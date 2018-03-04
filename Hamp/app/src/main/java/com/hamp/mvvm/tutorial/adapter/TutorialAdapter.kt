@@ -1,9 +1,10 @@
-package com.hamp.mvvm.tutorial
+package com.hamp.mvvm.tutorial.adapter
 
 import android.content.res.TypedArray
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.hamp.mvvm.tutorial.fragment.TutorialFragment
 
 class TutorialAdapter(fm: FragmentManager, private val images: TypedArray,
                       private val titles: Array<String>,

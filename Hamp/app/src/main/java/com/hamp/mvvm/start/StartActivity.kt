@@ -19,9 +19,10 @@ import javax.inject.Inject
 
 class StartActivity : BaseActivity(), Injectable {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit private var startViewModel: StartViewModel
+    private lateinit var startViewModel: StartViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
