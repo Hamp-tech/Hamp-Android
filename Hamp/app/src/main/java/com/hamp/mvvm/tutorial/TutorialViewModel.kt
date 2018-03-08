@@ -1,15 +1,15 @@
 package com.hamp.mvvm.tutorial
 
 import android.arch.lifecycle.ViewModel
-import com.hamp.repository.UserRepository
+import com.hamp.preferences.PreferencesManager
 import javax.inject.Inject
 
 class TutorialViewModel @Inject constructor(
-        private val repository: UserRepository
+        private var prefs: PreferencesManager
 ) : ViewModel() {
 
     fun setIsFirstTime(isFirstTime: Boolean) {
-        repository.prefs.isFirstTime = isFirstTime
+        prefs.isFirstTime = isFirstTime
     }
 
 }

@@ -1,25 +1,25 @@
 package com.hamp.mvvm.signup
 
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
+import com.hamp.common.BaseViewModel
 import com.hamp.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
+import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.net.UnknownHostException
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(
-        private val repository: UserRepository
-) : ViewModel() {
-    private val disposables = CompositeDisposable()
+        private val repository: UserRepository,
+        private var prefs: PreferencesManager
+) : BaseViewModel() {
 
     val loading = MutableLiveData<Boolean>()
     val validationErrors = MutableLiveData<List<Int>>()
@@ -76,6 +76,7 @@ class SignUpViewModel @Inject constructor(
                             logd("[signUp.onSuccess]")
                             loading.value = false
                             repository.saveUser(it.data)
+                            prefs.userId = it.data.identifier
                             signUpSucceed.value = true
                         },
                         onError = { e ->
@@ -94,6 +95,4 @@ class SignUpViewModel @Inject constructor(
                         }
                 ))
     }
-
-    override fun onCleared() = disposables.clear()
 }

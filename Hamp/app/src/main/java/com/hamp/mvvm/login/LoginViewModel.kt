@@ -7,6 +7,7 @@ import com.hamp.R
 import com.hamp.domain.request.SignInRequest
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
+import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,7 +17,8 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-        private val repository: UserRepository
+        private val repository: UserRepository,
+        private var prefs: PreferencesManager
 ) : ViewModel() {
     private val disposables = CompositeDisposable()
 
@@ -54,6 +56,7 @@ class LoginViewModel @Inject constructor(
                             logd("[signIn.onSuccess]")
                             loading.value = false
                             repository.saveUser(it.data)
+                            prefs.userId = it.data.identifier
                             loginSucceed.value = true
                         },
                         onError = { e ->

@@ -3,12 +3,15 @@ package com.hamp.common
 import android.os.Bundle
 import android.support.annotation.IntDef
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
 import com.hamp.extensions.showErrorSnackBar
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    lateinit var currentFragment: Fragment
 
     companion object {
         const val EXTRA_ANIMATION_TYPE = "EXTRA_ANIMATION_TYPE"
