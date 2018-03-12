@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_service.*
 class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener, ServiceViewQuantityListener {
     private val serviceDetailRequest = 1
 
-    lateinit private var viewModel: ServiceViewModel
+    private lateinit var viewModel: ServiceViewModel
 
     private var currentItemClickPosition = 0
 
