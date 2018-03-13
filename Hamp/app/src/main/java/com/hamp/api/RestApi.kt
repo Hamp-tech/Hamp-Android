@@ -1,6 +1,7 @@
 package com.hamp.api
 
 import com.hamp.BuildConfig
+import com.hamp.domain.Card
 import com.hamp.domain.User
 import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.GenericResponse
@@ -20,7 +21,7 @@ class RestApi {
 
     private val hampApi: HampApi
     private val retrofitHamp: Retrofit
-    private val gangway = "gangway"
+//    private val gangway = "gangway"
 
     init {
         val httpClient = createHttpClient()
@@ -42,7 +43,7 @@ class RestApi {
                     val originalHttpUrl = original.url()
 
                     val url = originalHttpUrl.newBuilder()
-                            .addQueryParameter(gangway, BuildConfig.GANGWAY)
+//                            .addQueryParameter(gangway, BuildConfig.GANGWAY)
                             .build()
 
                     val requestBuilder = original.newBuilder().url(url)
@@ -77,6 +78,8 @@ class RestApi {
     fun signIn(signInRequest: SignInRequest) = hampApi.signIn(signInRequest)
 
     fun signUp(user: User) = hampApi.signUp(user.apply { language = getLanguageTag() })
+
+    fun addCard(card: Card, userId: String) = hampApi.createCard(card, userId)
 
 //    fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)
 //

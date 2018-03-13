@@ -11,5 +11,4 @@ class TutorialViewModel @Inject constructor(
     fun setIsFirstTime(isFirstTime: Boolean) {
         prefs.isFirstTime = isFirstTime
     }
-
 }

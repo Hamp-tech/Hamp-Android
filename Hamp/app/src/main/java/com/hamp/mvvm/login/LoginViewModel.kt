@@ -1,16 +1,15 @@
 package com.hamp.mvvm.login
 
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.util.Patterns
 import com.hamp.R
+import com.hamp.common.BaseViewModel
 import com.hamp.domain.request.SignInRequest
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.net.UnknownHostException
@@ -19,8 +18,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
         private val repository: UserRepository,
         private var prefs: PreferencesManager
-) : ViewModel() {
-    private val disposables = CompositeDisposable()
+) : BaseViewModel() {
 
     val loading = MutableLiveData<Boolean>()
     val validationErrors = MutableLiveData<List<Int>>()
@@ -48,7 +46,7 @@ class LoginViewModel @Inject constructor(
 
         val signInRequest = SignInRequest(loginEmail, loginPassword)
 
-        repository.signIn(signInRequest)
+        disposables.add(repository.signIn(signInRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
@@ -73,7 +71,7 @@ class LoginViewModel @Inject constructor(
                                 else -> loginError.value = R.string.generic_error
                             }
                         }
-                )
+                ))
     }
 
     override fun onCleared() = disposables.clear()

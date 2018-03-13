@@ -13,7 +13,7 @@
     <string name="woman">Mujer</string>
     <string name="phone">Teléfono</string>
     <string name="bday">Fecha de nacimiento</string>
-    <string name="add_card">Añadir tarjeta</string>
+    <string name="add_user_card">Añadir tarjeta</string>
     <!--PLACEHOLDERS -->
     <string name="date_format">%s/%s/%d</string>
     <!-- ERRORS -->

@@ -26,20 +26,20 @@ import java.util.*
 
 class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
     companion object {
-        fun create() = ProfileFragment().apply { }
+        fun create() = ProfileFragment()
     }
 
-    lateinit private var datePicker: DatePickerDialog
-    lateinit private var validator: Validator
+    private lateinit var datePicker: DatePickerDialog
+    private lateinit var validator: Validator
 
     @NotEmpty(messageResId = R.string.error_name_empty)
-    lateinit private var name: EditText
+    private lateinit var name: EditText
 
     @Email(messageResId = R.string.error_email_empty)
-    lateinit private var email: EditText
+    private lateinit var email: EditText
 
     @Length(min = 9, messageResId = R.string.error_phone_empty)
-    lateinit private var phone: EditText
+    private lateinit var phone: EditText
 
     private var provName = ""
     private var provSurname = ""

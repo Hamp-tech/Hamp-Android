@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.hamp.mvvm.paymentInfo.PaymentInfoActivity">
+    tools:context="com.hamp.mvvm.card.CardActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineVertical08"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/add_card"
+        android:text="@string/add_user_card"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineVertical08"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,5 +152,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical08"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical92" />
+
+    <com.hamp.mvvm.views.HampLoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="6dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.hamp.mvvm.views.HampLoadingView>
 
 </android.support.constraint.ConstraintLayout>

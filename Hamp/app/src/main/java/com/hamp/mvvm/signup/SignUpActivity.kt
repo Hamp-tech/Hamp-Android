@@ -18,7 +18,7 @@ import com.hamp.extensions.hideKeyboard
 import com.hamp.extensions.observe
 import com.hamp.extensions.showErrorSnackBar
 import com.hamp.extensions.trim
-import com.hamp.mvvm.paymentInfo.PaymentInfoActivity
+import com.hamp.mvvm.card.CardActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.signup_login_toolbar.*
 import org.jetbrains.anko.intentFor
@@ -140,7 +140,7 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
     private fun signUpError(error: Any) = showErrorSnackBar(error, Snackbar.LENGTH_LONG)
 
     private fun signUpSucceed() {
-        startActivity(intentFor<PaymentInfoActivity>()
+        startActivity(intentFor<CardActivity>()
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
 

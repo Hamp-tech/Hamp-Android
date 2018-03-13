@@ -1,14 +1,21 @@
-package com.hamp.mvvm.paymentInfo
+package com.hamp.mvvm.card
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
+import android.view.View
 import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseActivity
+import com.hamp.di.Injectable
 import com.hamp.extensions.hideKeyboard
+import com.hamp.extensions.observe
+import com.hamp.extensions.showErrorSnackBar
+import com.hamp.extensions.trim
 import com.hamp.mvvm.home.HomeActivity
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
@@ -18,10 +25,16 @@ import com.vicmikhailau.maskededittext.MaskedEditText
 import kotlinx.android.synthetic.main.activity_payment_info.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import javax.inject.Inject
 
 @BaseActivity.Animation(BaseActivity.NONE)
-class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWatcher {
+class CardActivity : BaseActivity(), Injectable,
+        Validator.ValidationListener, TextWatcher {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var cardViewModel: CardViewModel
     private lateinit var validator: Validator
 
     private var isReadyToValidate = false
@@ -39,7 +52,7 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
     @Length(min = 3)
     private lateinit var cardCvvValidate: EditText
 
-    @NotEmpty(messageResId = R.string.error_password_length)
+    @NotEmpty
     private lateinit var cardHolderValidate: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +61,19 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
 
         intent.extras?.let { isFromBasket = it.getBoolean("isFromBasket", false) }
 
+        setUpViewModel()
         initializeValidatorAndInputs()
 
         skipContinueButton.onClick { skipContinue() }
+    }
+
+    private fun setUpViewModel() {
+        cardViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(CardViewModel::class.java)
+
+        cardViewModel.loading.observe(this, { it?.let { showLoading(it) } })
+        cardViewModel.addCardError.observe(this, { it?.let { addCardError(it) } })
+        cardViewModel.addCardSucceed.observe(this, { it?.let { if (it) addCardSucceed() } })
     }
 
     private fun initializeValidatorAndInputs() {
@@ -71,21 +94,16 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
     private fun skipContinue() {
         if (isReadyToValidate) validator.validate()
         else {
-            if (isFromBasket) {
-                onBackPressed()
-            } else {
-                startActivity(intentFor<HomeActivity>()
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-
-                finish()
-            }
+            if (isFromBasket) onBackPressed()
+            else goToHome()
         }
     }
 
-    override fun onValidationSucceeded() {
-        Log.d("HOLAA", "FUNCIONA")
-    }
+    override fun onValidationSucceeded() = cardViewModel.addCard(cardNumber.trim(),
+            cardExpiryDate.trim(),
+            cardCvv.trim(),
+            cardHolder.trim()
+    )
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {
         hideKeyboard()
@@ -93,6 +111,23 @@ class PaymentInfoActivity : BaseActivity(), Validator.ValidationListener, TextWa
         errors?.forEach {
 
         }
+    }
+
+    private fun addCardSucceed() = goToHome()
+
+    private fun addCardError(error: Any) = showErrorSnackBar(error, Snackbar.LENGTH_LONG)
+
+    private fun goToHome() {
+        startActivity(intentFor<HomeActivity>()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+
+        finish()
+    }
+
+    private fun showLoading(show: Boolean) {
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
     }
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

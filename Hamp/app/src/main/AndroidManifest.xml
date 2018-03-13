@@ -48,7 +48,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme" />
         <activity
-            android:name=".mvvm.paymentInfo.PaymentInfoActivity"
+            android:name=".mvvm.card.CardActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme" />
