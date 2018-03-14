@@ -1,35 +1,21 @@
 package com.hamp.mvvm.home.profile
 
-import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.MutableLiveData
+import com.hamp.common.BaseViewModel
+import com.hamp.repository.UserRepository
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel @Inject constructor(
+        private val repository: UserRepository
+) : BaseViewModel() {
 
-//    private var user: MutableLiveData<User>? = null
-//    private val repository = UserRepository()
+    val loading = MutableLiveData<Boolean>()
+    val updateSucceed = MutableLiveData<Boolean>()
+    val updateError = MutableLiveData<Any>()
 
-//    fun getUser(): LiveData<User> {
-//        if (user == null) {
-//            user = MutableLiveData()
-//            loadUser()
-//        }
-//
-//        return user as MutableLiveData<User>
-//    }
+    fun updateUser() {
+        loading.value = true
 
-//    private fun loadUser() {
-//        repository.addListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                val user = dataSnapshot.getValue(User::class.java)
-//                Log.d("HOLA", user.toString())
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                Log.d("HOLA", error.message)
-//            }
-//        })
-//    }
 
-//    override fun onCleared() {
-//        repository.removeListener()
-//    }
+    }
 }

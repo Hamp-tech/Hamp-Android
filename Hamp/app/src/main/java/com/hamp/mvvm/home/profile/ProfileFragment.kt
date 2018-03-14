@@ -1,6 +1,7 @@
 package com.hamp.mvvm.home.profile
 
 import android.app.DatePickerDialog
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
@@ -11,6 +12,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseFragment
+import com.hamp.di.Injectable
 import com.hamp.extensions.hideKeyboard
 import com.hamp.extensions.setEditMode
 import com.hamp.extensions.shake
@@ -23,12 +25,15 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.*
+import javax.inject.Inject
 
-class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
-    companion object {
-        fun create() = ProfileFragment()
-    }
+class ProfileFragment : BaseFragment(), Injectable,
+        DatePickerDialog.OnDateSetListener, Validator.ValidationListener {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    lateinit var profileViewModel: ProfileViewModel
     private lateinit var datePicker: DatePickerDialog
     private lateinit var validator: Validator
 
@@ -54,21 +59,17 @@ class ProfileFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, Vali
 
     private var editMode = false
 
+    companion object {
+        fun create() = ProfileFragment()
+    }
+
     private val homeActivity: HomeActivity
         get() = activity as HomeActivity
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?) =
             inflater?.inflate(R.layout.fragment_profile, container, false)
 
-    override fun onResume() {
-        super.onResume()
-//        val profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-//        profileViewModel.getUser().observe(this, Observer<User> {
-//            Log.d("HOLAAAAAAA", it?.toString())
-//        })
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initializeValidatorAndInputs()
