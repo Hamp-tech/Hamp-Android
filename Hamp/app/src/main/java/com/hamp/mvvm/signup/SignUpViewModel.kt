@@ -8,6 +8,7 @@ import com.hamp.common.BaseViewModel
 import com.hamp.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
+import com.hamp.extensions.notNull
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -76,7 +77,7 @@ class SignUpViewModel @Inject constructor(
                             logd("[signUp.onSuccess]")
                             loading.value = false
                             repository.saveUser(it.data)
-                            prefs.userId = it.data.identifier
+                            it.data.identifier.notNull { prefs.userId = it }
                             signUpSucceed.value = true
                         },
                         onError = { e ->

@@ -83,10 +83,10 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         var monthString = (month + 1).toString()
-        if (monthString.length == 1) monthString = "0" + monthString
+        if (monthString.length == 1) monthString = "0$monthString"
 
         var dayString = dayOfMonth.toString()
-        if (dayString.length == 1) dayString = "0" + dayString
+        if (dayString.length == 1) dayString = "0$dayString"
 
         signUpBday.setText(String.format(getString(R.string.date_format), dayString, monthString, year))
         signUpBday.setColorFilter(ContextCompat.getColor(this, R.color.cerise_pink))

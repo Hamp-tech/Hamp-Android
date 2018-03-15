@@ -7,6 +7,7 @@ import com.hamp.common.BaseViewModel
 import com.hamp.domain.request.SignInRequest
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
+import com.hamp.extensions.notNull
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -51,14 +52,15 @@ class LoginViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onSuccess = {
-                            logd("[signIn.onSuccess]")
+                            logd("[login.onSuccess]")
                             loading.value = false
                             repository.saveUser(it.data)
-                            prefs.userId = it.data.identifier
+
+                            it.data.identifier.notNull { prefs.userId = it }
                             loginSucceed.value = true
                         },
                         onError = { e ->
-                            loge("[signIn.onError]" + e.printStackTrace())
+                            loge("[login.onError]" + e.printStackTrace())
                             loading.value = false
 
                             when (e) {

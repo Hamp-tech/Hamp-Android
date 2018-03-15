@@ -8,18 +8,22 @@ import com.hamp.domain.response.UserResponse
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface HampApi {
 
-    //Auth
+    // AUTH
     @POST("auth/signup")
     fun signUp(@Body user: User): Single<UserResponse>
 
     @POST("auth/signin")
     fun signIn(@Body signInRequest: SignInRequest): Single<UserResponse>
 
-    //Card
+    @PUT("users/{userid}")
+    fun updateUser(@Body user: User, @Path("userid") userId: String): Single<UserResponse>
+
+    // CARDS
     @POST("users/{userid}/cards")
     fun createCard(@Body card: Card, @Path("userid") userId: String): Single<CardResponse>
 

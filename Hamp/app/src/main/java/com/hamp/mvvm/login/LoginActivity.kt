@@ -82,7 +82,6 @@ class LoginActivity : BaseActivity(), Injectable {
         else loadingView.visibility = View.GONE
     }
 
-
     private fun loginSucceed() {
         startActivity(intentFor<HomeActivity>()
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

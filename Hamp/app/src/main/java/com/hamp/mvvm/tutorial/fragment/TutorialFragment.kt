@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.fragment_tutorial.*
 class TutorialFragment : BaseFragment() {
 
     private var image = 0
-    lateinit private var title: String
-    lateinit private var info: String
+    private lateinit var title: String
+    private lateinit var info: String
 
     companion object {
         fun create(image: Int, title: String, info: String) = TutorialFragment().apply {
@@ -30,8 +30,9 @@ class TutorialFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater?.inflate(R.layout.fragment_tutorial, container, false)
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         imageTutorial.loadImg(image)
         titleTutorial.text = title
         infoTutorial.text = info

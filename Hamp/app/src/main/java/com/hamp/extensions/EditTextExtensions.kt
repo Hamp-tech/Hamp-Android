@@ -5,7 +5,8 @@ import android.view.animation.TranslateAnimation
 import android.widget.EditText
 
 fun EditText.shake() {
-    this.startAnimation(TranslateAnimation(0f, 10f, 0f, 0f).apply {
+    this.startAnimation(TranslateAnimation(0f, 10f,
+            0f, 0f).apply {
         duration = 500
         interpolator = CycleInterpolator(7f)
     })

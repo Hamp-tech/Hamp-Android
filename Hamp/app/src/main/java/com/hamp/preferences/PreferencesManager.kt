@@ -7,18 +7,38 @@ import javax.inject.Singleton
 @Singleton
 class PreferencesManager(context: Context) {
 
-    private val PREFS_FILENAME = "com.hamp.prefs"
+    private val prefsFilename = "com.hamp.prefs"
 
-    private val FIRST_TIME = "first_time"
-    private val USERID = "userid"
+    private val firstTime = "first_time"
+    private val userID = "userid"
+    private val phoneSwitch = "phone_switch"
+    private val rateHamp = "rate_hamp"
+    private val notifications = "notifications"
+    private val pickUpTime = "pick_up_time"
 
-    private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
+    private val prefs: SharedPreferences = context.getSharedPreferences(prefsFilename, 0)
 
     var isFirstTime: Boolean
-        get() = prefs.getBoolean(FIRST_TIME, true)
-        set(value) = prefs.edit().putBoolean(FIRST_TIME, value).apply()
+        get() = prefs.getBoolean(firstTime, true)
+        set(value) = prefs.edit().putBoolean(firstTime, value).apply()
 
     var userId: String
-        get() = prefs.getString(USERID, "")
-        set(value) = prefs.edit().putString(USERID, value).apply()
+        get() = prefs.getString(userID, "")
+        set(value) = prefs.edit().putString(userID, value).apply()
+
+    var isPhoneAllowed: Boolean
+        get() = prefs.getBoolean(phoneSwitch, true)
+        set(value) = prefs.edit().putBoolean(phoneSwitch, value).apply()
+
+    var isRateAllowed: Boolean
+        get() = prefs.getBoolean(rateHamp, false)
+        set(value) = prefs.edit().putBoolean(rateHamp, value).apply()
+
+    var areNotificationsAllowed: Boolean
+        get() = prefs.getBoolean(notifications, true)
+        set(value) = prefs.edit().putBoolean(notifications, value).apply()
+
+    var pickUpTurn: String
+        get() = prefs.getString(pickUpTime, "M")
+        set(value) = prefs.edit().putString(pickUpTime, value).apply()
 }

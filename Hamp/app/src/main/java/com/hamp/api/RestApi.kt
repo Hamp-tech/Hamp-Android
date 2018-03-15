@@ -79,6 +79,8 @@ class RestApi {
 
     fun signUp(user: User) = hampApi.signUp(user.apply { language = getLanguageTag() })
 
+    fun updateUser(user: User, userId: String) = hampApi.updateUser(user, userId)
+
     fun addCard(card: Card, userId: String) = hampApi.createCard(card, userId)
 
 //    fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)

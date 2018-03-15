@@ -2,7 +2,9 @@ package com.hamp.mvvm.home.profile
 
 import android.app.DatePickerDialog
 import android.arch.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
@@ -13,10 +15,9 @@ import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseFragment
 import com.hamp.di.Injectable
-import com.hamp.extensions.hideKeyboard
-import com.hamp.extensions.setEditMode
-import com.hamp.extensions.shake
+import com.hamp.extensions.*
 import com.hamp.mvvm.home.HomeActivity
+import com.hamp.mvvm.start.StartActivity
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.Email
@@ -46,17 +47,6 @@ class ProfileFragment : BaseFragment(), Injectable,
     @Length(min = 9, messageResId = R.string.error_phone_empty)
     private lateinit var phone: EditText
 
-    private var provName = ""
-    private var provSurname = ""
-    private var provEmail = ""
-    private var provPhone = ""
-    private var provPhoneSwitch = false
-    private var provBDay = ""
-    private var provMaleRB = false
-    private var provFemaleRB = false
-    private var provRateHamp = false
-    private var provNotifications = true
-
     private var editMode = false
 
     companion object {
@@ -72,15 +62,22 @@ class ProfileFragment : BaseFragment(), Injectable,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpViewModel()
         initializeValidatorAndInputs()
         initializeDatePicker()
+        setUser()
         setTerms()
-
         editModeSwitch()
 
         profileBirth.onClick { datePicker.show() }
-
         logout.onClick { doLogout() }
+    }
+
+    private fun setUpViewModel() {
+        profileViewModel = getViewModel(this, viewModelFactory)
+        profileViewModel.loading.observe(this, { it?.let { showLoading(it) } })
+        profileViewModel.updateSucceed.observe(this, { it?.let { if (it) updateSucceed() } })
+        profileViewModel.updateError.observe(this, { it?.let { updateError(it) } })
     }
 
     private fun initializeValidatorAndInputs() {
@@ -113,12 +110,31 @@ class ProfileFragment : BaseFragment(), Injectable,
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
 
         var monthString = (month + 1).toString()
-        if (monthString.length == 1) monthString = "0" + monthString
+        if (monthString.length == 1) monthString = "0$monthString"
 
         var dayString = dayOfMonth.toString()
-        if (dayString.length == 1) dayString = "0" + dayString
+        if (dayString.length == 1) dayString = "0$dayString"
 
-        profileBirth.text = "$dayString/$monthString/$year"
+        profileBirth.text = String.format(getString(R.string.date_format), dayString, monthString, year)
+    }
+
+    private fun setUser() {
+        profileName.setText(profileViewModel.user?.name)
+        profileSurname.setText(profileViewModel.user?.surname)
+        profileEmail.setText(profileViewModel.user?.email)
+        profilePhone.setText(profileViewModel.user?.phone)
+        profileBirth.text = profileViewModel.user?.birthday
+
+        if (profileViewModel.user?.gender == "M") {
+            maleRadioButton.isChecked = true
+            femaleRadioButton.isChecked = false
+        } else if (profileViewModel.user?.gender == "F") {
+            maleRadioButton.isChecked = true
+            femaleRadioButton.isChecked = false
+        } else {
+            maleRadioButton.isChecked = false
+            femaleRadioButton.isChecked = false
+        }
     }
 
     private fun setTerms() {
@@ -130,16 +146,6 @@ class ProfileFragment : BaseFragment(), Injectable,
     fun editionMode() {
         if (!editMode) {
             editMode = true
-            provName = profileName.text.toString()
-            provSurname = profileSurname.text.toString()
-            provEmail = profileEmail.text.toString()
-            provPhone = profilePhone.text.toString()
-            provPhoneSwitch = phoneSwitch.isChecked
-            provBDay = profileBirth.text.toString()
-            provMaleRB = maleRadioButton.isChecked
-            provFemaleRB = femaleRadioButton.isChecked
-            provRateHamp = rateHampSwitch.isChecked
-            provNotifications = notificationsSwitch.isChecked
             editModeSwitch()
         } else {
             validator.validate()
@@ -164,15 +170,29 @@ class ProfileFragment : BaseFragment(), Injectable,
     }
 
     private fun doLogout() {
-//        auth.logout()
-//        prefs.userId = ""
-//        startActivity(Intent(context, StartActivity::class.java))
-//        homeActivity.finish()
+        profileViewModel.logout()
+        startActivity(Intent(context, StartActivity::class.java))
+        homeActivity.finish()
     }
 
     override fun onValidationSucceeded() {
-        editMode = false
-        editModeSwitch()
+        profileViewModel.user?.name = profileName.trim()
+        profileViewModel.user?.surname = profileSurname.trim()
+        profileViewModel.user?.email = profileEmail.trim()
+        profileViewModel.user?.phone = profilePhone.trim()
+        profileViewModel.user?.birthday = profileBirth.text.toString()
+
+        if (maleRadioButton.isChecked) profileViewModel.user?.gender = "M"
+        else if (femaleRadioButton.isChecked) profileViewModel.user?.gender = "F"
+        else profileViewModel.user?.gender = "U"
+
+        val pickUpTime = if (segmentedButtonMorning.isChecked) "M"
+        else "A"
+
+        profileViewModel.savePreferences(phoneSwitch.isChecked, rateHampSwitch.isChecked,
+                notificationsSwitch.isChecked, pickUpTime)
+
+        profileViewModel.user.notNull { profileViewModel.updateUser(it) }
     }
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {
@@ -193,18 +213,36 @@ class ProfileFragment : BaseFragment(), Injectable,
         super.onHiddenChanged(hidden)
         if (hidden && editMode) {
             editMode = false
-            profileName.setText(provName)
-            profileSurname.setText(provSurname)
-            profileEmail.setText(provEmail)
-            profilePhone.setText(provPhone)
-            phoneSwitch.isChecked = provPhoneSwitch
-            profileBirth.text = provBDay
-            maleRadioButton.isChecked = provMaleRB
-            femaleRadioButton.isChecked = provFemaleRB
-            rateHampSwitch.isChecked = provRateHamp
-            notificationsSwitch.isChecked = provNotifications
+
+            setUser()
+            setPreferences()
 
             editModeSwitch()
         }
+    }
+
+    private fun setPreferences() {
+        phoneSwitch.isChecked = profileViewModel.isPhoneAllowed
+        rateHampSwitch.isChecked = profileViewModel.isRateAllowed
+        notificationsSwitch.isChecked = profileViewModel.areNotificationsAllowed
+        if (profileViewModel.pickUpTurn == "M") {
+            segmentedButtonMorning.isChecked = true
+            segmentedButtonAfternoon.isChecked = false
+        } else {
+            segmentedButtonMorning.isChecked = false
+            segmentedButtonAfternoon.isChecked = true
+        }
+    }
+
+    private fun updateSucceed() {
+        editMode = false
+        editModeSwitch()
+    }
+
+    private fun updateError(error: Any) = activity.showErrorSnackBar(error, Snackbar.LENGTH_LONG)
+
+    private fun showLoading(show: Boolean) {
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
     }
 }
