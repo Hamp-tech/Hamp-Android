@@ -27,7 +27,7 @@ class PreferencesManager(context: Context) {
         set(value) = prefs.edit().putString(userID, value).apply()
 
     var isPhoneAllowed: Boolean
-        get() = prefs.getBoolean(phoneSwitch, true)
+        get() = prefs.getBoolean(phoneSwitch, false)
         set(value) = prefs.edit().putBoolean(phoneSwitch, value).apply()
 
     var isRateAllowed: Boolean

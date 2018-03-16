@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.extensions.*
+import com.hamp.extensions.hideKeyboard
+import com.hamp.extensions.loadHistoryFragment
+import com.hamp.extensions.loadProfileFragment
+import com.hamp.extensions.loadServiceFragment
 import com.hamp.mvvm.basket.BasketActivity
 import com.hamp.mvvm.home.history.HistoryFragment
 import com.hamp.mvvm.home.profile.ProfileFragment
@@ -17,17 +20,11 @@ import org.jetbrains.anko.startActivity
 //@BaseActivity.Animation(BaseActivity.FADE)
 class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener {
 
-    lateinit var serviceFragment: ServiceFragment
-    lateinit var historyFragment: HistoryFragment
-    lateinit var profileFragment: ProfileFragment
-
     private var isBasketEmpty = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        initFragments()
 
         hampNavigationBar.listener = this
 

@@ -34,7 +34,7 @@ class ProfileFragment : BaseFragment(), Injectable,
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var profileViewModel: ProfileViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var datePicker: DatePickerDialog
     private lateinit var validator: Validator
 
@@ -66,6 +66,7 @@ class ProfileFragment : BaseFragment(), Injectable,
         initializeValidatorAndInputs()
         initializeDatePicker()
         setUser()
+        setPreferences()
         setTerms()
         editModeSwitch()
 
@@ -209,15 +210,13 @@ class ProfileFragment : BaseFragment(), Injectable,
         }
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (hidden && editMode) {
+    override fun onStop() {
+        super.onStop()
+        if (editMode) {
             editMode = false
-
+            editModeSwitch()
             setUser()
             setPreferences()
-
-            editModeSwitch()
         }
     }
 
