@@ -1,15 +1,14 @@
 package com.hamp.mvvm.home.service
 
-import android.arch.lifecycle.ViewModel
+import com.hamp.common.BaseViewModel
 import com.hamp.domain.Service
 import com.hamp.repository.ServiceRepository
+import javax.inject.Inject
 
-class ServiceViewModel : ViewModel() {
+class ServiceViewModel @Inject constructor(
+        repository: ServiceRepository
+) : BaseViewModel() {
 
-    private val serviceRepository = ServiceRepository()
-    lateinit var servicesList: List<Service>
+    var servicesList: List<Service> = repository.loadServices()
 
-    fun init() {
-        servicesList = serviceRepository.loadServices()
-    }
 }

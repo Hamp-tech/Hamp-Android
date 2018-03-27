@@ -1,7 +1,7 @@
 package com.hamp.mvvm.home.service
 
 import android.app.Activity.RESULT_OK
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -10,16 +10,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.hamp.R
 import com.hamp.common.BaseFragment
+import com.hamp.di.Injectable
 import com.hamp.domain.Service
+import com.hamp.extensions.getViewModel
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
 import com.hamp.mvvm.home.service.detail.ServiceDetailActivity
 import kotlinx.android.synthetic.main.fragment_service.*
+import javax.inject.Inject
 
-class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener, ServiceViewQuantityListener {
+class ServiceFragment : BaseFragment(), Injectable,
+        ServicesAdapter.ClickServiceListener, ServiceViewQuantityListener {
+
     private val serviceDetailRequest = 1
 
-    private lateinit var viewModel: ServiceViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var serviceViewModel: ServiceViewModel
 
     private var currentItemClickPosition = 0
 
@@ -38,14 +46,21 @@ class ServiceFragment : BaseFragment(), ServicesAdapter.ClickServiceListener, Se
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(ServiceViewModel::class.java)
-        viewModel.init()
+        setUpViewModel()
+        setUpRecyclerServices()
+    }
 
+    private fun setUpViewModel() {
+        serviceViewModel = getViewModel(this, viewModelFactory)
+    }
+
+    private fun setUpRecyclerServices() {
         rvServices.setHasFixedSize(true)
         rvServices.layoutManager = GridLayoutManager(context, 2)
 //        rvServices.addItemDecoration(SpaceItemDecoration(4.px))
 
-        rvServices.adapter = ServicesAdapter(context, viewModel.servicesList, this, this)
+        rvServices.adapter = ServicesAdapter(context, serviceViewModel.servicesList,
+                this, this)
     }
 
     override fun onServiceClick(service: Service, quantity: Int, position: Int) {
