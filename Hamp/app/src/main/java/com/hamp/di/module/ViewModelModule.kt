@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProvider
 import com.hamp.di.ViewModelKey
 import com.hamp.mvvm.card.CardViewModel
 import com.hamp.mvvm.home.profile.ProfileViewModel
+import com.hamp.mvvm.home.service.ServiceViewModel
+import com.hamp.mvvm.home.service.ServiceViewModel_Factory
 import com.hamp.mvvm.login.LoginViewModel
 import com.hamp.mvvm.signup.SignUpViewModel
 import com.hamp.mvvm.start.StartViewModel
@@ -41,6 +43,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CardViewModel::class)
     abstract fun bindCardViewModel(cardViewModel: CardViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ServiceViewModel::class)
+    abstract fun bindServiceViewModel(serviceViewModel: ServiceViewModel): ViewModel
 
     @Binds
     @IntoMap

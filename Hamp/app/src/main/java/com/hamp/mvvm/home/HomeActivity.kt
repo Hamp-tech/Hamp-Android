@@ -85,8 +85,8 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
         loadProfileFragment()
     }
 
-    fun modifyBasketCounter(basketItems: Int) {
-        if (basketItems == 0) {
+    fun refreshBasketCounter(totalServices: Int) {
+        if (totalServices == 0) {
             isBasketEmpty = true
             basket.setImageResource(R.drawable.empty_basket)
             basketCounterContainer.visibility = View.GONE
@@ -96,7 +96,7 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
             basket.setImageResource(R.drawable.basket)
             basketCounterContainer.visibility = View.VISIBLE
             basketCounter.visibility = View.VISIBLE
-            basketCounter.text = basketItems.toString()
+            basketCounter.text = totalServices.toString()
         }
     }
 
@@ -111,6 +111,9 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
     }
 
     private fun goToBasket() {
-        if (!isBasketEmpty) startActivity<BasketActivity>()
+        if (!isBasketEmpty && currentFragment is ServiceFragment) {
+            startActivity<BasketActivity>("basket" to
+                    (currentFragment as ServiceFragment).serviceViewModel.basket)
+        }
     }
 }

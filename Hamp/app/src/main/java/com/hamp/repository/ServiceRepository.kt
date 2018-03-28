@@ -2,8 +2,11 @@ package com.hamp.repository
 
 import com.hamp.R
 import com.hamp.domain.Service
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ServiceRepository {
+@Singleton
+class ServiceRepository @Inject constructor() {
 
     fun loadServices(): List<Service> {
         val serviceList = mutableListOf<Service>()

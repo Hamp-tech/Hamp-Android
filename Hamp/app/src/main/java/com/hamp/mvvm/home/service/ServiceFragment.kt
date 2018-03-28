@@ -13,6 +13,7 @@ import com.hamp.common.BaseFragment
 import com.hamp.di.Injectable
 import com.hamp.domain.Service
 import com.hamp.extensions.getViewModel
+import com.hamp.extensions.observe
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
 import com.hamp.mvvm.home.service.detail.ServiceDetailActivity
@@ -27,11 +28,9 @@ class ServiceFragment : BaseFragment(), Injectable,
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var serviceViewModel: ServiceViewModel
+    lateinit var serviceViewModel: ServiceViewModel
 
     private var currentItemClickPosition = 0
-
-    private var basketCounter = 0
 
     companion object {
         fun create() = ServiceFragment().apply { }
@@ -52,6 +51,7 @@ class ServiceFragment : BaseFragment(), Injectable,
 
     private fun setUpViewModel() {
         serviceViewModel = getViewModel(this, viewModelFactory)
+        serviceViewModel.totalServices.observe(this, { it?.let { refreshBasketCounter(it) } })
     }
 
     private fun setUpRecyclerServices() {
@@ -71,27 +71,27 @@ class ServiceFragment : BaseFragment(), Injectable,
         startActivityForResult(intent, serviceDetailRequest)
     }
 
-    override fun onQuantityChange(operation: Operation) {
+    override fun onQuantityChange(service: Service, operation: Operation) {
         when (operation) {
-            Operation.ADD -> modifyBasketCounter { basketCounter++ }
-            Operation.SUBTRACT -> modifyBasketCounter { basketCounter-- }
+            Operation.ADD -> serviceViewModel.addServiceToBasket(service)
+            Operation.SUBTRACT -> serviceViewModel.subtractServiceToBasket(service)
         }
     }
 
-    private fun modifyBasketCounter(action: () -> Unit) {
-        action()
-        if (basketCounter < 0) basketCounter = 0
-        homeActivity.modifyBasketCounter(basketCounter)
+    private fun refreshBasketCounter(totalServices: Int) {
+        homeActivity.refreshBasketCounter(totalServices)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == serviceDetailRequest) {
             if (resultCode == RESULT_OK && data is Intent) {
                 val resultQuantity = data.getIntExtra("quantity", 0)
-                val itemView = rvServices.findViewHolderForAdapterPosition(currentItemClickPosition).itemView as ServiceView
+                val service = data.getParcelableExtra<Service>("service")
 
-                val diffQuantity = resultQuantity - itemView.quantity
-                modifyBasketCounter { basketCounter += diffQuantity }
+                val itemView = rvServices.findViewHolderForAdapterPosition(currentItemClickPosition)
+                        .itemView as ServiceView
+
+                serviceViewModel.modifyServiceQuantity(service, resultQuantity)
 
                 itemView.modifyQuantity(resultQuantity)
             }

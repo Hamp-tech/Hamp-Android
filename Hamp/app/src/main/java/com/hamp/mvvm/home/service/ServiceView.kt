@@ -40,14 +40,14 @@ class ServiceView @JvmOverloads constructor(
 
     private fun incrementQuantity() {
         quantity++
-        serviceViewQuantityListener?.onQuantityChange(Operation.ADD)
+        serviceViewQuantityListener?.onQuantityChange(service, Operation.ADD)
         quantityValue.text = quantity.toString()
     }
 
     private fun decrementQuantity() {
         quantity--
         if (quantity < 0) quantity = 0
-        else serviceViewQuantityListener?.onQuantityChange(Operation.SUBTRACT)
+        else serviceViewQuantityListener?.onQuantityChange(service, Operation.SUBTRACT)
         quantityValue.text = quantity.toString()
     }
 

@@ -4,15 +4,15 @@ import android.content.Context
 import android.view.ViewGroup
 import com.hamp.common.RecyclerViewAdapterBase
 import com.hamp.common.ViewWrapper
+import com.hamp.domain.ServiceQuantity
 
-class BasketAdapter(val context: Context, override var items: List<Int>,
-                    private var quantities: List<Int>)
-    : RecyclerViewAdapterBase<Int, BasketServiceView>(items) {
+class BasketAdapter(val context: Context, override var items: List<ServiceQuantity>)
+    : RecyclerViewAdapterBase<ServiceQuantity, BasketServiceView>(items) {
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int) = BasketServiceView(context)
 
     override fun onBindViewHolder(holder: ViewWrapper<BasketServiceView>?, position: Int) {
-        holder?.view?.bind()
+        holder?.view?.bind(items[position])
     }
 
 //    interface ClickServiceListener {

@@ -13,13 +13,14 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 @BaseActivity.Animation(BaseActivity.PUSH)
 class ServiceDetailActivity : BaseActivity() {
 
+    private lateinit var service: Service
     private var quantity = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_service_detail)
 
-        val service = intent.extras.getParcelable<Service>("service")
+        service = intent.extras.getParcelable("service")
         quantity = intent.extras.getInt("quantity")
 
         serviceTitle.text = service.name
@@ -43,6 +44,7 @@ class ServiceDetailActivity : BaseActivity() {
     override fun onBackPressed() {
         val returnIntent = Intent()
         returnIntent.putExtra("quantity", quantity)
+        returnIntent.putExtra("service", service)
         setResult(Activity.RESULT_OK, returnIntent)
         finish()
     }

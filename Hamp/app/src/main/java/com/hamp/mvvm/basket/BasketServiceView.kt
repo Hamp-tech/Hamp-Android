@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.hamp.R
-import com.hamp.domain.Service
+import com.hamp.domain.ServiceQuantity
+import com.hamp.extensions.loadImg
 import com.hamp.mvvm.home.service.ServiceViewQuantityListener
+import kotlinx.android.synthetic.main.basket_service_item.view.*
 
 class BasketServiceView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private lateinit var service: Service
+    private lateinit var serviceQuantity: ServiceQuantity
     private var serviceViewQuantityListener: ServiceViewQuantityListener? = null
-    var quantity = 0
 
     init {
         LayoutInflater.from(context).inflate(R.layout.basket_service_item, this, true)
@@ -26,11 +27,13 @@ class BasketServiceView @JvmOverloads constructor(
 //        minus.onClick { decrementQuantity() }
     }
 
-    fun bind() {
-//        this.service = service
-//        this.quantity = quantity
+    fun bind(serviceQuantity: ServiceQuantity) {
+        this.serviceQuantity = serviceQuantity
 //        this.serviceViewQuantityListener = quantityListener
 
+        basketItemImage.loadImg(serviceQuantity.service.image)
+        basketItemName.text = serviceQuantity.service.name
+        basketItemQuantity.text = serviceQuantity.quantity.toString()
 //        quantityValue.text = quantity.toString()
 //        name.text = service.name
     }
