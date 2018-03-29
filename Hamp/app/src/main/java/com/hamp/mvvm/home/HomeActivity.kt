@@ -1,9 +1,11 @@
 package com.hamp.mvvm.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
+import com.hamp.domain.Basket
 import com.hamp.extensions.hideKeyboard
 import com.hamp.extensions.loadHistoryFragment
 import com.hamp.extensions.loadProfileFragment
@@ -15,11 +17,12 @@ import com.hamp.mvvm.home.service.ServiceFragment
 import com.hamp.mvvm.views.HampNavigationBar
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 
 //@BaseActivity.Animation(BaseActivity.FADE)
 class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener {
 
+    private val basketRequest = 2
     private var isBasketEmpty = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,8 +115,17 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
 
     private fun goToBasket() {
         if (!isBasketEmpty && currentFragment is ServiceFragment) {
-            startActivity<BasketActivity>("basket" to
+            startActivityForResult<BasketActivity>(basketRequest, "basket" to
                     (currentFragment as ServiceFragment).serviceViewModel.basket)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == basketRequest) {
+            if (resultCode == RESULT_OK && data is Intent) {
+                val basket = data.getParcelableExtra<Basket>("basket")
+                (currentFragment as? ServiceFragment)?.replaceBasket(basket)
+            }
         }
     }
 }

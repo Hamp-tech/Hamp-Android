@@ -5,7 +5,6 @@ import com.hamp.common.BaseViewModel
 import com.hamp.domain.Basket
 import com.hamp.domain.Service
 import com.hamp.domain.ServiceQuantity
-import com.hamp.extensions.notNull
 import com.hamp.repository.ServiceRepository
 import javax.inject.Inject
 
@@ -13,7 +12,7 @@ class ServiceViewModel @Inject constructor(
         repository: ServiceRepository
 ) : BaseViewModel() {
 
-    var servicesList: List<Service> = repository.loadServices()
+    var servicesList: List<ServiceQuantity> = repository.loadServices()
     var basket = Basket()
     var totalServices = MutableLiveData<Int>()
 
@@ -39,15 +38,22 @@ class ServiceViewModel @Inject constructor(
         totalServices.value = basket.services.sumBy { it.quantity }
     }
 
-    fun modifyServiceQuantity(service: Service?, resultQuantity: Int) {
-        val basketService = basket.services.find { it.service.id == service?.id }
+    fun modifyServiceQuantity(serviceQuantity: ServiceQuantity) {
+        val basketService = basket.services.find { it.service.id == serviceQuantity.service.id }
         val index = basket.services.indexOf(basketService)
 
         if (index != -1) {
-            if (resultQuantity <= 0) basket.services.removeAt(index)
-            else basket.services[index].quantity = resultQuantity
-        } else service.notNull { basket.services.add(ServiceQuantity(it, resultQuantity)) }
+            if (serviceQuantity.quantity <= 0) basket.services.removeAt(index)
+            else basket.services[index].quantity = serviceQuantity.quantity
+        } else basket.services.add(serviceQuantity)
 
+        totalServices.value = basket.services.sumBy { it.quantity }
+    }
+
+    fun replaceBasket(basket: Basket) {
+        servicesList = basket.services.forEach {  }
+        basket.services.removeAll { it.quantity == 0 }
+        this.basket = basket
         totalServices.value = basket.services.sumBy { it.quantity }
     }
 }

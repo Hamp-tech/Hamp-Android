@@ -11,8 +11,11 @@ import android.view.ViewGroup
 import com.hamp.R
 import com.hamp.common.BaseFragment
 import com.hamp.di.Injectable
+import com.hamp.domain.Basket
 import com.hamp.domain.Service
+import com.hamp.domain.ServiceQuantity
 import com.hamp.extensions.getViewModel
+import com.hamp.extensions.notNull
 import com.hamp.extensions.observe
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
@@ -63,11 +66,10 @@ class ServiceFragment : BaseFragment(), Injectable,
                 this, this)
     }
 
-    override fun onServiceClick(service: Service, quantity: Int, position: Int) {
+    override fun onServiceClick(service: ServiceQuantity, position: Int) {
         currentItemClickPosition = position
         val intent = Intent(context, ServiceDetailActivity::class.java)
         intent.putExtra("service", service)
-        intent.putExtra("quantity", quantity)
         startActivityForResult(intent, serviceDetailRequest)
     }
 
@@ -82,18 +84,22 @@ class ServiceFragment : BaseFragment(), Injectable,
         homeActivity.refreshBasketCounter(totalServices)
     }
 
+    fun replaceBasket(basket: Basket) {
+        serviceViewModel.replaceBasket(basket)
+        rvServices.adapter.notifyDataSetChanged()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == serviceDetailRequest) {
             if (resultCode == RESULT_OK && data is Intent) {
-                val resultQuantity = data.getIntExtra("quantity", 0)
-                val service = data.getParcelableExtra<Service>("service")
+                val service = data.getParcelableExtra<ServiceQuantity>("service")
 
                 val itemView = rvServices.findViewHolderForAdapterPosition(currentItemClickPosition)
                         .itemView as ServiceView
 
-                serviceViewModel.modifyServiceQuantity(service, resultQuantity)
+                serviceViewModel.modifyServiceQuantity(service)
 
-                itemView.modifyQuantity(resultQuantity)
+                itemView.modifyQuantity(service.quantity)
             }
         }
     }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.hamp.R
-import com.hamp.domain.Service
+import com.hamp.domain.ServiceQuantity
 import com.hamp.extensions.loadImg
 import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
 import kotlinx.android.synthetic.main.service_item.view.*
@@ -16,9 +16,8 @@ class ServiceView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private lateinit var service: Service
+    private lateinit var serviceQuantity: ServiceQuantity
     private var serviceViewQuantityListener: ServiceViewQuantityListener? = null
-    var quantity = 0
 
     init {
         LayoutInflater.from(context).inflate(R.layout.service_item, this, true)
@@ -29,30 +28,32 @@ class ServiceView @JvmOverloads constructor(
         minus.onClick { decrementQuantity() }
     }
 
-    fun bind(service: Service, quantityListener: ServiceViewQuantityListener) {
-        this.service = service
+    fun bind(serviceQuantity: ServiceQuantity, quantityListener: ServiceViewQuantityListener) {
+        this.serviceQuantity = serviceQuantity
         this.serviceViewQuantityListener = quantityListener
 
-        name.text = service.name
-        image.loadImg(service.image)
-        quantityValue.text = quantity.toString()
+        name.text = serviceQuantity.service.name
+        image.loadImg(serviceQuantity.service.image)
+        quantityValue.text = serviceQuantity.quantity.toString()
     }
 
     private fun incrementQuantity() {
-        quantity++
-        serviceViewQuantityListener?.onQuantityChange(service, Operation.ADD)
-        quantityValue.text = quantity.toString()
+        serviceQuantity.quantity++
+        serviceViewQuantityListener?.onQuantityChange(serviceQuantity.service, Operation.ADD)
+        quantityValue.text = serviceQuantity.quantity.toString()
     }
 
     private fun decrementQuantity() {
-        quantity--
-        if (quantity < 0) quantity = 0
-        else serviceViewQuantityListener?.onQuantityChange(service, Operation.SUBTRACT)
-        quantityValue.text = quantity.toString()
+        serviceQuantity.quantity--
+        if (serviceQuantity.quantity < 0) serviceQuantity.quantity = 0
+        else serviceViewQuantityListener?.onQuantityChange(serviceQuantity.service, Operation.SUBTRACT)
+        quantityValue.text = serviceQuantity.quantity.toString()
     }
 
+    fun getServiceId() = serviceQuantity.service.id
+
     fun modifyQuantity(resultQuantity: Int) {
-        quantity = resultQuantity
-        quantityValue.text = quantity.toString()
+        serviceQuantity.quantity = resultQuantity
+        quantityValue.text = serviceQuantity.quantity.toString()
     }
 }
