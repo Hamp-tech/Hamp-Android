@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.hamp.R
-import com.hamp.domain.ServiceQuantity
+import com.hamp.db.domain.ServiceQuantity
 import com.hamp.extensions.loadImg
 import kotlinx.android.synthetic.main.basket_service_item.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick

@@ -1,17 +1,16 @@
 package com.hamp.repository
 
 import com.hamp.api.RestApi
-import com.hamp.domain.User
+import com.hamp.db.dao.UserDao
+import com.hamp.db.domain.User
 import com.hamp.domain.request.SignInRequest
-import com.vicpin.krealmextensions.deleteAll
-import com.vicpin.krealmextensions.queryFirst
-import com.vicpin.krealmextensions.save
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UserRepository @Inject constructor(
-        val api: RestApi
+        val api: RestApi,
+        private val userDao: UserDao
 ) {
 
     fun signUp(user: User) = api.signUp(user)
@@ -20,10 +19,10 @@ class UserRepository @Inject constructor(
 
     fun updateUser(user: User, userId: String) = api.updateUser(user, userId)
 
-    fun getUser() = User().queryFirst()
+    fun getUser() = userDao.getUser()
 
-    fun saveUser(user: User) = user.save()
+    fun saveUser(user: User) = userDao.saveUser(user)
 
-    fun deleteUser() = User().deleteAll()
+    fun deleteUser() = userDao.deleteAll()
 
 }

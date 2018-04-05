@@ -1,7 +1,7 @@
 package com.hamp.api
 
 import com.hamp.domain.Card
-import com.hamp.domain.User
+import com.hamp.db.domain.User
 import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.CardResponse
 import com.hamp.domain.response.UserResponse

@@ -3,7 +3,7 @@ package com.hamp.mvvm.home.profile
 import android.arch.lifecycle.MutableLiveData
 import com.hamp.R
 import com.hamp.common.BaseViewModel
-import com.hamp.domain.User
+import com.hamp.db.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.preferences.PreferencesManager

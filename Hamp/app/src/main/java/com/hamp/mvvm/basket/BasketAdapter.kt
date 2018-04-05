@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.ViewGroup
 import com.hamp.common.RecyclerViewAdapterBase
 import com.hamp.common.ViewWrapper
-import com.hamp.domain.ServiceQuantity
+import com.hamp.db.domain.ServiceQuantity
 
 class BasketAdapter(val context: Context, override var items: List<ServiceQuantity>,
                     private val basketListener: BasketServiceView.BasketListener)

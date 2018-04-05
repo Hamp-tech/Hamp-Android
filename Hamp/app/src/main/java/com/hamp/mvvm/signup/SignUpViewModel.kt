@@ -5,7 +5,7 @@ import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
 import com.hamp.common.BaseViewModel
-import com.hamp.domain.User
+import com.hamp.db.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull

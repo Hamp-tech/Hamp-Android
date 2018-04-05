@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.domain.Basket
-import com.hamp.domain.ServiceQuantity
+import com.hamp.db.domain.ServiceQuantity
 import kotlinx.android.synthetic.main.activity_basket.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 

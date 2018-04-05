@@ -2,6 +2,8 @@ package com.hamp.di.module
 
 import com.hamp.HampApplication
 import com.hamp.api.RestApi
+import com.hamp.db.HampDatabase
+import com.hamp.db.HampDatabase.Companion.retrieveDB
 import com.hamp.preferences.PreferencesManager
 import dagger.Module
 import dagger.Provides
@@ -12,6 +14,18 @@ class DataModule {
     @Singleton
     @Provides
     fun provideApi() = RestApi()
+
+    @Singleton
+    @Provides
+    fun provideDB(app: HampApplication) = retrieveDB(app)
+
+    @Singleton
+    @Provides
+    fun provideUserDao(db: HampDatabase) = db.userDao()
+
+    @Singleton
+    @Provides
+    fun provideserviceQuantityDao(db: HampDatabase) = db.serviceQuantityDao()
 
     @Singleton
     @Provides

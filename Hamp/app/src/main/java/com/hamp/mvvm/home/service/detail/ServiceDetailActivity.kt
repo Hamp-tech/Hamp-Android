@@ -5,8 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.domain.Service
-import com.hamp.domain.ServiceQuantity
+import com.hamp.db.domain.ServiceQuantity
 import com.hamp.extensions.loadImg
 import kotlinx.android.synthetic.main.activity_service_detail.*
 import org.jetbrains.anko.sdk25.coroutines.onClick

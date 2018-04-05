@@ -2,7 +2,7 @@ package com.hamp.api
 
 import com.hamp.BuildConfig
 import com.hamp.domain.Card
-import com.hamp.domain.User
+import com.hamp.db.domain.User
 import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.GenericResponse
 import okhttp3.OkHttpClient
