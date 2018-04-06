@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hamp">
+          package="com.hamp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".HampApplication"
@@ -20,64 +20,64 @@
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentStatusTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".mvvm.tutorial.TutorialActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".mvvm.signup.SignUpActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <activity
             android:name=".mvvm.login.LoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
         <activity
             android:name=".mvvm.restore.RestoreActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".mvvm.card.CardActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".mvvm.home.HomeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".mvvm.home.service.detail.ServiceDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".mvvm.basket.BasketActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".mvvm.basket.paymentMethod.PaymentMethodActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteTheme" />
+            android:theme="@style/WhiteTheme"/>
         <activity
             android:name=".mvvm.home.history.detail.HistoryDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentStatusTheme" />
+            android:theme="@style/TranslucentStatusTheme"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -88,11 +88,15 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="@string/google_maps_key"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
 
         <service android:name=".firebase.FirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
 

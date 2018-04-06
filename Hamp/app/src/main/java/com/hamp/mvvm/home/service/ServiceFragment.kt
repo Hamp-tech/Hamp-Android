@@ -18,7 +18,6 @@ import com.hamp.extensions.getViewModel
 import com.hamp.extensions.observe
 import com.hamp.mvvm.basket.BasketActivity
 import com.hamp.mvvm.home.HomeActivity
-import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
 import com.hamp.mvvm.home.service.detail.ServiceDetailActivity
 import kotlinx.android.synthetic.main.fragment_service.*
 import org.jetbrains.anko.support.v4.startActivityForResult
@@ -33,7 +32,7 @@ class ServiceFragment : BaseFragment(), Injectable,
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var serviceViewModel: ServiceViewModel
+    private lateinit var serviceViewModel: ServiceViewModel
 
     private var currentItemClickPosition = 0
 
@@ -56,6 +55,7 @@ class ServiceFragment : BaseFragment(), Injectable,
 
     private fun setUpViewModel() {
         serviceViewModel = getViewModel(this, viewModelFactory)
+        serviceViewModel.loading.observe(this, { it?.let { showLoading(it) } })
         serviceViewModel.basket.observe(this, { it?.let { refreshServicesList(it) } })
         serviceViewModel.totalServices.observe(this, { it?.let { refreshBasketCounter(it) } })
     }
@@ -63,7 +63,7 @@ class ServiceFragment : BaseFragment(), Injectable,
     private fun setUpRecyclerServices() {
         rvServices.setHasFixedSize(true)
         rvServices.layoutManager = GridLayoutManager(context, 2)
-//        rvServices.addItemDecoration(SpaceItemDecoration(4.px))
+        rvServices.adapter = ServicesAdapter(context, emptyList(), this, this)
     }
 
     private fun refreshServicesList(basket: Basket) {
@@ -78,11 +78,8 @@ class ServiceFragment : BaseFragment(), Injectable,
         homeActivity.startActivityForResult(intent, serviceDetailRequest)
     }
 
-    override fun onQuantityChange(service: Service, operation: Operation) {
-        when (operation) {
-            Operation.ADD -> serviceViewModel.addServiceToBasket(service)
-            Operation.SUBTRACT -> serviceViewModel.subtractServiceToBasket(service)
-        }
+    override fun onQuantityChange(service: Service) {
+        serviceViewModel.modifyServiceQuantity(service)
     }
 
     private fun refreshBasketCounter(totalServices: Int) {
@@ -117,9 +114,10 @@ class ServiceFragment : BaseFragment(), Injectable,
         itemView.modifyQuantity(service.quantity)
     }
 
-    private fun replaceBasket(basket: Basket) {
-        serviceViewModel.replaceBasket(basket)
-        rvServices.adapter = ServicesAdapter(context, serviceViewModel.basket.services,
-                this, this)
+    private fun replaceBasket(basket: Basket) = serviceViewModel.replaceBasket(basket)
+
+    private fun showLoading(show: Boolean) {
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
     }
 }

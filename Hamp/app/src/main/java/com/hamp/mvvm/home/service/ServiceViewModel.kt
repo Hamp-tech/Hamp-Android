@@ -11,54 +11,52 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ServiceViewModel @Inject constructor(
-        repository: ServiceRepository
+        val repository: ServiceRepository
 ) : BaseViewModel() {
 
-    var basket = MutableLiveData<Basket>()
-    var totalServices = MutableLiveData<Int>()
+    val loading = MutableLiveData<Boolean>()
+    val basket = MutableLiveData<Basket>()
+    val totalServices = MutableLiveData<Int>()
 
     init {
+        loadServices()
+    }
+
+    private fun loadServices() {
         repository.loadServices()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { loading.value = true }
                 .subscribeBy(
-                        onSuccess = { basket.value = Basket(it.toMutableList()) },
+                        onComplete = { getServices() },
                         onError = { }
                 )
     }
 
-    fun addServiceToBasket(service: Service) {
-        val basketService = basket.services.find { it.hampService.id == service.hampService.id }
-        val index = basket.services.indexOf(basketService)
-
-        if (index != -1) basket.services[index] = service
-
-        calculateTotalBasket()
-    }
-
-    fun subtractServiceToBasket(service: Service) {
-        val basketService = basket.services.find { it.hampService.id == service.hampService.id }
-        val index = basket.services.indexOf(basketService)
-
-        if (index != -1) basket.services[index] = service
-
-        calculateTotalBasket()
+    private fun getServices() {
+        disposables.add(repository.getServices()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doAfterTerminate { loading.value = false }
+                .subscribeBy(
+                        onSuccess = { basket.value = Basket(it.toMutableList()) },
+                        onError = { }
+                ))
     }
 
     fun modifyServiceQuantity(service: Service) {
-        val basketService = basket.services.find { it.hampService.id == service.hampService.id }
-        val index = basket.services.indexOf(basketService)
+        val index = basket.value?.services?.indexOf(service) ?: -1
+        if (index != -1) basket.value?.services?.set(index, service)
 
-        if (index != -1) basket.services[index] = service
         calculateTotalBasket()
     }
 
     fun replaceBasket(basket: Basket) {
-        this.basket = basket
+        this.basket.value = basket
         calculateTotalBasket()
     }
 
     private fun calculateTotalBasket() {
-        totalServices.value = basket.services.filter { it.quantity != 0 }.sumBy { it.quantity }
+        totalServices.value = basket.value?.services?.filter { it.quantity != 0 }?.sumBy { it.quantity }
     }
 }

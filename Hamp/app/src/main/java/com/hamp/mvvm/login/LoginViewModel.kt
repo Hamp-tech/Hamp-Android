@@ -55,7 +55,6 @@ class LoginViewModel @Inject constructor(
                             logd("[login.onSuccess]")
                             loading.value = false
                             repository.saveUser(it.data)
-
                             it.data.identifier.notNull { prefs.userId = it }
                             loginSucceed.value = true
                         },
@@ -75,6 +74,4 @@ class LoginViewModel @Inject constructor(
                         }
                 ))
     }
-
-    override fun onCleared() = disposables.clear()
 }

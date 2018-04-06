@@ -10,7 +10,6 @@ import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-
 class HampApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject

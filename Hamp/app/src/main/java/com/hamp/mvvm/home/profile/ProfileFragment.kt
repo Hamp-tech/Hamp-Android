@@ -14,6 +14,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseFragment
+import com.hamp.db.domain.User
 import com.hamp.di.Injectable
 import com.hamp.extensions.*
 import com.hamp.mvvm.home.HomeActivity
@@ -65,7 +66,6 @@ class ProfileFragment : BaseFragment(), Injectable,
         setUpViewModel()
         initializeValidatorAndInputs()
         initializeDatePicker()
-        setUser()
         setPreferences()
         setTerms()
         editModeSwitch()
@@ -76,6 +76,8 @@ class ProfileFragment : BaseFragment(), Injectable,
 
     private fun setUpViewModel() {
         profileViewModel = getViewModel(this, viewModelFactory)
+
+        profileViewModel.user.observe(this, { it?.let { fillProfileInfo(it) } })
         profileViewModel.loading.observe(this, { it?.let { showLoading(it) } })
         profileViewModel.updateSucceed.observe(this, { it?.let { if (it) updateSucceed() } })
         profileViewModel.updateError.observe(this, { it?.let { updateError(it) } })
@@ -119,17 +121,17 @@ class ProfileFragment : BaseFragment(), Injectable,
         profileBirth.text = String.format(getString(R.string.date_format), dayString, monthString, year)
     }
 
-    private fun setUser() {
-        profileName.setText(profileViewModel.user?.name)
-        profileSurname.setText(profileViewModel.user?.surname)
-        profileEmail.setText(profileViewModel.user?.email)
-        profilePhone.setText(profileViewModel.user?.phone)
-        profileBirth.text = profileViewModel.user?.birthday
+    private fun fillProfileInfo(user: User) {
+        profileName.setText(user.name)
+        profileSurname.setText(user.surname)
+        profileEmail.setText(user.email)
+        profilePhone.setText(user.phone)
+        profileBirth.text = user.birthday
 
-        if (profileViewModel.user?.gender == "M") {
+        if (user.gender == "M") {
             maleRadioButton.isChecked = true
             femaleRadioButton.isChecked = false
-        } else if (profileViewModel.user?.gender == "F") {
+        } else if (user.gender == "F") {
             maleRadioButton.isChecked = true
             femaleRadioButton.isChecked = false
         } else {
@@ -177,15 +179,15 @@ class ProfileFragment : BaseFragment(), Injectable,
     }
 
     override fun onValidationSucceeded() {
-        profileViewModel.user?.name = profileName.trim()
-        profileViewModel.user?.surname = profileSurname.trim()
-        profileViewModel.user?.email = profileEmail.trim()
-        profileViewModel.user?.phone = profilePhone.trim()
-        profileViewModel.user?.birthday = profileBirth.text.toString()
+        profileViewModel.user.value?.name = profileName.trim()
+        profileViewModel.user.value?.surname = profileSurname.trim()
+        profileViewModel.user.value?.email = profileEmail.trim()
+        profileViewModel.user.value?.phone = profilePhone.trim()
+        profileViewModel.user.value?.birthday = profileBirth.text.toString()
 
-        if (maleRadioButton.isChecked) profileViewModel.user?.gender = "M"
-        else if (femaleRadioButton.isChecked) profileViewModel.user?.gender = "F"
-        else profileViewModel.user?.gender = "U"
+        if (maleRadioButton.isChecked) profileViewModel.user.value?.gender = "M"
+        else if (femaleRadioButton.isChecked) profileViewModel.user.value?.gender = "F"
+        else profileViewModel.user.value?.gender = "U"
 
         val pickUpTime = if (segmentedButtonMorning.isChecked) "M"
         else "A"
@@ -193,7 +195,7 @@ class ProfileFragment : BaseFragment(), Injectable,
         profileViewModel.savePreferences(phoneSwitch.isChecked, rateHampSwitch.isChecked,
                 notificationsSwitch.isChecked, pickUpTime)
 
-        profileViewModel.user.notNull { profileViewModel.updateUser(it) }
+        profileViewModel.user.value.notNull { profileViewModel.updateUser(it) }
     }
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {
@@ -214,8 +216,8 @@ class ProfileFragment : BaseFragment(), Injectable,
         super.onStop()
         if (editMode) {
             editMode = false
+            profileViewModel.user.value.notNull { fillProfileInfo(it) }
             editModeSwitch()
-            setUser()
             setPreferences()
         }
     }

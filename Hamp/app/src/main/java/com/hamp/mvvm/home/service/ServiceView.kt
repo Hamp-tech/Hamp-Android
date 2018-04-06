@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import com.hamp.R
 import com.hamp.domain.Service
 import com.hamp.extensions.loadImg
-import com.hamp.mvvm.home.service.ServiceViewQuantityListener.Operation
 import kotlinx.android.synthetic.main.service_item.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -39,14 +38,14 @@ class ServiceView @JvmOverloads constructor(
 
     private fun incrementQuantity() {
         service.quantity++
-        serviceViewQuantityListener?.onQuantityChange(service, Operation.ADD)
+        serviceViewQuantityListener?.onQuantityChange(service)
         quantityValue.text = service.quantity.toString()
     }
 
     private fun decrementQuantity() {
         service.quantity--
         if (service.quantity < 0) service.quantity = 0
-        else serviceViewQuantityListener?.onQuantityChange(service, Operation.SUBTRACT)
+        else serviceViewQuantityListener?.onQuantityChange(service)
         quantityValue.text = service.quantity.toString()
     }
 

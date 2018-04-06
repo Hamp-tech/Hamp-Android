@@ -8,11 +8,13 @@ import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.domain.Basket
 import com.hamp.db.domain.ServiceQuantity
+import com.hamp.domain.Service
 import kotlinx.android.synthetic.main.activity_basket.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 @BaseActivity.Animation(BaseActivity.PUSH)
 class BasketActivity : BaseActivity(), BasketServiceView.BasketListener {
+
     private lateinit var basket: Basket
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +31,7 @@ class BasketActivity : BaseActivity(), BasketServiceView.BasketListener {
         back.onClick { onBackPressed() }
     }
 
-    override fun onServiceQuantityChange(service: ServiceQuantity, index: Int) {
+    override fun onServiceQuantityChange(service: Service, index: Int) {
         basket.services[index] = service
         basketServices.adapter.notifyDataSetChanged()
     }

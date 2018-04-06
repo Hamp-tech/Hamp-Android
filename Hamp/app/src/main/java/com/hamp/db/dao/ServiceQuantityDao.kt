@@ -7,7 +7,6 @@ import android.arch.persistence.room.Query
 import com.hamp.db.domain.HampService
 import com.hamp.db.domain.ServiceQuantity
 import com.hamp.domain.Service
-import io.reactivex.Completable
 import io.reactivex.Single
 
 @Dao
@@ -17,8 +16,11 @@ interface ServiceQuantityDao {
     fun getServicesQuantityDao(): Single<List<Service>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveServices(hampService: HampService): Completable
+    fun saveServices(hampServiceList: List<HampService>)
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun saveServicesQuantities(serviceQuantity: ServiceQuantity): Completable
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun saveServicesQuantities(serviceQuantityList: List<ServiceQuantity>)
+
+    @Query("DELETE FROM ServiceQuantity")
+    fun deleteAll()
 }
