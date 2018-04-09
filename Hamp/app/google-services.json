@@ -15,12 +15,12 @@
       },
       "oauth_client": [
         {
-          "client_id": "874157671570-pi7tp35rftdhbtii0jtl9t3598shcrqf.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.hamp",
-            "certificate_hash": "44abbd1eace808cd66974b003e4e97f458baa817"
-          }
+          "client_id": "874157671570-b0gcdlq33987rvqu0oj7leicgnb58rtf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "874157671570-ndmtggb8up64p8ckgjks0av8iua2vq2m.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "874157671570-iiog2rp6uje01tjluet7a1u6iu9k0dl8.apps.googleusercontent.com",
@@ -40,15 +40,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "874157671570-9jubnepj39vbjoqdb551lo2mftcujn93.apps.googleusercontent.com",
+              "client_id": "874157671570-cvqa0n1ohk90hv8i626f224qrmv579si.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.hamp",
+                "bundle_id": "com.Hamp.Hamp",
                 "app_store_id": "123456789"
               }
             },
             {
-              "client_id": "874157671570-iiog2rp6uje01tjluet7a1u6iu9k0dl8.apps.googleusercontent.com",
+              "client_id": "874157671570-b0gcdlq33987rvqu0oj7leicgnb58rtf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
