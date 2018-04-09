@@ -112,4 +112,15 @@
         app:layout_constraintTop_toTopOf="@+id/basketVisaButton"
         app:srcCompat="@drawable/visa_white" />
 
+    <com.hamp.mvvm.views.HampLoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
 </android.support.constraint.ConstraintLayout>

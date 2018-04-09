@@ -4,7 +4,6 @@ import android.app.Activity
 import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.hamp.domain.Basket
 import com.hamp.domain.Service
 import com.hamp.extensions.getViewModel
 import com.hamp.extensions.observe
-import com.hamp.mvvm.basket.BasketActivity
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.home.service.detail.ServiceDetailActivity
 import kotlinx.android.synthetic.main.fragment_service.*
@@ -27,7 +25,6 @@ class ServiceFragment : BaseFragment(), Injectable,
         ServicesAdapter.ClickServiceListener, ServiceViewQuantityListener {
 
     private val serviceDetailRequest = 1
-    private val basketRequest = 2
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -73,9 +70,7 @@ class ServiceFragment : BaseFragment(), Injectable,
 
     override fun onServiceClick(service: Service, position: Int) {
         currentItemClickPosition = position
-        val intent = Intent(context, ServiceDetailActivity::class.java)
-        intent.putExtra("service", service)
-        homeActivity.startActivityForResult(intent, serviceDetailRequest)
+        startActivityForResult<ServiceDetailActivity>(serviceDetailRequest, "service" to service)
     }
 
     override fun onQuantityChange(service: Service) {
@@ -86,18 +81,8 @@ class ServiceFragment : BaseFragment(), Injectable,
         homeActivity.refreshBasketCounter(totalServices)
     }
 
-    fun goToBasket() {
-        startActivityForResult<BasketActivity>(basketRequest,
-                "basket" to serviceViewModel.basket)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == basketRequest) {
-            if (resultCode == AppCompatActivity.RESULT_OK && data is Intent) {
-                val basket = data.getParcelableExtra<Basket>("basket")
-                replaceBasket(basket)
-            }
-        } else if (requestCode == serviceDetailRequest) {
+        if (requestCode == serviceDetailRequest) {
             if (resultCode == Activity.RESULT_OK && data is Intent) {
                 val service = data.getParcelableExtra<Service>("service")
                 modifyItemView(service)
@@ -113,8 +98,6 @@ class ServiceFragment : BaseFragment(), Injectable,
 
         itemView.modifyQuantity(service.quantity)
     }
-
-    private fun replaceBasket(basket: Basket) = serviceViewModel.replaceBasket(basket)
 
     private fun showLoading(show: Boolean) {
         if (show) loadingView.visibility = View.VISIBLE

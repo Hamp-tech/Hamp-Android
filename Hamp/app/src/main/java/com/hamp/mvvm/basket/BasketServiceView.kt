@@ -46,13 +46,13 @@ class BasketServiceView @JvmOverloads constructor(
     private fun incrementQuantity() {
         service.quantity++
         basketListener?.onServiceQuantityChange(service, position)
-//        basketItemQuantity.text = serviceQuantity.quantity.toString()
+        basketItemQuantity.text = service.quantity.toString()
     }
 
     private fun decrementQuantity() {
         service.quantity--
         if (service.quantity < 0) service.quantity = 0
         basketListener?.onServiceQuantityChange(service, position)
-//        basketItemQuantity.text = serviceQuantity.quantity.toString()
+        basketItemQuantity.text = service.quantity.toString()
     }
 }

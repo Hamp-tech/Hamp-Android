@@ -8,6 +8,8 @@ import com.hamp.repository.ServiceRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
 class ServiceViewModel @Inject constructor(
@@ -27,33 +29,28 @@ class ServiceViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { loading.value = true }
+                .doAfterTerminate { loading.value = false }
                 .subscribeBy(
-                        onComplete = { getServices() },
+                        onSuccess = {
+                            basket.value = Basket(it.toMutableList())
+                            calculateTotalBasket()
+                        },
                         onError = { }
                 )
     }
 
-    private fun getServices() {
-        disposables.add(repository.getServices()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { loading.value = false }
-                .subscribeBy(
-                        onSuccess = { basket.value = Basket(it.toMutableList()) },
-                        onError = { }
-                ))
-    }
-
     fun modifyServiceQuantity(service: Service) {
-        val index = basket.value?.services?.indexOf(service) ?: -1
+        val serviceForModify = basket.value?.services?.find { it.hampService.id == service.hampService.id }
+        val index = basket.value?.services?.indexOf(serviceForModify) ?: -1
         if (index != -1) basket.value?.services?.set(index, service)
 
-        calculateTotalBasket()
-    }
-
-    fun replaceBasket(basket: Basket) {
-        this.basket.value = basket
-        calculateTotalBasket()
+        doAsync {
+            repository.saveServiceQuantity(service)
+            uiThread { calculateTotalBasket() }
+        }
+//        Completable.fromCallable { repository.saveServiceQuantity(service) }
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun calculateTotalBasket() {

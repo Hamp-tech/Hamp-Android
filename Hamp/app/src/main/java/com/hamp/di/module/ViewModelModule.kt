@@ -3,10 +3,10 @@ package com.hamp.di.module
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.hamp.di.ViewModelKey
+import com.hamp.mvvm.basket.BasketViewModel
 import com.hamp.mvvm.card.CardViewModel
 import com.hamp.mvvm.home.profile.ProfileViewModel
 import com.hamp.mvvm.home.service.ServiceViewModel
-import com.hamp.mvvm.home.service.ServiceViewModel_Factory
 import com.hamp.mvvm.login.LoginViewModel
 import com.hamp.mvvm.signup.SignUpViewModel
 import com.hamp.mvvm.start.StartViewModel
@@ -53,6 +53,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BasketViewModel::class)
+    abstract fun bindBasketViewModel(basketViewModel: BasketViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: HampViewModelFactory): ViewModelProvider.Factory

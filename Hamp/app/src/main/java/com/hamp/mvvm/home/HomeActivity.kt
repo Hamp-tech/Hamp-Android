@@ -1,13 +1,9 @@
 package com.hamp.mvvm.home
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
-import com.hamp.domain.Basket
-import com.hamp.domain.Service
 import com.hamp.extensions.hideKeyboard
 import com.hamp.extensions.loadHistoryFragment
 import com.hamp.extensions.loadProfileFragment
@@ -19,7 +15,7 @@ import com.hamp.mvvm.home.service.ServiceFragment
 import com.hamp.mvvm.views.HampNavigationBar
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.startActivity
 
 //@BaseActivity.Animation(BaseActivity.FADE)
 class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener {
@@ -89,6 +85,8 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
         loadProfileFragment()
     }
 
+    private fun goToBasket() = startActivity<BasketActivity>()
+
     fun refreshBasketCounter(totalServices: Int) {
         if (totalServices == 0) {
             isBasketEmpty = true
@@ -112,9 +110,5 @@ class HomeActivity : BaseActivity(), HampNavigationBar.HampNavigationBarListener
             profileEditSave.text = getString(R.string.profile_edit)
             hideKeyboard()
         }
-    }
-
-    private fun goToBasket() {
-        if (!isBasketEmpty) (currentFragment as? ServiceFragment)?.goToBasket()
     }
 }
