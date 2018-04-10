@@ -49,6 +49,8 @@ class PaymentMethodActivity : BaseActivity(), Injectable, PaymentMethodAdapter.P
         paymentMethodViewModel.cards.observe(this, { it.notNull { setCardsList(it) } })
         paymentMethodViewModel.transactionSucceeded.observe(this, { it.notNull { transactionSucceed(it) } })
         paymentMethodViewModel.transactionError.observe(this, { it.notNull { transactionError(it) } })
+
+        paymentMethodViewModel.totalPrice = intent.extras.getDouble("price")
     }
 
     private fun setUpRecyclerServices() {
@@ -63,6 +65,7 @@ class PaymentMethodActivity : BaseActivity(), Injectable, PaymentMethodAdapter.P
 
         paymentMethodList.adapter = PaymentMethodAdapter(this, recyclerCards.toList(), this)
     }
+
     override fun creditCardListener(card: Card) {
         paymentMethodViewModel.currentCard = card
     }
@@ -71,9 +74,7 @@ class PaymentMethodActivity : BaseActivity(), Injectable, PaymentMethodAdapter.P
         startActivity<CardActivity>("isFromBasket" to true)
     }
 
-    private fun finalizePurchase() {
-        paymentMethodViewModel.finalizePurchase()
-    }
+    private fun finalizePurchase() = paymentMethodViewModel.finalizePurchase()
 
     private fun transactionSucceed(bool: Boolean) {
 

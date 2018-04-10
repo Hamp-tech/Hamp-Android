@@ -33,6 +33,7 @@ class PaymentMethodViewModel @Inject constructor(
     val transactionError = MutableLiveData<Any>()
 
     var currentCard: Card? = null
+    var totalPrice: Double = 0.0
 
     fun getCards() {
         userRepository.getDBUser()
@@ -54,7 +55,7 @@ class PaymentMethodViewModel @Inject constructor(
                     .flatMap {
                         val transaction = Transaction(creditCard = card, booking = Book(
                                 it,
-                                1.toDouble(),
+                                totalPrice,
                                 Point(),
                                 pickUpTime))
 

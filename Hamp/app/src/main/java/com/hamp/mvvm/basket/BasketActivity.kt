@@ -58,7 +58,8 @@ class BasketActivity : BaseActivity(), Injectable, BasketServiceView.BasketListe
     }
 
     private fun goToPaymentMethod() {
-        startActivity<PaymentMethodActivity>()
+        val totalPrice = basketViewModel.basketValue.value ?: 0.0
+        startActivity<PaymentMethodActivity>("price" to totalPrice)
     }
 
     override fun onServiceQuantityChange(service: Service, index: Int) {
