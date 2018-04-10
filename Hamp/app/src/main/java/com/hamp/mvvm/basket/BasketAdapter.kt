@@ -12,7 +12,7 @@ class BasketAdapter(val context: Context, override var items: List<Service>,
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int) = BasketServiceView(context)
 
-    override fun onBindViewHolder(holder: ViewWrapper<BasketServiceView>?, position: Int) {
-        holder?.view?.bind(items[position], position, basketListener)
+    override fun onBindViewHolder(holder: ViewWrapper<BasketServiceView>, position: Int) {
+        holder.view.bind(items[position], position, basketListener)
     }
 }

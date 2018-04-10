@@ -11,8 +11,10 @@ import com.hamp.domain.Service
 import com.hamp.extensions.getViewModel
 import com.hamp.extensions.notNull
 import com.hamp.extensions.observe
+import com.hamp.mvvm.paymentMethod.PaymentMethodActivity
 import kotlinx.android.synthetic.main.activity_basket.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 @BaseActivity.Animation(BaseActivity.PUSH)
@@ -30,7 +32,7 @@ class BasketActivity : BaseActivity(), Injectable, BasketServiceView.BasketListe
         setUpViewModel()
         setUpRecyclerServices()
 
-//        basketVisaButton.onClick { }
+        basketVisaButton.onClick { goToPaymentMethod() }
         back.onClick { onBackPressed() }
     }
 
@@ -38,6 +40,7 @@ class BasketActivity : BaseActivity(), Injectable, BasketServiceView.BasketListe
         basketViewModel = getViewModel(viewModelFactory)
         basketViewModel.loading.observe(this, { it.notNull { showLoading(it) } })
         basketViewModel.basket.observe(this, { it.notNull { refreshBasket() } })
+        basketViewModel.basketValue.observe(this, { it.notNull { refreshBasketValue(it) } })
     }
 
     private fun setUpRecyclerServices() {
@@ -48,6 +51,14 @@ class BasketActivity : BaseActivity(), Injectable, BasketServiceView.BasketListe
     private fun refreshBasket() {
         val services = basketViewModel.getFilterBasket()
         basketServices.adapter = BasketAdapter(this, services, this)
+    }
+
+    private fun refreshBasketValue(total: Double) {
+        basketValue.text = "€$total"
+    }
+
+    private fun goToPaymentMethod() {
+        startActivity<PaymentMethodActivity>()
     }
 
     override fun onServiceQuantityChange(service: Service, index: Int) {

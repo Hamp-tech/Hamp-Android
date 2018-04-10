@@ -8,8 +8,6 @@ import com.hamp.repository.ServiceRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
 class ServiceViewModel @Inject constructor(
@@ -20,11 +18,7 @@ class ServiceViewModel @Inject constructor(
     val basket = MutableLiveData<Basket>()
     val totalServices = MutableLiveData<Int>()
 
-    init {
-        loadServices()
-    }
-
-    private fun loadServices() {
+    fun loadServices() {
         repository.loadServices()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -44,16 +38,16 @@ class ServiceViewModel @Inject constructor(
         val index = basket.value?.services?.indexOf(serviceForModify) ?: -1
         if (index != -1) basket.value?.services?.set(index, service)
 
-        doAsync {
-            repository.saveServiceQuantity(service)
-            uiThread { calculateTotalBasket() }
-        }
-//        Completable.fromCallable { repository.saveServiceQuantity(service) }
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
+        repository.saveServiceQuantity(service)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onComplete = { calculateTotalBasket() },
+                        onError = {}
+                )
     }
 
     private fun calculateTotalBasket() {
-        totalServices.value = basket.value?.services?.filter { it.quantity != 0 }?.sumBy { it.quantity }
+        totalServices.value = basket.value?.services?.filter { it.amount != 0 }?.sumBy { it.amount }
     }
 }

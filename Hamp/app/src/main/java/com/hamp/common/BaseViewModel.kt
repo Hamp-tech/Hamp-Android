@@ -8,4 +8,5 @@ abstract class BaseViewModel : ViewModel() {
     var disposables = CompositeDisposable()
 
     override fun onCleared() = disposables.clear()
+
 }

@@ -5,7 +5,6 @@ import com.hamp.db.dao.UserDao
 import com.hamp.db.domain.User
 import com.hamp.domain.request.SignInRequest
 import io.reactivex.Completable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,13 +20,13 @@ class UserRepository @Inject constructor(
 
     fun updateUser(user: User, userId: String) = api.updateUser(user, userId)
 
-    fun getUser() = userDao.getUser()
+    fun getDBUser() = userDao.getUser()
 
-    fun saveUser(user: User) {
-        Completable.fromCallable { userDao.saveUser(user) }.subscribeOn(Schedulers.io())
+    fun saveUser(user: User): Completable {
+        return Completable.fromCallable { userDao.saveUser(user) }
     }
 
-    fun deleteUser() {
-        Completable.fromCallable { userDao.deleteAll() }.subscribeOn(Schedulers.io())
+    fun deleteUser(): Completable {
+        return Completable.fromCallable { userDao.deleteAll() }
     }
 }

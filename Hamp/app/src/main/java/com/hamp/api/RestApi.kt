@@ -1,8 +1,9 @@
 package com.hamp.api
 
 import com.hamp.BuildConfig
-import com.hamp.domain.Card
 import com.hamp.db.domain.User
+import com.hamp.domain.Card
+import com.hamp.domain.Transaction
 import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.GenericResponse
 import okhttp3.OkHttpClient
@@ -83,6 +84,8 @@ class RestApi {
 
     fun addCard(card: Card, userId: String) = hampApi.createCard(card, userId)
 
+    fun createTransaction(transaction: Transaction, userId: String) = hampApi.createTransaction(transaction, userId)
+
 //    fun updateUser(userID: String, fields: Map<String, String>) = hampApi.updateUser(userID, fields)
 //
 //    fun unSubscribe(userID: String) = hampApi.unSubscribe(userID)
@@ -109,4 +112,5 @@ class RestApi {
 //            : Observable<BookingResponse> = hampApi.bookingWashService(userID, bookingRequest)
 
     private fun getLanguageTag() = Locale.getDefault().language + Locale.getDefault().country
+
 }

@@ -57,8 +57,8 @@ class ProfileFragment : BaseFragment(), Injectable,
     private val homeActivity: HomeActivity
         get() = activity as HomeActivity
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?) =
-            inflater?.inflate(R.layout.fragment_profile, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+            inflater.inflate(R.layout.fragment_profile, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -240,7 +240,7 @@ class ProfileFragment : BaseFragment(), Injectable,
         editModeSwitch()
     }
 
-    private fun updateError(error: Any) = activity.showErrorSnackBar(error, Snackbar.LENGTH_LONG)
+    private fun updateError(error: Any) = homeActivity.showErrorSnackBar(error, Snackbar.LENGTH_LONG)
 
     private fun showLoading(show: Boolean) {
         if (show) loadingView.visibility = View.VISIBLE

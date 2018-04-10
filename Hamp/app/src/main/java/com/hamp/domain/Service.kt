@@ -7,7 +7,7 @@ import com.hamp.db.domain.HampService
 
 data class Service(
         @Embedded var hampService: HampService,
-        var quantity: Int
+        var amount: Int
 ) : Parcelable {
     constructor(source: Parcel) : this(
             source.readParcelable<HampService>(HampService::class.java.classLoader),
@@ -18,7 +18,7 @@ data class Service(
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeParcelable(hampService, 0)
-        writeInt(quantity)
+        writeInt(amount)
     }
 
     companion object {

@@ -33,7 +33,7 @@ class ProfileViewModel @Inject constructor(
     val updateError = MutableLiveData<Any>()
 
     init {
-        userRepository.getUser()
+        userRepository.getDBUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { loading.value = true }
@@ -53,7 +53,7 @@ class ProfileViewModel @Inject constructor(
                 .subscribeBy(
                         onSuccess = {
                             logd("[updateUser.onSuccess]")
-                            userRepository.saveUser(it.data)
+                            userRepository.saveUser(it.data).subscribeOn(Schedulers.io())
                             updateSucceed.value = true
                         },
                         onError = { e ->
@@ -82,7 +82,7 @@ class ProfileViewModel @Inject constructor(
 
     fun logout() {
         prefs.userId = ""
-        userRepository.deleteUser()
-        serviceRepository.deleteBasket()
+        userRepository.deleteUser().subscribeOn(Schedulers.io())
+        serviceRepository.deleteBasket().subscribeOn(Schedulers.io())
     }
 }

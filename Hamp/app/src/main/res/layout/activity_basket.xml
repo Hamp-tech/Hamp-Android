@@ -86,6 +86,7 @@
         app:layout_constraintTop_toTopOf="@+id/basketPriceView" />
 
     <TextView
+        android:id="@+id/basketValue"
         style="@style/Fredoka25.Razzmatazz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

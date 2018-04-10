@@ -33,24 +33,24 @@ class ServiceView @JvmOverloads constructor(
 
         name.text = service.hampService.name
         image.loadImg(service.hampService.image)
-        quantityValue.text = service.quantity.toString()
+        quantityValue.text = service.amount.toString()
     }
 
     private fun incrementQuantity() {
-        service.quantity++
+        service.amount++
         serviceViewQuantityListener?.onQuantityChange(service)
-        quantityValue.text = service.quantity.toString()
+        quantityValue.text = service.amount.toString()
     }
 
     private fun decrementQuantity() {
-        service.quantity--
-        if (service.quantity < 0) service.quantity = 0
+        service.amount--
+        if (service.amount < 0) service.amount = 0
         else serviceViewQuantityListener?.onQuantityChange(service)
-        quantityValue.text = service.quantity.toString()
+        quantityValue.text = service.amount.toString()
     }
 
     fun modifyQuantity(resultQuantity: Int) {
-        service.quantity = resultQuantity
-        quantityValue.text = service.quantity.toString()
+        service.amount = resultQuantity
+        quantityValue.text = service.amount.toString()
     }
 }

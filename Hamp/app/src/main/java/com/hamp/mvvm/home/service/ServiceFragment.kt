@@ -40,14 +40,19 @@ class ServiceFragment : BaseFragment(), Injectable,
     private val homeActivity: HomeActivity
         get() = activity as HomeActivity
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_service, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_service, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpViewModel()
         setUpRecyclerServices()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        serviceViewModel.loadServices()
     }
 
     private fun setUpViewModel() {
@@ -60,11 +65,10 @@ class ServiceFragment : BaseFragment(), Injectable,
     private fun setUpRecyclerServices() {
         rvServices.setHasFixedSize(true)
         rvServices.layoutManager = GridLayoutManager(context, 2)
-        rvServices.adapter = ServicesAdapter(context, emptyList(), this, this)
     }
 
     private fun refreshServicesList(basket: Basket) {
-        rvServices.adapter = ServicesAdapter(context, basket.services,
+        rvServices.adapter = ServicesAdapter(homeActivity, basket.services,
                 this, this)
     }
 
@@ -96,7 +100,7 @@ class ServiceFragment : BaseFragment(), Injectable,
 
         serviceViewModel.modifyServiceQuantity(service)
 
-        itemView.modifyQuantity(service.quantity)
+        itemView.modifyQuantity(service.amount)
     }
 
     private fun showLoading(show: Boolean) {

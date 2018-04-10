@@ -16,9 +16,9 @@ class HistoryAdapter(val context: Context, override var items: List<Int>,
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int) = HistoryView(context)
 
-    override fun onBindViewHolder(holder: ViewWrapper<HistoryView>?, position: Int) {
-        holder?.view?.bind()
-        holder?.view?.onClick { historyListener.onHistoryClick() }
+    override fun onBindViewHolder(holder: ViewWrapper<HistoryView>, position: Int) {
+        holder.view.bind()
+        holder.view.onClick { historyListener.onHistoryClick() }
     }
 
 //    override fun onCreateItemView(parent: ViewGroup, viewType: Int) = ServiceView(context)
@@ -26,7 +26,7 @@ class HistoryAdapter(val context: Context, override var items: List<Int>,
 //    override fun onBindViewHolder(holder: ViewWrapper<ServiceView>?, position: Int) {
 //        holder?.view?.bind(items[position], quantityListener)
 //        holder?.view?.onClick {
-//            clickServiceListener.onServiceClick(items[position], holder.view.quantity, position)
+//            clickServiceListener.onServiceClick(items[position], holder.view.amount, position)
 //        }
 //    }
 }

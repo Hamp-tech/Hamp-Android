@@ -18,9 +18,9 @@ class ServicesAdapter(val context: Context, override var items: List<Service>,
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int) = ServiceView(context)
 
-    override fun onBindViewHolder(holder: ViewWrapper<ServiceView>?, position: Int) {
-        holder?.view?.bind(items[position], quantityListener)
-        holder?.view?.onClick {
+    override fun onBindViewHolder(holder: ViewWrapper<ServiceView>, position: Int) {
+        holder.view.bind(items[position], quantityListener)
+        holder.view.onClick {
             clickServiceListener.onServiceClick(items[position], position)
         }
     }

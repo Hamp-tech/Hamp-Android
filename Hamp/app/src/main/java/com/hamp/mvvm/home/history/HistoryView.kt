@@ -13,7 +13,7 @@ class HistoryView @JvmOverloads constructor(
 
 //    private lateinit var service: Service
 //    private var serviceViewQuantityListener: ServiceViewQuantityListener? = null
-//    var quantity = 0
+//    var amount = 0
 
     init {
         LayoutInflater.from(context).inflate(R.layout.history_item, this, true)

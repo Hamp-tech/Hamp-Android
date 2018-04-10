@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context="com.hamp.mvvm.home.HomeActivity">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="@color/white"
+                                             tools:context="com.hamp.mvvm.home.HomeActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.06" />
+        app:layout_constraintGuide_percent="0.06"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.9"/>
 
     <TextView
         android:id="@+id/sectionTitle"
@@ -29,7 +29,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/services" />
+        tools:text="@string/services"/>
 
     <ImageView
         android:id="@+id/basket"
@@ -39,7 +39,7 @@
         app:layout_constraintRight_toRightOf="@id/guidelineRight"
         app:layout_constraintTop_toTopOf="@id/sectionTitle"
         app:layout_constraintVertical_bias="0.4"
-        app:srcCompat="@drawable/empty_basket" />
+        app:srcCompat="@drawable/empty_basket"/>
 
     <ImageView
         android:id="@+id/basketCounterContainer"
@@ -53,7 +53,7 @@
         app:layout_constraintRight_toLeftOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@+id/basket"
         app:layout_constraintVertical_bias="0.26"
-        app:srcCompat="@drawable/basket_counter" />
+        app:srcCompat="@drawable/basket_counter"/>
 
     <TextView
         android:id="@+id/basketCounter"
@@ -66,7 +66,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/basketCounterContainer"
         app:layout_constraintRight_toRightOf="@+id/basketCounterContainer"
         app:layout_constraintTop_toTopOf="@+id/basketCounterContainer"
-        tools:text="5" />
+        tools:text="5"/>
 
     <ImageView
         android:id="@+id/video"
@@ -74,9 +74,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/basket"
         app:layout_constraintRight_toLeftOf="@+id/basket"
-        app:srcCompat="@drawable/video" />
+        app:srcCompat="@drawable/video"/>
 
     <TextView
         android:id="@+id/profileEditSave"
@@ -94,7 +95,7 @@
         app:layout_constraintBottom_toBottomOf="@id/sectionTitle"
         app:layout_constraintRight_toRightOf="@id/guidelineRight"
         app:layout_constraintTop_toTopOf="@id/sectionTitle"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.6"/>
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
@@ -105,7 +106,7 @@
         app:layout_constraintBottom_toTopOf="@+id/hampNavigationBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sectionTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/sectionTitle"/>
 
     <com.hamp.mvvm.views.HampNavigationBar
         android:id="@+id/hampNavigationBar"
@@ -113,6 +114,6 @@
         android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

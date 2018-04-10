@@ -21,7 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
         const val MODAL = 2
         const val POPUP = 3
 
-        @IntDef(PUSH.toLong(), FADE.toLong(), MODAL.toLong(), POPUP.toLong(), NONE.toLong())
+        @IntDef(PUSH, FADE, MODAL, POPUP, NONE)
 
         @Retention(AnnotationRetention.SOURCE)
         annotation class AnimationType

@@ -26,6 +26,9 @@ interface ServiceQuantityDao {
             "WHERE ServiceQuantity.serviceId = :serviceId")
     fun getServiceQuantity(serviceId: String): ServiceQuantity?
 
+    @Query("SELECT * FROM ServiceQuantity")
+    fun getServicesQuantity(): Single<List<ServiceQuantity>>
+
     @Insert
     fun saveServiceQuantity(serviceQuantity: ServiceQuantity)
 

@@ -13,6 +13,9 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE id = 1")
     fun getUser(): Single<User>
 
+    @Query("SELECT * FROM User")
+    fun getUsersAux(): List<User>
+
     @Insert(onConflict = REPLACE)
     fun saveUser(user: User)
 

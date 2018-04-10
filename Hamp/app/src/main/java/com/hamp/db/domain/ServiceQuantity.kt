@@ -13,5 +13,5 @@ import android.arch.persistence.room.PrimaryKey
 data class ServiceQuantity(
         @PrimaryKey
         val serviceId: String,
-        var quantity: Int
+        var amount: Int
 )

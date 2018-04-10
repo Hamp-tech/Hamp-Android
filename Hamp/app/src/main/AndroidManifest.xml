@@ -69,7 +69,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"/>
         <activity
-            android:name=".mvvm.basket.paymentMethod.PaymentMethodActivity"
+            android:name="com.hamp.mvvm.paymentMethod.PaymentMethodActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteTheme"/>

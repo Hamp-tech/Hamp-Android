@@ -3,6 +3,7 @@ package com.hamp.di.module
 import com.hamp.mvvm.basket.BasketActivity
 import com.hamp.mvvm.card.CardActivity
 import com.hamp.mvvm.login.LoginActivity
+import com.hamp.mvvm.paymentMethod.PaymentMethodActivity
 import com.hamp.mvvm.signup.SignUpActivity
 import com.hamp.mvvm.start.StartActivity
 import com.hamp.mvvm.tutorial.TutorialActivity
@@ -26,6 +27,9 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeServicesBasketActivity(): BasketActivity
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeCardPaymentMethodActivity(): PaymentMethodActivity
 
     @ContributesAndroidInjector
     internal abstract fun contributeCardCardActivity(): CardActivity

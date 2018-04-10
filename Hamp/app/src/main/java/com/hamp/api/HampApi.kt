@@ -1,8 +1,10 @@
 package com.hamp.api
 
-import com.hamp.domain.Card
 import com.hamp.db.domain.User
+import com.hamp.domain.Card
+import com.hamp.domain.Transaction
 import com.hamp.domain.request.SignInRequest
+import com.hamp.domain.response.BookingResponse
 import com.hamp.domain.response.CardResponse
 import com.hamp.domain.response.UserResponse
 import io.reactivex.Single
@@ -26,6 +28,10 @@ interface HampApi {
     // CARDS
     @POST("users/{userid}/cards")
     fun createCard(@Body card: Card, @Path("userid") userId: String): Single<CardResponse>
+
+    // TRANSACTION
+    @POST("users/{userid}/transactions")
+    fun createTransaction(@Body transaction: Transaction, @Path("userid") userId: String): Single<BookingResponse>
 
 //    @POST("users/{id}")
 //    fun createUser(@Body user: User): Single<UserResponse>

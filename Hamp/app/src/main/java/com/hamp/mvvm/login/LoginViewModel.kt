@@ -48,14 +48,17 @@ class LoginViewModel @Inject constructor(
         val signInRequest = SignInRequest(loginEmail, loginPassword)
 
         disposables.add(repository.signIn(signInRequest)
+                .flatMapCompletable {
+                    repository.saveUser(it.data)
+                            .doOnComplete { it.data.identifier.notNull { prefs.userId = it } }
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
-                        onSuccess = {
+                        onComplete = {
                             logd("[login.onSuccess]")
+
                             loading.value = false
-                            repository.saveUser(it.data)
-                            it.data.identifier.notNull { prefs.userId = it }
                             loginSucceed.value = true
                         },
                         onError = { e ->

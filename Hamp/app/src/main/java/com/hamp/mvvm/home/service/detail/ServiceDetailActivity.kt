@@ -7,6 +7,7 @@ import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.domain.Service
 import com.hamp.extensions.loadImg
+import com.hamp.extensions.round
 import kotlinx.android.synthetic.main.activity_service_detail.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -25,18 +26,19 @@ class ServiceDetailActivity : BaseActivity() {
 
         image.loadImg(service.hampService.image)
         description.text = service.hampService.description
-        quantityValue.text = service.quantity.toString()
+        quantityValue.text = service.amount.toString()
+        price.text = "${service.hampService.price.toDouble().round()}€"
 
-        plus.onClick { modifyQuantity { service.quantity++ } }
-        minus.onClick { modifyQuantity { service.quantity-- } }
+        plus.onClick { modifyQuantity { service.amount++ } }
+        minus.onClick { modifyQuantity { service.amount-- } }
 
         back.onClick { onBackPressed() }
     }
 
     private fun modifyQuantity(action: () -> Unit) {
         action()
-        if (service.quantity < 0) service.quantity = 0
-        quantityValue.text = service.quantity.toString()
+        if (service.amount < 0) service.amount = 0
+        quantityValue.text = service.amount.toString()
     }
 
     override fun onBackPressed() {

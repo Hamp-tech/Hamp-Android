@@ -76,7 +76,7 @@ class SignUpViewModel @Inject constructor(
                         onSuccess = {
                             logd("[signUp.onSuccess]")
                             loading.value = false
-                            repository.saveUser(it.data)
+                            repository.saveUser(it.data).subscribeOn(Schedulers.io())
                             it.data.identifier.notNull { prefs.userId = it }
                             signUpSucceed.value = true
                         },

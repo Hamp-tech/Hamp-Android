@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import com.hamp.R
 import com.hamp.domain.Service
 import com.hamp.extensions.loadImg
+import com.hamp.extensions.round
 import kotlinx.android.synthetic.main.basket_service_item.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -40,19 +41,20 @@ class BasketServiceView @JvmOverloads constructor(
 
         basketItemImage.loadImg(service.hampService.image)
         basketItemName.text = service.hampService.name
-        basketItemQuantity.text = service.quantity.toString()
+        basketItemQuantity.text = service.amount.toString()
+        basketItemPrice.text = "${service.hampService.price.toDouble().round()}€"
     }
 
     private fun incrementQuantity() {
-        service.quantity++
+        service.amount++
         basketListener?.onServiceQuantityChange(service, position)
-        basketItemQuantity.text = service.quantity.toString()
+        basketItemQuantity.text = service.amount.toString()
     }
 
     private fun decrementQuantity() {
-        service.quantity--
-        if (service.quantity < 0) service.quantity = 0
+        service.amount--
+        if (service.amount < 0) service.amount = 0
         basketListener?.onServiceQuantityChange(service, position)
-        basketItemQuantity.text = service.quantity.toString()
+        basketItemQuantity.text = service.amount.toString()
     }
 }

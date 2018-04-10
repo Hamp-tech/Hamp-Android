@@ -27,7 +27,7 @@ class CardViewModel @Inject constructor(
         loading.value = true
 
         val date = cardExpiryDate.split("/").map { it.toInt() }
-        val card = Card(cardNumber, date[0], date[1], cardCvv)
+        val card = Card(number = cardNumber, exp_month = date[0], exp_year = date[1], cvc = cardCvv)
 
         disposables.add(repository.addCard(card, prefs.userId)
                 .subscribeOn(Schedulers.io())

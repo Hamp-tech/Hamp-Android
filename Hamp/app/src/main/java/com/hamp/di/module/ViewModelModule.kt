@@ -8,6 +8,7 @@ import com.hamp.mvvm.card.CardViewModel
 import com.hamp.mvvm.home.profile.ProfileViewModel
 import com.hamp.mvvm.home.service.ServiceViewModel
 import com.hamp.mvvm.login.LoginViewModel
+import com.hamp.mvvm.paymentMethod.PaymentMethodViewModel
 import com.hamp.mvvm.signup.SignUpViewModel
 import com.hamp.mvvm.start.StartViewModel
 import com.hamp.mvvm.tutorial.TutorialViewModel
@@ -58,6 +59,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(BasketViewModel::class)
     abstract fun bindBasketViewModel(basketViewModel: BasketViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PaymentMethodViewModel::class)
+    abstract fun bindPaymentMethodViewModel(paymentMethodViewModel: PaymentMethodViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: HampViewModelFactory): ViewModelProvider.Factory
