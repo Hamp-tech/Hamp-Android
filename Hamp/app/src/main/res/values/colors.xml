@@ -5,6 +5,7 @@
     <color name="colorAccent">@color/razzmatazz</color>
 
     <color name="white">#fff</color>
+    <color name="gallery">#EEEEEE</color>
     <color name="black">#000</color>
     <color name="razzmatazz">#e72f72</color>
     <color name="lightcoral">#f08086</color>

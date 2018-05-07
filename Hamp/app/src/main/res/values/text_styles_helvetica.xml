@@ -48,6 +48,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="HelveticaNeueBold25" parent="HelveticaNeueBold">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="HelveticaNeueBold28" parent="HelveticaNeueBold">
         <item name="android:textSize">28sp</item>
     </style>
@@ -138,6 +142,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="HelveticaNeueBold25.Black" parent="HelveticaNeueBold25">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="HelveticaNeueBold28.Black" parent="HelveticaNeueBold28">
         <item name="android:textColor">@color/black</item>
     </style>
@@ -189,6 +197,10 @@
     <style name="HelveticaNeueLight14.Manatee" parent="HelveticaNeueLight14">
         <item name="android:textColor">@color/manatee</item>
         <item name="android:textColorHint">@color/manatee</item>
+    </style>
+
+    <style name="HelveticaNeueLight14.Gallery" parent="HelveticaNeueLight14">
+        <item name="android:textColor">@color/gallery</item>
     </style>
 
     <style name="HelveticaNeueLight14.Black" parent="HelveticaNeueLight14">
