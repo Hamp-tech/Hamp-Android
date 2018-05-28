@@ -32,6 +32,6 @@ fun Activity.hideKeyboard() {
     imm.hideSoftInputFromWindow(findViewById<View>(android.R.id.content).windowToken, 0)
 }
 
-inline fun <reified T : ViewModel> FragmentActivity.getViewModel(viewModelFactory: ViewModelProvider.Factory): T {
-    return ViewModelProviders.of(this, viewModelFactory)[T::class.java]
-}
+//inline fun <reified T : ViewModel> FragmentActivity.getViewModel(viewModelFactory: ViewModelProvider.Factory): T {
+//    return ViewModelProviders.of(this, viewModelFactory)[T::class.java]
+//}

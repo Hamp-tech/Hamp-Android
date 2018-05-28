@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,21 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.75"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.08"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.92"/>
 
     <ImageView
         android:id="@+id/circleTutorial"
@@ -37,7 +38,7 @@
         app:layout_constraintRight_toRightOf="@+id/tutorialPager"
         app:layout_constraintTop_toTopOf="@+id/tutorialPager"
         app:layout_constraintVertical_bias="0.12"
-        app:srcCompat="@drawable/tutorial_circle" />
+        app:srcCompat="@drawable/tutorial_circle"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/tutorialPager"
@@ -47,7 +48,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
@@ -62,7 +63,7 @@
         app:ci_width="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guidelineBottom" />
+        app:layout_constraintTop_toBottomOf="@id/guidelineBottom"/>
 
     <TextView
         android:id="@+id/startButton"
@@ -80,7 +81,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
         app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@+id/indicator"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.33"/>
 
 
 </android.support.constraint.ConstraintLayout>

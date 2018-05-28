@@ -11,6 +11,11 @@ import javax.inject.Singleton
 
 @Module
 class DataModule {
+
+    @Singleton
+    @Provides
+    fun providePreferences(app: HampApplication): PreferencesManager = PreferencesManager(app)
+
     @Singleton
     @Provides
     fun provideApi() = RestApi()
@@ -25,9 +30,5 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideserviceQuantityDao(db: HampDatabase) = db.serviceQuantityDao()
-
-    @Singleton
-    @Provides
-    fun providePreferences(app: HampApplication): PreferencesManager = PreferencesManager(app)
+    fun provideServiceQuantityDao(db: HampDatabase) = db.serviceQuantityDao()
 }

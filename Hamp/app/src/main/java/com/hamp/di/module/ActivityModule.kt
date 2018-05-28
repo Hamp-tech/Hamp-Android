@@ -5,6 +5,7 @@ import com.hamp.mvvm.card.CardActivity
 import com.hamp.mvvm.login.LoginActivity
 import com.hamp.mvvm.paymentMethod.PaymentMethodActivity
 import com.hamp.mvvm.signup.SignUpActivity
+import com.hamp.mvvm.splash.SplashActivity
 import com.hamp.mvvm.start.StartActivity
 import com.hamp.mvvm.tutorial.TutorialActivity
 import dagger.Module
@@ -14,7 +15,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityModule {
 
     @ContributesAndroidInjector
-    internal abstract fun contributeUserStartActivity(): StartActivity
+    internal abstract fun contributePrefsSplashActivity(): SplashActivity
 
     @ContributesAndroidInjector
     internal abstract fun contributePrefsTutorialActivity(): TutorialActivity

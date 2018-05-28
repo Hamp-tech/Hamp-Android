@@ -19,6 +19,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9" />
 
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/guidelineCircleTop"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.07" />-->
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/guidelineCircleBottom"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.53" />-->
+
     <ImageView
         android:id="@+id/circleTutorial"
         android:layout_width="wrap_content"

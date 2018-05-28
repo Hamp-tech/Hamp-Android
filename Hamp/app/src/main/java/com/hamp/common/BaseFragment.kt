@@ -20,7 +20,7 @@ open class BaseFragment : Fragment() {
     }
 
     @Nullable
-    var viewLifecycleOwner: ViewLifecycleOwner? = null
+    private var viewLifecycleOwner: ViewLifecycleOwner? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -5,32 +5,32 @@ import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AlertDialog
 import android.view.View
 
-abstract class BaseDialogHelper {
+abstract class BaseDialog {
 
     abstract val dialogView: View
     abstract val builder: AlertDialog.Builder
 
-    //  required bools
+    // Required bools
     open var cancelable: Boolean = true
     open var isBackGroundTransparent: Boolean = true
 
-    //  dialog
+    // Dialog
     open var dialog: AlertDialog? = null
 
-    //  dialog create
+    // Dialog create
     open fun create(): AlertDialog {
         dialog = builder
                 .setCancelable(cancelable)
                 .create()
 
-        //  very much needed for customised dialogs
+        // Very much needed for customised dialogs
         if (isBackGroundTransparent)
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         return dialog!!
     }
 
-    //  cancel listener
+    // Cancel listener
     open fun onCancelListener(func: () -> Unit): AlertDialog.Builder? =
             builder.setOnCancelListener { func() }
 }

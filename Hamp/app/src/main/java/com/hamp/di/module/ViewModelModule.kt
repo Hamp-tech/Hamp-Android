@@ -10,8 +10,6 @@ import com.hamp.mvvm.home.service.ServiceViewModel
 import com.hamp.mvvm.login.LoginViewModel
 import com.hamp.mvvm.paymentMethod.PaymentMethodViewModel
 import com.hamp.mvvm.signup.SignUpViewModel
-import com.hamp.mvvm.start.StartViewModel
-import com.hamp.mvvm.tutorial.TutorialViewModel
 import com.hamp.viewmodel.HampViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -19,16 +17,6 @@ import dagger.multibindings.IntoMap
 
 @Module
 abstract class ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(StartViewModel::class)
-    abstract fun bindStartViewModel(startViewModel: StartViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(TutorialViewModel::class)
-    abstract fun bindTutorialViewModel(tutorialViewModel: TutorialViewModel): ViewModel
 
     @Binds
     @IntoMap

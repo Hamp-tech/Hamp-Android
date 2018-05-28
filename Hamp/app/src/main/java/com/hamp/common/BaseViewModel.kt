@@ -3,7 +3,7 @@ package com.hamp.common
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class BaseViewModel : ViewModel() {
+open class BaseViewModel : ViewModel() {
 
     var disposables = CompositeDisposable()
 

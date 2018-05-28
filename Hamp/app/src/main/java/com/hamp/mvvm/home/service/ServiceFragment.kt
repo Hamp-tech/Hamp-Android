@@ -56,7 +56,7 @@ class ServiceFragment : BaseFragment(), Injectable,
     }
 
     private fun setUpViewModel() {
-        serviceViewModel = getViewModel(this, viewModelFactory)
+        serviceViewModel = homeActivity.getViewModel(viewModelFactory)
         serviceViewModel.loading.observe(this, { it?.let { showLoading(it) } })
         serviceViewModel.basket.observe(this, { it?.let { refreshServicesList(it) } })
         serviceViewModel.totalServices.observe(this, { it?.let { refreshBasketCounter(it) } })

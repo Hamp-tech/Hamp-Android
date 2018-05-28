@@ -1,16 +1,16 @@
 package com.hamp.mvvm.tutorial.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hamp.R
-import com.hamp.common.BaseFragment
 import com.hamp.extensions.loadImg
 import com.hamp.mvvm.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.fragment_tutorial.*
 
-class TutorialFragment : BaseFragment() {
+class TutorialFragment : Fragment() {
 
     private var image = 0
     private lateinit var title: String
@@ -32,7 +32,6 @@ class TutorialFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         imageTutorial.loadImg(image)
         titleTutorial.text = title
         infoTutorial.text = info

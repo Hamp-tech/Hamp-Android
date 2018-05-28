@@ -75,7 +75,7 @@ class ProfileFragment : BaseFragment(), Injectable,
     }
 
     private fun setUpViewModel() {
-        profileViewModel = getViewModel(this, viewModelFactory)
+        profileViewModel = homeActivity.getViewModel(viewModelFactory)
 
         profileViewModel.user.observe(this, { it?.let { fillProfileInfo(it) } })
         profileViewModel.loading.observe(this, { it?.let { showLoading(it) } })

@@ -10,7 +10,7 @@ class PreferencesManager(context: Context) {
     private val prefsFilename = "com.hamp.prefs"
 
     private val firstTime = "first_time"
-    private val userID = "userid"
+    private val userID = "user_id"
     private val phoneSwitch = "phone_switch"
     private val rateHamp = "rate_hamp"
     private val notifications = "notifications"

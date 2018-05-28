@@ -5,9 +5,9 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import com.hamp.R
-import com.hamp.common.BaseDialogHelper
+import com.hamp.common.BaseDialog
 
-class NotificationDialogHelper(context: Context) : BaseDialogHelper() {
+class NotificationDialogHelper(context: Context) : BaseDialog() {
 
     //  dialog view
     override val dialogView: View by lazy {
