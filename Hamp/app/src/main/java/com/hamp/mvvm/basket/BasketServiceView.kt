@@ -9,7 +9,7 @@ import com.hamp.R
 import com.hamp.domain.Service
 import com.hamp.extensions.loadImg
 import com.hamp.extensions.round
-import kotlinx.android.synthetic.main.basket_service_item.view.*
+import kotlinx.android.synthetic.main.item_basket_service.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class BasketServiceView @JvmOverloads constructor(
@@ -26,7 +26,7 @@ class BasketServiceView @JvmOverloads constructor(
     }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.basket_service_item, this, true)
+        LayoutInflater.from(context).inflate(R.layout.item_basket_service, this, true)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
 

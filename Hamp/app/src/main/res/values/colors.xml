@@ -8,11 +8,11 @@
     <color name="gallery">#EEEEEE</color>
     <color name="black">#000</color>
     <color name="razzmatazz">#e72f72</color>
-    <color name="lightcoral">#f08086</color>
-    <color name="cerise_pink">#e73573</color>
-    <color name="lightcoral_2">#E97B82</color>
-    <color name="candy_pink">#EE6981</color>
     <color name="razzmatazz2">#E14D74</color>
+    <color name="cerise_pink">#e73573</color>
+    <color name="candy_pink">#EE6981</color>
+    <color name="lightcoral">#f08086</color>
+    <color name="lightcoral_2">#E97B82</color>
     <color name="manatee">#9B9B9B</color>
     <color name="manatee_2">#979797</color>
     <color name="trolley_grey">#818181</color>

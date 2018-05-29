@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--COMMON-->
+    <dimen name="hamp_button_padding_top_bottom">8dp</dimen>
+
+    <!--TUTORIAL DIMENS-->
+    <dimen name="tutorial_circle">240dp</dimen>
+    <dimen name="tutorial_circle_indicator_layout_height">20dp</dimen>
+    <dimen name="tutorial_circle_indicator_size">8dp</dimen>
+    <dimen name="tutorial_circle_indicator_margin">12dp</dimen>
+    <dimen name="tutorial_circle_indicator_margin_top">20dp</dimen>
+    <dimen name="tutorial_item_title_margin_top">26dp</dimen>
+    <dimen name="tutorial_item_info_margin_top">20dp</dimen>
+
     <!--START DIMENS-->
     <dimen name="start_bag_icon_top_margin">50dp</dimen>
     <dimen name="start_button_top_margin">21dp</dimen>
-    <dimen name="start_button_padding_top_bottom">8dp</dimen>
     <dimen name="start_already_account_bottom_margin">24dp</dimen>
     <dimen name="start_login_left_margin">5dp</dimen>
     <dimen name="start_login_top_bottom_padding">10dp</dimen>

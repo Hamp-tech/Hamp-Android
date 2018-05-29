@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,73 +11,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.1"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
-
-    <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/guidelineCircleTop"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintGuide_percent="0.07" />-->
-
-    <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/guidelineCircleBottom"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintGuide_percent="0.53" />-->
+        app:layout_constraintGuide_percent="0.9"/>
 
     <ImageView
-        android:id="@+id/circleTutorial"
+        android:id="@+id/imageTutorial"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:layout_height="@dimen/tutorial_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.12"
-        app:srcCompat="@drawable/tutorial_circle" />
-
-    <ImageView
-        android:id="@+id/imageTutorial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/circleTutorial"
-        app:layout_constraintLeft_toLeftOf="@+id/circleTutorial"
-        app:layout_constraintRight_toRightOf="@+id/circleTutorial"
-        app:layout_constraintTop_toTopOf="@+id/circleTutorial"
-        tools:src="@drawable/tutorial_1" />
+        tools:src="@drawable/tutorial_1"/>
 
     <TextView
         android:id="@+id/titleTutorial"
         style="@style/Fredoka20.LightCoral"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="@dimen/tutorial_item_title_margin_top"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
         app:layout_constraintRight_toRightOf="@+id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@+id/circleTutorial"
-        tools:text="Escoge el servicio" />
+        app:layout_constraintTop_toBottomOf="@+id/imageTutorial"
+        tools:text="@string/tutorial_item_title"/>
 
     <TextView
         android:id="@+id/infoTutorial"
         style="@style/HelveticaNeueLight16.LightCoral"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/tutorial_item_info_margin_top"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
         app:layout_constraintRight_toLeftOf="@+id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@+id/titleTutorial"
-        tools:text="Para disfrutar de las ventajas de Hamp empieza por registrarte en la app. De lo demás, nos encargamos nosotros!" />
+        tools:text="@string/tutorial_item_info"/>
 
 </android.support.constraint.ConstraintLayout>

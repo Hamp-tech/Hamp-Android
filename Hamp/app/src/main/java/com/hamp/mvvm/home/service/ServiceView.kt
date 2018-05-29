@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import com.hamp.R
 import com.hamp.domain.Service
 import com.hamp.extensions.loadImg
-import kotlinx.android.synthetic.main.service_item.view.*
+import kotlinx.android.synthetic.main.item_service.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class ServiceView @JvmOverloads constructor(
@@ -19,7 +19,7 @@ class ServiceView @JvmOverloads constructor(
     private var serviceViewQuantityListener: ServiceViewQuantityListener? = null
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.service_item, this, true)
+        LayoutInflater.from(context).inflate(R.layout.item_service, this, true)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
 

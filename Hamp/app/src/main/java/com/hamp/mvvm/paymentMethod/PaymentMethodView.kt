@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.hamp.R
 import com.hamp.domain.Card
-import kotlinx.android.synthetic.main.payment_method_item.view.*
+import kotlinx.android.synthetic.main.item_payment_method.view.*
 
 class PaymentMethodView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -18,7 +18,7 @@ class PaymentMethodView @JvmOverloads constructor(
     private var card: Card? = null
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.payment_method_item, this, true)
+        LayoutInflater.from(context).inflate(R.layout.item_payment_method, this, true)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
     }

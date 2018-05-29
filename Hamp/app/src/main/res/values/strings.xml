@@ -27,6 +27,9 @@
     <string name="error_email_empty">Email no válido</string>
     <string name="error_name_empty">Por favor introduce tu nombre</string>
     <string name="error_surname_empty">Por favor introduce tu apellido</string>
+    <!--TUTORIAL ACTIVTY-->
+    <string name="tutorial_item_title">Escoge el servicio</string>
+    <string name="tutorial_item_info">Para disfrutar de las ventajas de Hamp empieza por registrarte en la app. De lo demás, nos encargamos nosotros!</string>
     <!--START ACTIVTY-->
     <string name="main_start_text">Haz la colada más\nfácil que nunca.</string>
     <string name="already_have_account">¿Ya tienes cuenta?</string>

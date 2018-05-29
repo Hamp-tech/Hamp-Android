@@ -3,7 +3,6 @@ package com.hamp.mvvm.tutorial
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.support.v4.view.ViewPager
-import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.di.Injectable
@@ -67,7 +66,6 @@ class TutorialActivity : BaseActivity(), Injectable, ViewPager.OnPageChangeListe
             startButton.isEnabled = true
             startButton.animate().alpha(1f)
         } else {
-            startButton.visibility = View.GONE
             startButton.animate().alpha(0f)
             startButton.isEnabled = false
         }

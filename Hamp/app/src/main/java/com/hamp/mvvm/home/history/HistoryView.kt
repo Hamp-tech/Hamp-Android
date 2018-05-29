@@ -16,7 +16,7 @@ class HistoryView @JvmOverloads constructor(
 //    var amount = 0
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.history_item, this, true)
+        LayoutInflater.from(context).inflate(R.layout.item_history, this, true)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
     }
