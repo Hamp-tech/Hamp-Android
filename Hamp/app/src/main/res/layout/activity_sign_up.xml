@@ -9,41 +9,90 @@
     tools:context="com.hamp.mvvm.signup.SignUpActivity">
     <!--android:background="@drawable/start_bg"-->
 
-    <include
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineVerticalLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineVerticalRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <View
         android:id="@+id/signUpToolbar"
-        layout="@layout/signup_login_toolbar"
         android:layout_width="0dp"
         android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="@dimen/signup_login_five_bag_size"
+        android:layout_height="@dimen/signup_login_five_bag_size"
+        app:layout_constraintBottom_toBottomOf="@id/signUpToolbar"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineVerticalLeft"
+        app:layout_constraintRight_toRightOf="@id/guidelineVerticalRight"
+        app:layout_constraintTop_toTopOf="@id/signUpToolbar"
+        app:srcCompat="@drawable/five_bag_icon" />
+
+    <TextView
+        android:id="@+id/cancel"
+        style="@style/HelveticaNeueRegular13.Razzmatazz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/cancel_top_bottom_padding"
+        android:paddingEnd="@dimen/signup_login_cancel_padding_right"
+        android:paddingTop="@dimen/cancel_top_bottom_padding"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="@id/signUpToolbar"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineVerticalLeft"
+        app:layout_constraintTop_toTopOf="@id/signUpToolbar" />
+
+    <TextView
+        android:id="@+id/enter"
+        style="@style/HelveticaNeueRegular13.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/hamp_default_button"
+        android:paddingBottom="@dimen/enter_padding_top_bottom"
+        android:paddingEnd="@dimen/enter_lateral_padding"
+        android:paddingStart="@dimen/enter_lateral_padding"
+        android:paddingTop="@dimen/enter_padding_top_bottom"
+        android:text="@string/enter"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/signUpToolbar"
+        app:layout_constraintRight_toRightOf="@+id/guidelineVerticalRight"
+        app:layout_constraintTop_toTopOf="@id/signUpToolbar" />
+
+    <View
+        android:id="@+id/signUpToolbarDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/razzmatazz"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpToolbar" />
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
         android:theme="@style/HampScrollView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpToolbar">
+        app:layout_constraintLeft_toLeftOf="@id/guidelineVerticalLeft"
+        app:layout_constraintRight_toRightOf="@id/guidelineVerticalRight"
+        app:layout_constraintTop_toBottomOf="@+id/signUpToolbarDivider">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <android.support.constraint.Guideline
-                android:id="@+id/guidelineVerticalLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.04" />
-
-            <android.support.constraint.Guideline
-                android:id="@+id/guidelineVerticalRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.96" />
 
             <TextView
                 android:id="@+id/signUpText"
@@ -52,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/signup_text_margin_top"
                 android:text="@string/sign_up"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -64,8 +113,8 @@
                 android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:tag="@string/name"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpText" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -77,8 +126,8 @@
                 android:hint="@string/surname"
                 android:inputType="textPersonName"
                 android:tag="@string/surname"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpName" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -90,8 +139,8 @@
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:tag="@string/email"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpSurname" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -104,8 +153,8 @@
                 android:inputType="number"
                 android:maxLength="9"
                 android:tag="@string/phone"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -121,8 +170,8 @@
                 android:longClickable="false"
                 android:tag="@string/bday"
                 android:textAppearance="@style/HelveticaNeueMedium20.Razzmatazz"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpPhone" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -134,8 +183,8 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:tag="@string/password"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpBday" />
 
             <com.hamp.mvvm.views.HampEditText
@@ -147,8 +196,8 @@
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:tag="@string/confirm_password"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpPassword" />
 
             <RadioGroup
@@ -160,8 +209,8 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/guidelineVerticalLeft"
-                app:layout_constraintRight_toLeftOf="@+id/guidelineVerticalRight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signUpConfirmPassword">
 
                 <android.support.v7.widget.AppCompatRadioButton

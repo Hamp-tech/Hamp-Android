@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
+import com.hamp.common.NetworkViewState
 import com.hamp.di.Injectable
 import com.hamp.extensions.*
 import com.hamp.mvvm.home.HomeActivity
@@ -45,21 +46,37 @@ class LoginActivity : BaseActivity(), Injectable {
     private fun setUpViewModel() {
         loginViewModel = getViewModel(viewModelFactory)
 
-        observe(loginViewModel.loading, { it?.let { showLoading(it) } })
-        loginViewModel.validationSucceeded.observe(this, { it?.let { if (it) validationSucceeded() } })
-        loginViewModel.validationErrors.observe(this, { it?.let { validationFailed(it) } })
-        loginViewModel.loginError.observe(this, { it?.let { loginError(it) } })
-        loginViewModel.loginSucceed.observe(this, { it?.let { if (it) loginSucceed() } })
+        observe(loginViewModel.validationStatus, { it?.let { validatorStateBehaviour(it) } })
+        observe(loginViewModel.loginStatus, { it?.let { loginStateBehaviour(it) } })
+    }
+
+    private fun validatorStateBehaviour(networkViewState: NetworkViewState) {
+        when (networkViewState) {
+            is NetworkViewState.Loading -> showLoading(networkViewState.show)
+            is NetworkViewState.Success<*> -> validationSucceeded()
+            is NetworkViewState.Error -> validationFailed(networkViewState.error)
+        }
+    }
+
+    private fun loginStateBehaviour(networkViewState: NetworkViewState) {
+        when (networkViewState) {
+            is NetworkViewState.Loading -> showLoading(networkViewState.show)
+            is NetworkViewState.Success<*> -> loginSucceed()
+            is NetworkViewState.Error -> loginError(networkViewState.error)
+        }
     }
 
     private fun validationSucceeded() = doLogin()
 
-    private fun validationFailed(errors: List<Int>) {
-        if (errors.isNotEmpty()) hideKeyboard()
-        errors.forEach {
-            when (it) {
-                R.string.error_email_empty -> loginEmail.error = getString(it)
-                R.string.error_password_length -> loginPassword.error = getString(it)
+    private fun validationFailed(errors: Any) {
+        if (errors is List<*> && errors.isNotEmpty()) {
+            hideKeyboard()
+
+            errors.forEach {
+                when (it as? Int) {
+                    R.string.error_email_empty -> loginEmail.error = getString(it)
+                    R.string.error_password_length -> loginPassword.error = getString(it)
+                }
             }
         }
     }
@@ -67,11 +84,6 @@ class LoginActivity : BaseActivity(), Injectable {
     private fun doLogin() {
         hideKeyboard()
         loginViewModel.login(loginEmail.trim(), loginPassword.trim())
-    }
-
-    private fun showLoading(show: Boolean) {
-        if (show) loadingView.visibility = View.VISIBLE
-        else loadingView.visibility = View.GONE
     }
 
     private fun loginSucceed() {
@@ -85,4 +97,10 @@ class LoginActivity : BaseActivity(), Injectable {
     private fun loginError(error: Any) = showErrorSnackBar(error, Snackbar.LENGTH_LONG)
 
     private fun goToRememberPassword() = startActivity<RestoreActivity>()
+
+    private fun showLoading(show: Boolean) {
+        if (show) loadingView.visibility = View.VISIBLE
+        else loadingView.visibility = View.GONE
+    }
+
 }

@@ -20,6 +20,8 @@ import javax.inject.Singleton
 @Singleton
 class RestApi {
 
+    private val OS = "Android"
+
     private val hampApi: HampApi
     private val retrofitHamp: Retrofit
 //    private val gangway = "gangway"
@@ -78,7 +80,10 @@ class RestApi {
 
     fun signIn(signInRequest: SignInRequest) = hampApi.signIn(signInRequest)
 
-    fun signUp(user: User) = hampApi.signUp(user.apply { language = getLanguageTag() })
+    fun signUp(user: User) = hampApi.signUp(user.apply {
+        language = getLanguageTag()
+        os = OS
+    })
 
     fun updateUser(user: User, userId: String) = hampApi.updateUser(user, userId)
 

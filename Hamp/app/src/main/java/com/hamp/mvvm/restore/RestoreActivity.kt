@@ -10,12 +10,12 @@ import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.Email
 import kotlinx.android.synthetic.main.activity_restore.*
-import kotlinx.android.synthetic.main.signup_login_toolbar.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 @BaseActivity.Animation(BaseActivity.PUSH)
 class RestoreActivity : BaseActivity(), Validator.ValidationListener {
-    lateinit private var validator: Validator
+
+    private lateinit var validator: Validator
 
     @Email(messageResId = R.string.error_email_empty)
     lateinit var email: HampEditText
@@ -25,9 +25,6 @@ class RestoreActivity : BaseActivity(), Validator.ValidationListener {
         setContentView(R.layout.activity_restore)
 
         window.setBackgroundDrawableResource(R.drawable.start_bg_white)
-
-        toolbarImage.visibility = View.GONE
-        enter.visibility = View.GONE
 
         initializeValidatorAndInputs()
 

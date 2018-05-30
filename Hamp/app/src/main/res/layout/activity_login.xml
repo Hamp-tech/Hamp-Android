@@ -66,6 +66,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         android:theme="@style/HampScrollView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/guidelineVerticalLeft"

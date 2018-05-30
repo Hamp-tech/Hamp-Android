@@ -4,13 +4,13 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Patterns
 import com.hamp.R
 import com.hamp.common.BaseViewModel
+import com.hamp.common.NetworkViewState
 import com.hamp.domain.request.SignInRequest
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.net.UnknownHostException
@@ -21,11 +21,8 @@ class LoginViewModel @Inject constructor(
         private var prefs: PreferencesManager
 ) : BaseViewModel() {
 
-    val loading = MutableLiveData<Boolean>()
-    val validationErrors = MutableLiveData<List<Int>>()
-    val validationSucceeded = MutableLiveData<Boolean>()
-    val loginError = MutableLiveData<Any>()
-    val loginSucceed = MutableLiveData<Boolean>()
+    val validationStatus = MutableLiveData<NetworkViewState>()
+    val loginStatus = MutableLiveData<NetworkViewState>()
 
     fun validateForm(loginEmail: String, loginPassword: String) {
         val errors = arrayListOf<Int>()
@@ -33,48 +30,42 @@ class LoginViewModel @Inject constructor(
         if (!Patterns.EMAIL_ADDRESS.matcher(loginEmail).matches()) errors.add(R.string.error_email_empty)
         if (loginPassword.length < 6) errors.add(R.string.error_password_length)
 
-        if (errors.isEmpty()) {
-            validationSucceeded.value = true
-            validationErrors.value = emptyList()
-        } else {
-            validationErrors.value = errors
-            validationSucceeded.value = false
-        }
+        if (errors.isEmpty()) validationStatus.postValue(NetworkViewState.Success(true))
+        else validationStatus.postValue(NetworkViewState.Error(errors))
     }
 
     fun login(loginEmail: String, loginPassword: String) {
-        loading.value = true
-
         val signInRequest = SignInRequest(loginEmail, loginPassword)
 
-        disposables.add(repository.signIn(signInRequest)
+        repository.signIn(signInRequest)
                 .flatMapCompletable {
                     repository.saveUser(it.data)
                             .doOnComplete { it.data.identifier.notNull { prefs.userId = it } }
                 }
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { loginStatus.postValue(NetworkViewState.Loading(true)) }
+//                .doAfterTerminate { loginStatus.postValue(NetworkViewState.Loading(false)) }
                 .subscribeBy(
                         onComplete = {
                             logd("[login.onSuccess]")
-
-                            loading.value = false
-                            loginSucceed.value = true
+                            loginStatus.postValue(NetworkViewState.Success(true))
                         },
                         onError = { e ->
                             loge("[login.onError]" + e.printStackTrace())
-                            loading.value = false
-
+                            loginStatus.postValue(NetworkViewState.Loading(false))
                             when (e) {
                                 is retrofit2.HttpException -> {
                                     e.response().errorBody()?.let {
-                                        loginError.value = repository.api.convertError(it).message
+                                        loginStatus.postValue(NetworkViewState.Error(
+                                                repository.api.convertError(it).message))
                                     }
                                 }
-                                is UnknownHostException -> loginError.value = R.string.internet_connection_error
-                                else -> loginError.value = R.string.generic_error
+
+                                is UnknownHostException -> loginStatus.postValue(NetworkViewState.Error(
+                                        R.string.internet_connection_error))
+                                else -> loginStatus.postValue(NetworkViewState.Error(R.string.generic_error))
                             }
                         }
-                ))
+                )
     }
 }

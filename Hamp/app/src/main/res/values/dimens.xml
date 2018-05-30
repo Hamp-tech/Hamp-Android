@@ -3,6 +3,7 @@
 
     <!--COMMON-->
     <dimen name="hamp_button_padding_top_bottom">8dp</dimen>
+    <dimen name="hamp_underline_size">1dp</dimen>
 
     <!--TUTORIAL DIMENS-->
     <dimen name="tutorial_circle">240dp</dimen>
@@ -35,6 +36,12 @@
     <dimen name="signup_radio_group_margin_top">26dp</dimen>
     <dimen name="signup_radio_group_margin_bottom">20dp</dimen>
     <dimen name="signup_radio_button_margin_lateral">10dp</dimen>
+
+    <!--RESTORE PASSWORD-->
+    <dimen name="signup_title_margin_top">30dp</dimen>
+    <dimen name="signup_main_margin_top">18dp</dimen>
+    <dimen name="signup_recovery_email">50dp</dimen>
+    <dimen name="signup_recovery_button_bottom_margin">50dp</dimen>
 
     <!--PAYMENT INFO DIMENS-->
     <dimen name="skip_continue_padding_top_bottom">8dp</dimen>

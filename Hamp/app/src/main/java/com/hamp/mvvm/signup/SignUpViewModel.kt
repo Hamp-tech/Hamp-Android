@@ -5,13 +5,13 @@ import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
 import com.hamp.common.BaseViewModel
+import com.hamp.common.NetworkViewState
 import com.hamp.db.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.net.UnknownHostException
@@ -22,12 +22,8 @@ class SignUpViewModel @Inject constructor(
         private var prefs: PreferencesManager
 ) : BaseViewModel() {
 
-    val loading = MutableLiveData<Boolean>()
-    val validationErrors = MutableLiveData<List<Int>>()
-    val validationSucceeded = MutableLiveData<Boolean>()
-
-    val signUpError = MutableLiveData<Any>()
-    val signUpSucceed = MutableLiveData<Boolean>()
+    val validationStatus = MutableLiveData<NetworkViewState>()
+    val signUpStatus = MutableLiveData<NetworkViewState>()
 
     fun validateForm(signUpName: String, signUpSurname: String, signUpEmail: String,
                      signUpPhone: String, signUpBday: String, signUpPassword: String,
@@ -42,19 +38,12 @@ class SignUpViewModel @Inject constructor(
         if (signUpPassword.length < 6) errors.add(R.string.error_password_length)
         if (signUpConfirmPassword != signUpPassword) errors.add(R.string.error_confirm_password)
 
-        if (errors.isEmpty()) {
-            validationSucceeded.value = true
-            validationErrors.value = emptyList()
-        } else {
-            validationErrors.value = errors
-            validationSucceeded.value = false
-        }
+        if (errors.isEmpty()) validationStatus.postValue(NetworkViewState.Success(true))
+        else validationStatus.postValue(NetworkViewState.Error(errors))
     }
 
     fun signUp(email: String, password: String, name: String, surname: String, phone: String,
                birthday: String, gender: String) {
-        loading.value = true
-
         val tokenFCM = FirebaseInstanceId.getInstance().token ?: ""
 
         val user = User().apply {
@@ -66,34 +55,35 @@ class SignUpViewModel @Inject constructor(
             this.birthday = birthday
             this.gender = gender
             this.tokenFCM = tokenFCM
-            this.os = "Android"
         }
 
-        disposables.add(repository.signUp(user)
+        repository.signUp(user)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { signUpStatus.postValue(NetworkViewState.Loading(true)) }
+//                .doAfterTerminate { signUpStatus.postValue(NetworkViewState.Loading(false)) }
                 .subscribeBy(
                         onSuccess = {
                             logd("[signUp.onSuccess]")
-                            loading.value = false
                             repository.saveUser(it.data).subscribeOn(Schedulers.io())
                             it.data.identifier.notNull { prefs.userId = it }
-                            signUpSucceed.value = true
+                            signUpStatus.postValue(NetworkViewState.Success(true))
                         },
                         onError = { e ->
                             loge("[signUp.onError]" + e.printStackTrace())
-                            loading.value = false
-
+                            signUpStatus.postValue(NetworkViewState.Loading(false))
                             when (e) {
                                 is retrofit2.HttpException -> {
                                     e.response().errorBody()?.let {
-                                        signUpError.value = repository.api.convertError(it).message
+                                        signUpStatus.postValue(NetworkViewState.Error(
+                                                repository.api.convertError(it).message))
                                     }
                                 }
-                                is UnknownHostException -> signUpError.value = R.string.internet_connection_error
-                                else -> signUpError.value = R.string.generic_error
+
+                                is UnknownHostException -> signUpStatus.postValue(NetworkViewState.Error(
+                                        R.string.internet_connection_error))
+                                else -> signUpStatus.postValue(NetworkViewState.Error(R.string.generic_error))
                             }
                         }
-                ))
+                )
     }
 }

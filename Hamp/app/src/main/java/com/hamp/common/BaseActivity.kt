@@ -2,12 +2,10 @@ package com.hamp.common
 
 import android.os.Bundle
 import android.support.annotation.IntDef
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import com.hamp.R
-import com.hamp.extensions.showErrorSnackBar
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -86,10 +84,5 @@ abstract class BaseActivity : AppCompatActivity() {
             }
         }
     }
-
-    fun showInternetNotAvailable() =
-            showErrorSnackBar(getString(R.string.internet_connection_error), Snackbar.LENGTH_LONG)
-
-    open fun showError(message: Int) = showErrorSnackBar(getString(message), Snackbar.LENGTH_LONG)
 }
 
