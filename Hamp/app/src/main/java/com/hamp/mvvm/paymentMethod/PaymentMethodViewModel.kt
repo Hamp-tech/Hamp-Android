@@ -2,7 +2,9 @@ package com.hamp.mvvm.paymentMethod
 
 import android.arch.lifecycle.MutableLiveData
 import com.hamp.R
+import com.hamp.api.exception.ServerException
 import com.hamp.common.BaseViewModel
+import com.hamp.common.NetworkViewState
 import com.hamp.domain.Book
 import com.hamp.domain.Card
 import com.hamp.domain.Point
@@ -17,14 +19,13 @@ import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 class PaymentMethodViewModel @Inject constructor(
         private val userRepository: UserRepository,
         private val serviceRepository: ServiceRepository,
         private val transactionRepository: TransactionRepository,
-        private var prefs: PreferencesManager
+        private val prefs: PreferencesManager
 ) : BaseViewModel() {
 
     val loading = MutableLiveData<Boolean>()
@@ -73,12 +74,13 @@ class PaymentMethodViewModel @Inject constructor(
                             onError = { e ->
                                 loge("[finalizePurchase.onError]" + e.printStackTrace())
                                 when (e) {
-                                    is retrofit2.HttpException -> {
-                                        e.response().errorBody()?.let {
-                                            transactionError.value = userRepository.api.convertError(it).message
-                                        }
-                                    }
-                                    is UnknownHostException -> transactionError.value = R.string.internet_connection_error
+//                                    is retrofit2.HttpException -> {
+//                                        e.response().errorBody()?.let {
+//                                            transactionError.value = userRepository.api.convertError(it).message
+//                                        }
+//                                    }
+//                                    is UnknownHostException -> transactionError.value = R.string.internet_connection_error
+                                    is ServerException -> e.message.notNull { NetworkViewState.Error(it) }
                                     else -> transactionError.value = R.string.generic_error
                                 }
                             })

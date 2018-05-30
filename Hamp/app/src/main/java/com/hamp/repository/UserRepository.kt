@@ -1,32 +1,52 @@
 package com.hamp.repository
 
-import com.hamp.api.RestApi
-import com.hamp.db.dao.UserDao
 import com.hamp.db.domain.User
 import com.hamp.domain.request.SignInRequest
+import com.hamp.domain.response.UserResponse
 import io.reactivex.Completable
-import javax.inject.Inject
-import javax.inject.Singleton
+import io.reactivex.Single
 
-@Singleton
-class UserRepository @Inject constructor(
-        val api: RestApi,
-        private val userDao: UserDao
-) {
+/**
+ * Repository to handle user
+ */
+interface UserRepository {
 
-    fun signUp(user: User) = api.signUp(user)
+    /**
+     * Create user (SignUp)
+     *
+     * @param user User with the information required
+     */
+    fun signUp(user: User): Single<UserResponse>
 
-    fun signIn(signInRequest: SignInRequest) = api.signIn(signInRequest)
+    /**
+     * Login
+     *
+     * @param signInRequest Email and password
+     */
+    fun signIn(signInRequest: SignInRequest): Single<UserResponse>
 
-    fun updateUser(user: User, userId: String) = api.updateUser(user, userId)
+    /**
+     * Update user from the API
+     *
+     * @param user User with the information updated
+     * @param userId user Id
+     */
+    fun updateUser(user: User, userId: String): Single<UserResponse>
 
-    fun getDBUser() = userDao.getUser()
+    /**
+     * Get user from the database
+     */
+    fun getDBUser(): Single<User>
 
-    fun saveUser(user: User): Completable {
-        return Completable.fromCallable { userDao.saveUser(user) }
-    }
+    /**
+     * Insert user into the database
+     *
+     * @param user The logged user
+     */
+    fun saveUser(user: User): Completable
 
-    fun deleteUser(): Completable {
-        return Completable.fromCallable { userDao.deleteAll() }
-    }
+    /**
+     * Delete user from the database
+     */
+    fun deleteUser(): Completable
 }

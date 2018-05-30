@@ -1,19 +1,15 @@
 package com.hamp.extensions
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.support.design.widget.Snackbar
-import android.support.v4.app.FragmentActivity
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.hamp.R
 import org.jetbrains.anko.contentView
 
-fun Activity.showErrorSnackBar(message: Any, duration: Int) {
+fun Activity.showErrorSnackBar(message: Any? = null, duration: Int) {
     hideKeyboard()
 
     val messageText = message as? String ?: if (message is Int) getString(message)

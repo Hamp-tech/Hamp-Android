@@ -1,7 +1,6 @@
 package com.hamp.mvvm.restore
 
 import android.os.Bundle
-import android.view.View
 import com.hamp.R
 import com.hamp.common.BaseActivity
 import com.hamp.extensions.hideKeyboard
@@ -40,7 +39,7 @@ class RestoreActivity : BaseActivity(), Validator.ValidationListener {
     }
 
     override fun onValidationSucceeded() {
-//        auth.sendPasswordResetEmail(email.text.toString().trim())
+//        TODO()
     }
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {

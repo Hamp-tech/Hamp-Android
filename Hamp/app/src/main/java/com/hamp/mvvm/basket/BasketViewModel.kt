@@ -5,14 +5,14 @@ import com.hamp.common.BaseViewModel
 import com.hamp.domain.Basket
 import com.hamp.domain.Service
 import com.hamp.extensions.round
-import com.hamp.repository.ServiceRepository
+import com.hamp.repository.ServiceRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class BasketViewModel @Inject constructor(
-        val repository: ServiceRepository
+        val repository: ServiceRepositoryImpl
 ) : BaseViewModel() {
 
     val loading = MutableLiveData<Boolean>()

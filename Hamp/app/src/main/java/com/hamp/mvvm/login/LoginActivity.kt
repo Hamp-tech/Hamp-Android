@@ -46,13 +46,12 @@ class LoginActivity : BaseActivity(), Injectable {
     private fun setUpViewModel() {
         loginViewModel = getViewModel(viewModelFactory)
 
-        observe(loginViewModel.validationStatus, { it?.let { validatorStateBehaviour(it) } })
-        observe(loginViewModel.loginStatus, { it?.let { loginStateBehaviour(it) } })
+        observe(loginViewModel.validationStatus, { it.notNull { validatorStateBehaviour(it) } })
+        observe(loginViewModel.loginStatus, { it.notNull { loginStateBehaviour(it) } })
     }
 
     private fun validatorStateBehaviour(networkViewState: NetworkViewState) {
         when (networkViewState) {
-            is NetworkViewState.Loading -> showLoading(networkViewState.show)
             is NetworkViewState.Success<*> -> validationSucceeded()
             is NetworkViewState.Error -> validationFailed(networkViewState.error)
         }
@@ -60,9 +59,12 @@ class LoginActivity : BaseActivity(), Injectable {
 
     private fun loginStateBehaviour(networkViewState: NetworkViewState) {
         when (networkViewState) {
-            is NetworkViewState.Loading -> showLoading(networkViewState.show)
+            is NetworkViewState.Loading -> showLoading(true)
             is NetworkViewState.Success<*> -> loginSucceed()
-            is NetworkViewState.Error -> loginError(networkViewState.error)
+            is NetworkViewState.Error -> {
+                showLoading(false)
+                loginError(networkViewState.error)
+            }
         }
     }
 

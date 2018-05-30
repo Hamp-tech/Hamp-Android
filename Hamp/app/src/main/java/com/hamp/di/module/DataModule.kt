@@ -5,6 +5,7 @@ import com.hamp.api.RestApi
 import com.hamp.db.HampDatabase
 import com.hamp.db.HampDatabase.Companion.retrieveDB
 import com.hamp.preferences.PreferencesManager
+import com.hamp.repository.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -31,4 +32,16 @@ class DataModule {
     @Singleton
     @Provides
     fun provideServiceQuantityDao(db: HampDatabase) = db.serviceQuantityDao()
+
+    @Provides
+    fun provideUserRepository(repository: UserRepositoryImpl): UserRepository = repository
+
+    @Provides
+    fun provideCardRepository(repository: CardRepositoryImpl): CardRepository = repository
+
+    @Provides
+    fun provideServiceRepository(repository: ServiceRepositoryImpl): ServiceRepository = repository
+
+    @Provides
+    fun provideTransactionRepository(repository: TransactionRepositoryImpl): TransactionRepository = repository
 }

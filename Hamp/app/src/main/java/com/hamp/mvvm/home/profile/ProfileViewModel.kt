@@ -2,17 +2,21 @@ package com.hamp.mvvm.home.profile
 
 import android.arch.lifecycle.MutableLiveData
 import com.hamp.R
+import com.hamp.api.exception.ServerException
 import com.hamp.common.BaseViewModel
+import com.hamp.common.NetworkViewState
 import com.hamp.db.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
+import com.hamp.extensions.notNull
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.ServiceRepository
+import com.hamp.repository.ServiceRepositoryImpl
 import com.hamp.repository.UserRepository
+import com.hamp.repository.UserRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
@@ -60,12 +64,13 @@ class ProfileViewModel @Inject constructor(
                             loge("[updateUser.onError]" + e.printStackTrace())
 
                             when (e) {
-                                is retrofit2.HttpException -> {
-                                    e.response().errorBody()?.let {
-                                        updateError.value = userRepository.api.convertError(it).message
-                                    }
-                                }
-                                is UnknownHostException -> updateError.value = R.string.internet_connection_error
+//                                is retrofit2.HttpException -> {
+//                                    e.response().errorBody()?.let {
+//                                        updateError.value = userRepository.api.convertError(it).message
+//                                    }
+//                                }
+//                                is UnknownHostException -> updateError.value = R.string.internet_connection_error
+                                is ServerException -> e.message.notNull { NetworkViewState.Error(it) }
                                 else -> updateError.value = R.string.generic_error
                             }
                         }

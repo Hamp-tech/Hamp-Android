@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
+import com.hamp.api.exception.ServerException
 import com.hamp.common.BaseViewModel
 import com.hamp.common.NetworkViewState
 import com.hamp.db.domain.User
@@ -12,14 +13,16 @@ import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
 import com.hamp.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.net.UnknownHostException
+import java.io.IOException
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(
         private val repository: UserRepository,
-        private var prefs: PreferencesManager
+        private val prefs: PreferencesManager
 ) : BaseViewModel() {
 
     val validationStatus = MutableLiveData<NetworkViewState>()
@@ -57,31 +60,25 @@ class SignUpViewModel @Inject constructor(
             this.tokenFCM = tokenFCM
         }
 
-        repository.signUp(user)
+        disposables += repository.signUp(user)
                 .subscribeOn(Schedulers.io())
-                .doOnSubscribe { signUpStatus.postValue(NetworkViewState.Loading(true)) }
-//                .doAfterTerminate { signUpStatus.postValue(NetworkViewState.Loading(false)) }
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { signUpStatus.value = NetworkViewState.Loading() }
                 .subscribeBy(
                         onSuccess = {
                             logd("[signUp.onSuccess]")
                             repository.saveUser(it.data).subscribeOn(Schedulers.io())
                             it.data.identifier.notNull { prefs.userId = it }
-                            signUpStatus.postValue(NetworkViewState.Success(true))
+                            signUpStatus.value = NetworkViewState.Success(true)
                         },
                         onError = { e ->
                             loge("[signUp.onError]" + e.printStackTrace())
-                            signUpStatus.postValue(NetworkViewState.Loading(false))
                             when (e) {
-                                is retrofit2.HttpException -> {
-                                    e.response().errorBody()?.let {
-                                        signUpStatus.postValue(NetworkViewState.Error(
-                                                repository.api.convertError(it).message))
-                                    }
-                                }
-
-                                is UnknownHostException -> signUpStatus.postValue(NetworkViewState.Error(
-                                        R.string.internet_connection_error))
-                                else -> signUpStatus.postValue(NetworkViewState.Error(R.string.generic_error))
+                                is ServerException -> e.message.notNull { NetworkViewState.Error(it) }
+                                is IOException -> signUpStatus.value = NetworkViewState.Error(
+                                        R.string.internet_connection_error)
+                                else -> signUpStatus.value = NetworkViewState.Error(
+                                        R.string.generic_error)
                             }
                         }
                 )

@@ -96,7 +96,6 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
 
     private fun validatorStateBehaviour(networkViewState: NetworkViewState) {
         when (networkViewState) {
-            is NetworkViewState.Loading -> showLoading(networkViewState.show)
             is NetworkViewState.Success<*> -> validationSucceeded()
             is NetworkViewState.Error -> validationFailed(networkViewState.error)
         }
@@ -104,9 +103,12 @@ class SignUpActivity : BaseActivity(), Injectable, DatePickerDialog.OnDateSetLis
 
     private fun signUpStateBehaviour(networkViewState: NetworkViewState) {
         when (networkViewState) {
-            is NetworkViewState.Loading -> showLoading(networkViewState.show)
+            is NetworkViewState.Loading -> showLoading(true)
             is NetworkViewState.Success<*> -> signUpSucceed()
-            is NetworkViewState.Error -> signUpError(networkViewState.error)
+            is NetworkViewState.Error -> {
+                showLoading(false)
+                signUpError(networkViewState.error)
+            }
         }
     }
 

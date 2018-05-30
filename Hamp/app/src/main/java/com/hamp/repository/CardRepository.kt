@@ -1,15 +1,19 @@
 package com.hamp.repository
 
-import com.hamp.api.RestApi
 import com.hamp.domain.Card
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.hamp.domain.response.CardResponse
+import io.reactivex.Single
 
-@Singleton
-class CardRepository @Inject constructor(
-        val api: RestApi
-) {
+/**
+ * Repository to handle cards
+ */
+interface CardRepository {
 
-    fun addCard(card: Card, userId: String) = api.addCard(card, userId)
-
+    /**
+     * Add card to a user
+     *
+     * @param card Card with the information required
+     * @param userId user Id
+     */
+    fun addCard(card: Card, userId: String): Single<CardResponse>
 }

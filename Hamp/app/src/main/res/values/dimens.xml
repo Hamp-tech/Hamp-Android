@@ -45,5 +45,22 @@
 
     <!--PAYMENT INFO DIMENS-->
     <dimen name="skip_continue_padding_top_bottom">8dp</dimen>
+    <dimen name="skip_continue_lateral_margin">20dp</dimen>
+    <dimen name="skip_continue_margin_bottom">50dp</dimen>
+    <dimen name="payment_info_loading_view_elevation">6dp</dimen>
+    <dimen name="payment_info_card_title_margin_top">30dp</dimen>
+    <dimen name="payment_info_card_view_margin_top">35dp</dimen>
+    <dimen name="payment_info_card_view_corner_radius">8dp</dimen>
+    <dimen name="payment_info_card_view_card_elevation">6dp</dimen>
+    <dimen name="payment_info_linear_lateral_padding">16dp</dimen>
+    <dimen name="payment_info_linear_vertical_padding">14dp</dimen>
+    <dimen name="payment_info_masked_drawable_padding">24dp</dimen>
+    <dimen name="payment_info_height_line">43dp</dimen>
+    <dimen name="payment_info_divider_height">0.75dp</dimen>
+    <dimen name="payment_info_divider_margin_bottom">3dp</dimen>
+    <dimen name="payment_info_divider_margin_top">12dp</dimen>
+    <dimen name="payment_info_divider2_margin_bottom">18dp</dimen>
+    <dimen name="payment_info_divider2_margin_top">3dp</dimen>
+    <dimen name="payment_info_cardholder_margin_bottom">6dp</dimen>
 
 </resources>

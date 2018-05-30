@@ -1,15 +1,19 @@
 package com.hamp.repository
 
-import com.hamp.api.RestApi
 import com.hamp.domain.Transaction
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.hamp.domain.response.BookingResponse
+import io.reactivex.Single
 
-@Singleton
-class TransactionRepository @Inject constructor(
-        val api: RestApi
-) {
+/**
+ * Repository to handle transactions
+ */
+interface TransactionRepository {
 
-    fun createTransaction(transaction: Transaction, userId: String) = api.createTransaction(transaction, userId)
-
+    /**
+     * Create Transaction
+     *
+     * @param transaction Transaction with the information required
+     * @param userId user Id
+     */
+    fun createTransaction(transaction: Transaction, userId: String): Single<BookingResponse>
 }

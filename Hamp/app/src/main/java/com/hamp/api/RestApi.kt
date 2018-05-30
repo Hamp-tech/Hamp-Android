@@ -1,15 +1,13 @@
 package com.hamp.api
 
 import com.hamp.BuildConfig
+import com.hamp.api.interceptor.ServerErrorInterceptor
 import com.hamp.db.domain.User
 import com.hamp.domain.Card
 import com.hamp.domain.Transaction
 import com.hamp.domain.request.SignInRequest
-import com.hamp.domain.response.GenericResponse
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,8 +27,10 @@ class RestApi {
     init {
         val httpClient = createHttpClient()
         val logging = createLoggingInterceptor()
+        val serverError = createServerInterceptor()
 
         httpClient.addInterceptor(logging)
+        httpClient.addInterceptor(serverError)
 
         retrofitHamp = createRetrofit(httpClient)
 
@@ -59,6 +59,8 @@ class RestApi {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
+    private fun createServerInterceptor() = ServerErrorInterceptor()
+
     private fun createRetrofit(httpClient: OkHttpClient.Builder): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
@@ -71,12 +73,12 @@ class RestApi {
 
     ///////////// HAMP ////////////////
 
-    fun convertError(responseBody: ResponseBody): GenericResponse {
-        val converter: Converter<ResponseBody, GenericResponse> =
-                retrofitHamp.responseBodyConverter(GenericResponse::class.java,
-                        arrayOfNulls<Annotation>(0))
-        return converter.convert(responseBody)
-    }
+//    fun convertError(responseBody: ResponseBody): GenericResponse {
+//        val converter: Converter<ResponseBody, GenericResponse> =
+//                retrofitHamp.responseBodyConverter(GenericResponse::class.java,
+//                        arrayOfNulls<Annotation>(0))
+//        return converter.convert(responseBody)
+//    }
 
     fun signIn(signInRequest: SignInRequest) = hampApi.signIn(signInRequest)
 
