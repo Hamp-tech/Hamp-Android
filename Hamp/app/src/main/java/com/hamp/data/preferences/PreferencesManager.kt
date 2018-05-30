@@ -1,4 +1,4 @@
-package com.hamp.preferences
+package com.hamp.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -1,6 +1,6 @@
 package com.hamp.domain
 
-import com.hamp.db.domain.ServiceQuantity
+import com.hamp.data.db.domain.ServiceQuantity
 
 data class Book(
         val basket: List<ServiceQuantity>,

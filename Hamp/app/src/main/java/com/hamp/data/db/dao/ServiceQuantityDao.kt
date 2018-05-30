@@ -1,11 +1,11 @@
-package com.hamp.db.dao
+package com.hamp.data.db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
 import android.arch.persistence.room.Update
-import com.hamp.db.domain.HampService
-import com.hamp.db.domain.ServiceQuantity
+import com.hamp.data.db.domain.HampService
+import com.hamp.data.db.domain.ServiceQuantity
 import com.hamp.domain.Service
 import io.reactivex.Single
 

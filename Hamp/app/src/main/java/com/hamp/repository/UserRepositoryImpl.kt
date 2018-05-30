@@ -1,8 +1,8 @@
 package com.hamp.repository
 
-import com.hamp.api.RestApi
-import com.hamp.db.dao.UserDao
-import com.hamp.db.domain.User
+import com.hamp.data.api.RestApi
+import com.hamp.data.db.dao.UserDao
+import com.hamp.data.db.domain.User
 import com.hamp.domain.request.SignInRequest
 import io.reactivex.Completable
 import javax.inject.Inject

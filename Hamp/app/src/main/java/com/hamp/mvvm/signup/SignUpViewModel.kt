@@ -4,14 +4,14 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Patterns
 import com.google.firebase.iid.FirebaseInstanceId
 import com.hamp.R
-import com.hamp.api.exception.ServerException
+import com.hamp.data.api.exception.ServerException
 import com.hamp.common.BaseViewModel
 import com.hamp.common.NetworkViewState
-import com.hamp.db.domain.User
+import com.hamp.data.db.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign
@@ -61,20 +61,24 @@ class SignUpViewModel @Inject constructor(
         }
 
         disposables += repository.signUp(user)
+                .flatMapCompletable {
+                    repository.saveUser(it.data)
+                            .doOnComplete { it.data.identifier.notNull { prefs.userId = it } }
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { signUpStatus.value = NetworkViewState.Loading() }
                 .subscribeBy(
-                        onSuccess = {
+                        onComplete = {
                             logd("[signUp.onSuccess]")
-                            repository.saveUser(it.data).subscribeOn(Schedulers.io())
-                            it.data.identifier.notNull { prefs.userId = it }
                             signUpStatus.value = NetworkViewState.Success(true)
                         },
                         onError = { e ->
                             loge("[signUp.onError]" + e.printStackTrace())
                             when (e) {
-                                is ServerException -> e.message.notNull { NetworkViewState.Error(it) }
+                                is ServerException -> e.message.notNull {
+                                    signUpStatus.value = NetworkViewState.Error(it)
+                                }
                                 is IOException -> signUpStatus.value = NetworkViewState.Error(
                                         R.string.internet_connection_error)
                                 else -> signUpStatus.value = NetworkViewState.Error(

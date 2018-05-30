@@ -9,7 +9,7 @@ import com.hamp.di.Injectable
 import com.hamp.mvvm.start.StartActivity
 import com.hamp.mvvm.tutorial.adapter.TutorialAdapter
 import com.hamp.mvvm.tutorial.transformer.FadePageTransformer
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.preferences.PreferencesManager
 import kotlinx.android.synthetic.main.activity_tutorial.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.startActivity

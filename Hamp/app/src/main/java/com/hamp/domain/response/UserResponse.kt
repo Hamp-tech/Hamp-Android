@@ -1,6 +1,6 @@
 package com.hamp.domain.response
 
-import com.hamp.db.domain.User
+import com.hamp.data.db.domain.User
 
 data class UserResponse(
         val code: Int,

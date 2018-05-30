@@ -7,7 +7,7 @@ import com.hamp.di.Injectable
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.start.StartActivity
 import com.hamp.mvvm.tutorial.TutorialActivity
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.preferences.PreferencesManager
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 

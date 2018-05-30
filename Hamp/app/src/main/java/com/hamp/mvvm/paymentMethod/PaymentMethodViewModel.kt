@@ -2,7 +2,7 @@ package com.hamp.mvvm.paymentMethod
 
 import android.arch.lifecycle.MutableLiveData
 import com.hamp.R
-import com.hamp.api.exception.ServerException
+import com.hamp.data.api.exception.ServerException
 import com.hamp.common.BaseViewModel
 import com.hamp.common.NetworkViewState
 import com.hamp.domain.Book
@@ -12,7 +12,7 @@ import com.hamp.domain.Transaction
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.preferences.PreferencesManager
 import com.hamp.repository.ServiceRepository
 import com.hamp.repository.TransactionRepository
 import com.hamp.repository.UserRepository

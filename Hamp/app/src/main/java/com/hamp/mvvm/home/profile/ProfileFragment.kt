@@ -14,7 +14,8 @@ import android.widget.DatePicker
 import android.widget.EditText
 import com.hamp.R
 import com.hamp.common.BaseFragment
-import com.hamp.db.domain.User
+import com.hamp.common.NetworkViewState
+import com.hamp.data.db.domain.User
 import com.hamp.di.Injectable
 import com.hamp.extensions.*
 import com.hamp.mvvm.home.HomeActivity
@@ -57,7 +58,7 @@ class ProfileFragment : BaseFragment(), Injectable,
     private val homeActivity: HomeActivity
         get() = activity as HomeActivity
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.fragment_profile, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,10 +78,36 @@ class ProfileFragment : BaseFragment(), Injectable,
     private fun setUpViewModel() {
         profileViewModel = homeActivity.getViewModel(viewModelFactory)
 
-        profileViewModel.user.observe(this, { it?.let { fillProfileInfo(it) } })
-        profileViewModel.loading.observe(this, { it?.let { showLoading(it) } })
-        profileViewModel.updateSucceed.observe(this, { it?.let { if (it) updateSucceed() } })
-        profileViewModel.updateError.observe(this, { it?.let { updateError(it) } })
+        observe(profileViewModel.userStatus, { it.notNull { userStateBehaviour(it) } })
+        observe(profileViewModel.updateStatus, { it.notNull { updateStateBehaviour(it) } })
+    }
+
+    private fun userStateBehaviour(networkViewState: NetworkViewState) {
+        when (networkViewState) {
+            is NetworkViewState.Loading -> showLoading(true)
+            is NetworkViewState.Success<*> -> {
+                showLoading(false)
+                if (networkViewState.data is User) fillProfileInfo(networkViewState.data)
+            }
+            is NetworkViewState.Error -> {
+                showLoading(false)
+                homeActivity.showErrorSnackBar(duration = Snackbar.LENGTH_LONG)
+            }
+        }
+    }
+
+    private fun updateStateBehaviour(networkViewState: NetworkViewState) {
+        when (networkViewState) {
+            is NetworkViewState.Loading -> showLoading(true)
+            is NetworkViewState.Success<*> -> {
+                showLoading(false)
+                updateSucceed()
+            }
+            is NetworkViewState.Error -> {
+                showLoading(false)
+                updateError(networkViewState.error)
+            }
+        }
     }
 
     private fun initializeValidatorAndInputs() {
@@ -179,15 +206,15 @@ class ProfileFragment : BaseFragment(), Injectable,
     }
 
     override fun onValidationSucceeded() {
-        profileViewModel.user.value?.name = profileName.trim()
-        profileViewModel.user.value?.surname = profileSurname.trim()
-        profileViewModel.user.value?.email = profileEmail.trim()
-        profileViewModel.user.value?.phone = profilePhone.trim()
-        profileViewModel.user.value?.birthday = profileBirth.text.toString()
+        profileViewModel.user.name = profileName.trim()
+        profileViewModel.user.surname = profileSurname.trim()
+        profileViewModel.user.email = profileEmail.trim()
+        profileViewModel.user.phone = profilePhone.trim()
+        profileViewModel.user.birthday = profileBirth.text.toString()
 
-        if (maleRadioButton.isChecked) profileViewModel.user.value?.gender = "M"
-        else if (femaleRadioButton.isChecked) profileViewModel.user.value?.gender = "F"
-        else profileViewModel.user.value?.gender = "U"
+        if (maleRadioButton.isChecked) profileViewModel.user.gender = "M"
+        else if (femaleRadioButton.isChecked) profileViewModel.user.gender = "F"
+        else profileViewModel.user.gender = "U"
 
         val pickUpTime = if (segmentedButtonMorning.isChecked) "M"
         else "A"
@@ -195,7 +222,7 @@ class ProfileFragment : BaseFragment(), Injectable,
         profileViewModel.savePreferences(phoneSwitch.isChecked, rateHampSwitch.isChecked,
                 notificationsSwitch.isChecked, pickUpTime)
 
-        profileViewModel.user.value.notNull { profileViewModel.updateUser(it) }
+        profileViewModel.user.notNull { profileViewModel.updateUser(it) }
     }
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {
@@ -216,17 +243,17 @@ class ProfileFragment : BaseFragment(), Injectable,
         super.onStop()
         if (editMode) {
             editMode = false
-            profileViewModel.user.value.notNull { fillProfileInfo(it) }
+            profileViewModel.user.notNull { fillProfileInfo(it) }
             editModeSwitch()
             setPreferences()
         }
     }
 
     private fun setPreferences() {
-        phoneSwitch.isChecked = profileViewModel.isPhoneAllowed
-        rateHampSwitch.isChecked = profileViewModel.isRateAllowed
-        notificationsSwitch.isChecked = profileViewModel.areNotificationsAllowed
-        if (profileViewModel.pickUpTurn == "M") {
+        phoneSwitch.isChecked = profileViewModel.isPhoneAllowed()
+        rateHampSwitch.isChecked = profileViewModel.isRateAllowed()
+        notificationsSwitch.isChecked = profileViewModel.areNotificationsAllowed()
+        if (profileViewModel.pickUpTurn() == "M") {
             segmentedButtonMorning.isChecked = true
             segmentedButtonAfternoon.isChecked = false
         } else {

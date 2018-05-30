@@ -3,7 +3,7 @@ package com.hamp.domain
 import android.arch.persistence.room.Embedded
 import android.os.Parcel
 import android.os.Parcelable
-import com.hamp.db.domain.HampService
+import com.hamp.data.db.domain.HampService
 
 data class Service(
         @Embedded var hampService: HampService,

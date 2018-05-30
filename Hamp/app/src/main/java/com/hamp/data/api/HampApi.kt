@@ -1,6 +1,6 @@
-package com.hamp.api
+package com.hamp.data.api
 
-import com.hamp.db.domain.User
+import com.hamp.data.db.domain.User
 import com.hamp.domain.Card
 import com.hamp.domain.Transaction
 import com.hamp.domain.request.SignInRequest

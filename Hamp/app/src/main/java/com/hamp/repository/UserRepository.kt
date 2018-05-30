@@ -1,6 +1,6 @@
 package com.hamp.repository
 
-import com.hamp.db.domain.User
+import com.hamp.data.db.domain.User
 import com.hamp.domain.request.SignInRequest
 import com.hamp.domain.response.UserResponse
 import io.reactivex.Completable

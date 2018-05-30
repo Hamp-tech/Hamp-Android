@@ -1,15 +1,14 @@
 package com.hamp.repository
 
 import com.hamp.R
-import com.hamp.db.dao.ServiceQuantityDao
-import com.hamp.db.domain.HampService
-import com.hamp.db.domain.ServiceQuantity
+import com.hamp.data.db.dao.ServiceQuantityDao
+import com.hamp.data.db.domain.HampService
+import com.hamp.data.db.domain.ServiceQuantity
 import com.hamp.domain.Service
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class ServiceRepositoryImpl @Inject constructor(
         private val serviceQuantityDao: ServiceQuantityDao

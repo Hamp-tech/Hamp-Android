@@ -1,6 +1,6 @@
 package com.hamp.repository
 
-import com.hamp.db.domain.ServiceQuantity
+import com.hamp.data.db.domain.ServiceQuantity
 import com.hamp.domain.Service
 import io.reactivex.Completable
 import io.reactivex.Single

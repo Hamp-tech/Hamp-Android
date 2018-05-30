@@ -4,17 +4,21 @@ import android.app.Activity
 import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hamp.R
 import com.hamp.common.BaseFragment
+import com.hamp.common.NetworkViewState
 import com.hamp.di.Injectable
 import com.hamp.domain.Basket
 import com.hamp.domain.Service
 import com.hamp.extensions.getViewModel
+import com.hamp.extensions.notNull
 import com.hamp.extensions.observe
+import com.hamp.extensions.showErrorSnackBar
 import com.hamp.mvvm.home.HomeActivity
 import com.hamp.mvvm.home.service.detail.ServiceDetailActivity
 import kotlinx.android.synthetic.main.fragment_service.*
@@ -57,9 +61,23 @@ class ServiceFragment : BaseFragment(), Injectable,
 
     private fun setUpViewModel() {
         serviceViewModel = homeActivity.getViewModel(viewModelFactory)
-        serviceViewModel.loading.observe(this, { it?.let { showLoading(it) } })
-        serviceViewModel.basket.observe(this, { it?.let { refreshServicesList(it) } })
-        serviceViewModel.totalServices.observe(this, { it?.let { refreshBasketCounter(it) } })
+
+        observe(serviceViewModel.basketStatus, { it.notNull { basketStateBehaviour(it) } })
+        observe(serviceViewModel.totalServices, { it.notNull { refreshBasketCounter(it) } })
+    }
+
+    private fun basketStateBehaviour(networkViewState: NetworkViewState) {
+        when (networkViewState) {
+            is NetworkViewState.Loading -> showLoading(true)
+            is NetworkViewState.Success<*> -> {
+                showLoading(false)
+                if (networkViewState.data is Basket) refreshServicesList(networkViewState.data)
+            }
+            is NetworkViewState.Error -> {
+                showLoading(false)
+                homeActivity.showErrorSnackBar(duration = Snackbar.LENGTH_LONG)
+            }
+        }
     }
 
     private fun setUpRecyclerServices() {

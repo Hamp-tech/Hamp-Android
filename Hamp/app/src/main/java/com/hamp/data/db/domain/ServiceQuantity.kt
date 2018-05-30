@@ -1,4 +1,4 @@
-package com.hamp.db.domain
+package com.hamp.data.db.domain
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey

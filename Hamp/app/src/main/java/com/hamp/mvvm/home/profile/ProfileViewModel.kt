@@ -2,80 +2,79 @@ package com.hamp.mvvm.home.profile
 
 import android.arch.lifecycle.MutableLiveData
 import com.hamp.R
-import com.hamp.api.exception.ServerException
+import com.hamp.data.api.exception.ServerException
 import com.hamp.common.BaseViewModel
 import com.hamp.common.NetworkViewState
-import com.hamp.db.domain.User
+import com.hamp.data.db.domain.User
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.preferences.PreferencesManager
 import com.hamp.repository.ServiceRepository
-import com.hamp.repository.ServiceRepositoryImpl
 import com.hamp.repository.UserRepository
-import com.hamp.repository.UserRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
         private val userRepository: UserRepository,
         private val serviceRepository: ServiceRepository,
-        private var prefs: PreferencesManager
+        private val prefs: PreferencesManager
 ) : BaseViewModel() {
 
+    lateinit var user: User
 
-    val isPhoneAllowed = prefs.isPhoneAllowed
-    val isRateAllowed = prefs.isRateAllowed
-    val areNotificationsAllowed = prefs.areNotificationsAllowed
-    val pickUpTurn = prefs.pickUpTurn
-
-    val user = MutableLiveData<User>()
-    val loading = MutableLiveData<Boolean>()
-    val updateSucceed = MutableLiveData<Boolean>()
-    val updateError = MutableLiveData<Any>()
+    val userStatus = MutableLiveData<NetworkViewState>()
+    val updateStatus = MutableLiveData<NetworkViewState>()
 
     init {
-        userRepository.getDBUser()
+        disposables += userRepository.getDBUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loading.value = true }
-                .doAfterTerminate { loading.value = false }
+                .doOnSubscribe { userStatus.value = NetworkViewState.Loading() }
                 .subscribeBy(
-                        onSuccess = { user.value = it },
-                        onError = { }
+                        onSuccess = {
+                            user = it
+                            userStatus.value = NetworkViewState.Success(it)
+                        },
+                        onError = { userStatus.value = NetworkViewState.Error(R.string.generic_error) }
                 )
     }
 
     fun updateUser(user: User) {
-        disposables.add(userRepository.updateUser(user, prefs.userId)
+        disposables += userRepository.updateUser(user, prefs.userId)
+                .flatMapCompletable { userRepository.saveUser(it.data) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loading.value = true }
-                .doAfterTerminate { loading.value = false }
+                .doOnSubscribe { updateStatus.value = NetworkViewState.Loading() }
                 .subscribeBy(
-                        onSuccess = {
+                        onComplete = {
                             logd("[updateUser.onSuccess]")
-                            userRepository.saveUser(it.data).subscribeOn(Schedulers.io())
-                            updateSucceed.value = true
+                            updateStatus.value = NetworkViewState.Success(true)
                         },
                         onError = { e ->
                             loge("[updateUser.onError]" + e.printStackTrace())
 
                             when (e) {
-//                                is retrofit2.HttpException -> {
-//                                    e.response().errorBody()?.let {
-//                                        updateError.value = userRepository.api.convertError(it).message
-//                                    }
-//                                }
-//                                is UnknownHostException -> updateError.value = R.string.internet_connection_error
-                                is ServerException -> e.message.notNull { NetworkViewState.Error(it) }
-                                else -> updateError.value = R.string.generic_error
+                                is ServerException -> e.message.notNull {
+                                    updateStatus.value = NetworkViewState.Error(it)
+                                }
+                                is IOException -> updateStatus.value = NetworkViewState.Error(
+                                        R.string.internet_connection_error)
+                                else -> updateStatus.value = NetworkViewState.Error(
+                                        R.string.generic_error)
                             }
                         }
-                ))
+                )
     }
+
+    fun isPhoneAllowed() = prefs.isPhoneAllowed
+    fun isRateAllowed() = prefs.isRateAllowed
+    fun areNotificationsAllowed() = prefs.areNotificationsAllowed
+    fun pickUpTurn() = prefs.pickUpTurn
 
     fun savePreferences(isPhoneAllowed: Boolean, isRateAllowed: Boolean,
                         areNotificationsAllowed: Boolean, pickUpTurn: String) {

@@ -1,14 +1,14 @@
-package com.hamp.db
+package com.hamp.data.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import com.hamp.HampApplication
-import com.hamp.db.dao.ServiceQuantityDao
-import com.hamp.db.dao.UserDao
-import com.hamp.db.domain.HampService
-import com.hamp.db.domain.ServiceQuantity
-import com.hamp.db.domain.User
+import com.hamp.data.db.dao.ServiceQuantityDao
+import com.hamp.data.db.dao.UserDao
+import com.hamp.data.db.domain.HampService
+import com.hamp.data.db.domain.ServiceQuantity
+import com.hamp.data.db.domain.User
 
 @Database(entities = [(HampService::class), (User::class), (ServiceQuantity::class)],
         version = HampDatabase.VERSION)

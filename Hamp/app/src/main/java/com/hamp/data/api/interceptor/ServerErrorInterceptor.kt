@@ -1,6 +1,6 @@
-package com.hamp.api.interceptor
+package com.hamp.data.api.interceptor
 
-import com.hamp.api.exception.ServerException
+import com.hamp.data.api.exception.ServerException
 import com.hamp.domain.response.GenericResponse
 import com.hamp.extensions.fromJsonObject
 import okhttp3.Interceptor

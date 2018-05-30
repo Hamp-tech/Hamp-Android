@@ -1,7 +1,9 @@
 package com.hamp.mvvm.home.service
 
 import android.arch.lifecycle.MutableLiveData
+import com.hamp.R
 import com.hamp.common.BaseViewModel
+import com.hamp.common.NetworkViewState
 import com.hamp.domain.Basket
 import com.hamp.domain.Service
 import com.hamp.repository.ServiceRepositoryImpl
@@ -14,40 +16,40 @@ class ServiceViewModel @Inject constructor(
         val repository: ServiceRepositoryImpl
 ) : BaseViewModel() {
 
-    val loading = MutableLiveData<Boolean>()
-    val basket = MutableLiveData<Basket>()
+    var basket = Basket()
+    val basketStatus = MutableLiveData<NetworkViewState>()
     val totalServices = MutableLiveData<Int>()
 
     fun loadServices() {
         repository.loadServices()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loading.value = true }
-                .doAfterTerminate { loading.value = false }
+                .doOnSubscribe { basketStatus.value = NetworkViewState.Loading() }
                 .subscribeBy(
                         onSuccess = {
-                            basket.value = Basket(it.toMutableList())
+                            basket = Basket(it.toMutableList())
+                            basketStatus.value = NetworkViewState.Success(basket)
                             calculateTotalBasket()
                         },
-                        onError = { }
+                        onError = { basketStatus.value = NetworkViewState.Error(R.string.generic_error) }
                 )
     }
 
     fun modifyServiceQuantity(service: Service) {
-        val serviceForModify = basket.value?.services?.find { it.hampService.id == service.hampService.id }
-        val index = basket.value?.services?.indexOf(serviceForModify) ?: -1
-        if (index != -1) basket.value?.services?.set(index, service)
+        val serviceForModify = basket.services.find { it.hampService.id == service.hampService.id }
+        val index = basket.services.indexOf(serviceForModify)
+        if (index != -1) basket.services[index] = service
 
         repository.saveServiceQuantity(service)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onComplete = { calculateTotalBasket() },
-                        onError = {}
+                        onError = { calculateTotalBasket() }
                 )
     }
 
     private fun calculateTotalBasket() {
-        totalServices.value = basket.value?.services?.filter { it.amount != 0 }?.sumBy { it.amount }
+        totalServices.value = basket.services.filter { it.amount != 0 }.sumBy { it.amount }
     }
 }

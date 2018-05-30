@@ -3,14 +3,14 @@ package com.hamp.mvvm.login
 import android.arch.lifecycle.MutableLiveData
 import android.util.Patterns
 import com.hamp.R
-import com.hamp.api.exception.ServerException
+import com.hamp.data.api.exception.ServerException
 import com.hamp.common.BaseViewModel
 import com.hamp.common.NetworkViewState
 import com.hamp.domain.request.SignInRequest
 import com.hamp.extensions.logd
 import com.hamp.extensions.loge
 import com.hamp.extensions.notNull
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.preferences.PreferencesManager
 import com.hamp.repository.UserRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign
@@ -56,7 +56,9 @@ class LoginViewModel @Inject constructor(
                         onError = { e ->
                             loge("[login.onError]" + e.printStackTrace())
                             when (e) {
-                                is ServerException -> e.message.notNull { NetworkViewState.Error(it) }
+                                is ServerException -> e.message.notNull {
+                                    loginStatus.value = NetworkViewState.Error(it)
+                                }
                                 is IOException -> loginStatus.value = NetworkViewState.Error(
                                         R.string.internet_connection_error)
                                 else -> loginStatus.value = NetworkViewState.Error(

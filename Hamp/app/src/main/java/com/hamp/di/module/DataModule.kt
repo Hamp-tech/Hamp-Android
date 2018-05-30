@@ -1,10 +1,10 @@
 package com.hamp.di.module
 
 import com.hamp.HampApplication
-import com.hamp.api.RestApi
-import com.hamp.db.HampDatabase
-import com.hamp.db.HampDatabase.Companion.retrieveDB
-import com.hamp.preferences.PreferencesManager
+import com.hamp.data.api.RestApi
+import com.hamp.data.db.HampDatabase
+import com.hamp.data.db.HampDatabase.Companion.retrieveDB
+import com.hamp.data.preferences.PreferencesManager
 import com.hamp.repository.*
 import dagger.Module
 import dagger.Provides

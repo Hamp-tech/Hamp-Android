@@ -1,8 +1,8 @@
-package com.hamp.api
+package com.hamp.data.api
 
 import com.hamp.BuildConfig
-import com.hamp.api.interceptor.ServerErrorInterceptor
-import com.hamp.db.domain.User
+import com.hamp.data.api.interceptor.ServerErrorInterceptor
+import com.hamp.data.db.domain.User
 import com.hamp.domain.Card
 import com.hamp.domain.Transaction
 import com.hamp.domain.request.SignInRequest
